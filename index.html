@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday | A Special Day for an Extraordinary Person</title>
+  <meta name="description" content="Trang web chúc mừng sinh nhật ngọt ngào, tinh tế và đáng yêu.">
+
+  <!-- Google Fonts: Baloo 2, Comfortaa, Nunito, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@600;700&family=Comfortaa:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Nunito"', '"Comfortaa"', 'sans-serif'],
+            cute: ['"Baloo 2"', '"Comfortaa"', 'cursive', 'sans-serif'],
+            hand: ['"Caveat"', 'cursive'],
+          },
+          colors: {
+            theme: {
+              coral: '#ef6877',
+              pinkLight: '#f88b97',
+              heartRed: '#e11d48',
+              black: '#09090b',
+              dark: '#18181b',
+              gray: '#71717a',
+              light: '#f4f4f5',
+              white: '#ffffff',
+            }
+          },
+          animation: {
+            'float': 'float 5s ease-in-out infinite',
+            'float-delayed': 'float 5s ease-in-out 2.5s infinite',
+            'bounce-soft': 'bounceSoft 2.5s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+            'letter-float': 'letterFloat 3.2s ease-in-out infinite',
+            'shadow-pulse': 'shadowPulse 3.2s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-10px) rotate(1.5deg)' },
+            },
+            bounceSoft: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-7px)' },
+            },
+            pulseSoft: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+              '50%': { opacity: '0.7', transform: 'scale(1.03)' },
+            },
+            letterFloat: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(-1deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(1.2deg)' },
+            },
+            shadowPulse: {
+              '0%, 100%': { transform: 'scale(1)', opacity: '0.22' },
+              '50%': { transform: 'scale(0.85)', opacity: '0.1' },
+            },
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    ::selection {
+      background: #4b5563;
+      color: #fff1cc;
+    }
+
+    body {
+      background-color: #fff1cc;
+      color: #4b5563;
+      font-family: 'Nunito', 'Comfortaa', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Minimalist Glass Panels on Warm Background */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid rgba(168, 153, 115, 0.18);
+      box-shadow: 0 16px 36px -8px rgba(100, 90, 70, 0.08), 0 4px 12px -2px rgba(100, 90, 70, 0.04);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(75, 85, 99, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 22px 48px -10px rgba(75, 85, 99, 0.14);
+    }
+
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(168, 153, 115, 0.22);
+      box-shadow: 0 8px 20px -4px rgba(100, 90, 70, 0.06);
+    }
+
+    /* Charcoal & Slate Grey Gradient Typography */
+    .bw-gradient-text {
+      background: linear-gradient(135deg, #1f2937 0%, #374151 45%, #6b7280 80%, #4b5563 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Chic Charcoal Grey Bubbly Button */
+    .btn-black {
+      position: relative;
+      background: #374151;
+      color: #fff1cc;
+      box-shadow: 0 10px 25px -4px rgba(55, 65, 81, 0.28);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-black:hover {
+      background: #1f2937;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 16px 32px -4px rgba(31, 41, 55, 0.35);
+    }
+
+    .btn-black:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Scroll reveal transitions */
+    .reveal-element {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-element.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Equalizer Sound Bars (Grey) */
+    .bar {
+      width: 3px;
+      height: 12px;
+      background-color: #4b5563;
+      border-radius: 3px;
+      animation: equalize 1s ease-in-out infinite alternate;
+    }
+    .bar:nth-child(1) { animation-delay: 0.1s; height: 16px; }
+    .bar:nth-child(2) { animation-delay: 0.3s; height: 8px; }
+    .bar:nth-child(3) { animation-delay: 0.2s; height: 20px; }
+    .bar:nth-child(4) { animation-delay: 0.4s; height: 12px; }
+
+    @keyframes equalize {
+      0% { height: 4px; }
+      100% { height: 22px; }
+    }
+
+    .equalizer-paused .bar {
+      animation-play-state: paused;
+      height: 4px !important;
+    }
+
+    /* Candle Animation */
+    .flame {
+      width: 15px;
+      height: 28px;
+      background: linear-gradient(to top, #ff3b30, #ff9500, #ffcc00, #ffffff);
+      border-radius: 50% 50% 20% 20%;
+      box-shadow: 0 0 14px #ff9500, 0 0 24px #ff3b30, 0 0 35px rgba(255, 204, 0, 0.6);
+      animation: flicker 1.8s infinite alternate ease-in-out;
+      transform-origin: bottom center;
+    }
+
+    @keyframes flicker {
+      0% { transform: rotate(-2deg) scale(1); filter: brightness(1); }
+      50% { transform: rotate(3deg) scale(1.06, 0.95); filter: brightness(1.2); }
+      100% { transform: rotate(-1deg) scale(0.96, 1.05); filter: brightness(1); }
+    }
+
+    .flame-extinguished {
+      opacity: 0;
+      transform: scale(0.2) translateY(-10px);
+      transition: all 0.5s ease-out;
+      filter: blur(4px);
+    }
+
+    /* 3D Envelope Animation & Perspective */
+    .envelope-perspective {
+      perspective: 1200px;
+    }
+
+    .envelope-top-flap {
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.35, 0.05, 0.2, 1);
+      backface-visibility: visible;
+    }
+
+    .envelope-top-flap.opened {
+      transform: rotateX(180deg);
+    }
+
+    .envelope-letter {
+      transform: translateY(20px);
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.6s ease;
+      will-change: transform, box-shadow;
+    }
+
+    .envelope-letter.popped {
+      transform: translateY(-138px) scale(1.04);
+      box-shadow: 0 22px 45px -10px rgba(225, 29, 72, 0.22), 0 0 0 1px rgba(254, 205, 211, 0.6);
+    }
+
+    @media (min-width: 640px) {
+      .envelope-letter.popped {
+        transform: translateY(-165px) scale(1.06);
+      }
+    }
+
+    .heart-seal {
+      transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.28s ease;
+    }
+
+    .heart-seal.unsealed {
+      transform: translate(-50%, -50%) scale(1.4) rotate(-8deg);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Cute Flower Bouquet Animations */
+    @keyframes bouquetSway {
+      0% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+      100% { transform: rotate(-2deg); }
+    }
+    .animate-bouquet-sway {
+      animation: bouquetSway 5s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    @keyframes petalFloat {
+      0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 0; }
+      25% { opacity: 0.85; }
+      75% { opacity: 0.85; }
+      100% { transform: translateY(-75px) scale(1.1) rotate(40deg); opacity: 0; }
+    }
+    .floating-petal {
+      animation: petalFloat 3.8s ease-in-out infinite;
+    }
+
+    .flower-bloom {
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ========================================================
+       AESTHETIC RETRO CASSETTE & MEDIA STATION STYLES
+       ======================================================== */
+    @keyframes spinReel {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .cassette-reel-wheel {
+      transform-origin: center center;
+    }
+
+    .is-playing .cassette-reel-wheel {
+      animation: spinReel 2.8s linear infinite;
+    }
+
+    .is-paused .cassette-reel-wheel {
+      animation-play-state: paused;
+    }
+
+    @keyframes hangingBouquetSway {
+      0% { transform: rotate(-2.5deg); }
+      50% { transform: rotate(2.5deg); }
+      100% { transform: rotate(-2.5deg); }
+    }
+
+    .animate-hanging-sway {
+      transform-origin: top center;
+      animation: hangingBouquetSway 5.5s ease-in-out infinite;
+    }
+
+    .tracklist-row {
+      transition: all 0.25s ease;
+    }
+
+    .tracklist-row:hover {
+      background-color: rgba(220, 216, 200, 0.45);
+      transform: translateX(4px);
+    }
+
+    .tracklist-row.active-track {
+      background-color: rgba(220, 216, 200, 0.9);
+      font-weight: 700;
+    }
+
+    @keyframes pulseHeartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .animate-heart-pulse {
+      animation: pulseHeartBeat 1.8s ease-in-out infinite;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fff1cc;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d6caa7;
+      border-radius: 6px;
+    }
+    /* ========================================================
+       FULL-SCREEN BLOOMING FLOWERS EFFECT
+       ======================================================== */
+    #flower-bloom-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    .bloom-flower {
+      position: fixed;
+      transform-origin: center center;
+      will-change: transform, opacity;
+      animation: flowerBloomPop 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
+      pointer-events: none;
+    }
+
+    @keyframes flowerBloomPop {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(var(--rot-start, -75deg));
+      }
+      18% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.22) rotate(var(--rot-mid, 15deg));
+      }
+      32% {
+        transform: translate(-50%, -50%) scale(0.94) rotate(var(--rot-mid2, -5deg));
+      }
+      46% {
+        transform: translate(-50%, -50%) scale(1.05) rotate(var(--rot-end, 3deg));
+      }
+      65% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) translateY(var(--drift-y1, -8px)) rotate(var(--rot-drift, 10deg));
+      }
+      82% {
+        opacity: 0.92;
+        transform: translate(-50%, -50%) scale(0.96) translateY(var(--drift-y2, 10px)) rotate(var(--rot-drift2, 18deg));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.55) translateY(var(--drift-y3, 35px)) rotate(var(--rot-drift3, 32deg));
+      }
+    }
+
+    .bloom-petal {
+      position: fixed;
+      transform-origin: center center;
+      will-change: transform, opacity;
+      animation: petalFloatFall 3.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+    }
+
+    @keyframes petalFloatFall {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+      }
+      15% {
+        opacity: 0.95;
+        transform: translate(calc(-50% + var(--pdx) * 0.25), calc(-50% + var(--pdy) * 0.25)) scale(1.2) rotate(45deg);
+      }
+      75% {
+        opacity: 0.9;
+        transform: translate(calc(-50% + var(--pdx) * 0.8), calc(-50% + var(--pdy) * 0.8)) scale(1) rotate(var(--prot, 180deg));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--pdx)), calc(-50% + var(--pdy))) scale(0.65) rotate(calc(var(--prot, 180deg) + 90deg));
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-zinc-700 selection:text-[#fff1cc] bg-[#fff1cc] text-zinc-600 min-h-screen">
+
+  <!-- FULL-SCREEN FLOWER BLOOM OVERLAY -->
+  <div id="flower-bloom-overlay" class="fixed inset-0 pointer-events-none z-[9999] overflow-hidden"></div>
+
+  <!-- ======================== INTRO ENVELOPE OVERLAY ======================== -->
+  <div id="intro-letter-overlay" class="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#fff1cc] px-6 transition-all duration-700 ease-out select-none">
+    
+    <!-- Background subtle ambient glow -->
+    <div class="absolute w-80 h-80 rounded-full bg-amber-200/40 blur-[130px] pointer-events-none -z-10 animate-pulse-soft"></div>
+
+    <!-- Wrapper with 4 Small Usagi Images around the envelope -->
+    <div class="relative flex flex-col items-center">
+      
+      <!-- Usagi Sticker 1: Top-Left (Apple costume) -->
+      <div class="absolute -top-6 -left-10 sm:-top-8 sm:-left-16 md:-left-20 z-40 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden -rotate-12 animate-float pointer-events-none shadow-sm">
+        <img src="./assets/usagi-apple.jpg" alt="Usagi Apple" class="w-full h-full object-cover">
+      </div>
+
+      <!-- Usagi Sticker 2: Top-Right (Bouquet, transparent sticker) -->
+      <div class="absolute -top-6 -right-10 sm:-top-8 sm:-right-16 md:-right-20 z-40 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rotate-12 animate-float-delayed pointer-events-none">
+        <img src="./assets/usagi-bouquet.png" alt="Usagi Bouquet" class="w-full h-full object-contain filter drop-shadow-sm">
+      </div>
+
+      <!-- Usagi Sticker 3: Bottom-Left (Rose in mouth, transparent sticker) -->
+      <div class="absolute -bottom-6 -left-10 sm:-bottom-8 sm:-left-16 md:-left-20 z-40 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rotate-6 animate-float-delayed pointer-events-none">
+        <img src="./assets/usagi-rose.png" alt="Usagi Rose" class="w-full h-full object-contain filter drop-shadow-sm">
+      </div>
+
+      <!-- Usagi Sticker 4: Bottom-Right (Heart hands) -->
+      <div class="absolute -bottom-6 -right-10 sm:-bottom-8 sm:-right-16 md:-right-20 z-40 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden -rotate-6 animate-float pointer-events-none shadow-sm">
+        <img src="./assets/usagi-heart.jpg" alt="Usagi Heart" class="w-full h-full object-cover">
+      </div>
+
+      <!-- Interactive Envelope (Coordinated 3D Animation) -->
+      <div id="intro-envelope" class="relative cursor-pointer group flex flex-col items-center animate-letter-float envelope-perspective" onclick="openIntroLetter()">
+        
+        <!-- Envelope Main Box -->
+        <div id="envelope-box" class="relative w-72 sm:w-84 md:w-96 h-48 sm:h-56 transition-all duration-300 group-hover:scale-105">
+          
+          <!-- 1. Envelope Back Interior (z-0, dark coral pink for depth) -->
+          <div class="absolute inset-0 rounded-[2.2rem] shadow-[0_20px_45px_-10px_rgba(239,104,119,0.3)] overflow-hidden" style="background-color: #df5262;">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/10"></div>
+          </div>
+
+          <!-- 2. Top Flap (Hinged at top, lighter pink #f88b97, flips 180deg up) -->
+          <div id="intro-flap" class="envelope-top-flap absolute top-0 left-0 w-full h-[62%] z-30 pointer-events-none">
+            <svg viewBox="0 0 100 62" preserveAspectRatio="none" class="w-full h-full filter drop-shadow-md">
+              <path d="M 0 0 L 100 0 L 50 62 Z" fill="#f88b97" />
+              <path d="M 0 0 L 50 62 L 100 0" fill="none" stroke="#ef6877" stroke-width="0.8" opacity="0.4" />
+            </svg>
+          </div>
+
+          <!-- 3. The Letter Paper (z-15 nestled inside, slides UP and rises to z-35 when opened) -->
+          <div id="intro-letter-card" class="envelope-letter absolute inset-x-5 sm:inset-x-7 bottom-3.5 h-[88%] bg-white rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center shadow-md z-15 border border-pink-100/80 pointer-events-none select-none transition-all">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-rose-200/90 mb-2 shadow-sm bg-rose-50 flex-shrink-0">
+              <img src="./assets/usagi-heart.jpg" alt="Usagi Heart" class="w-full h-full object-cover">
+            </div>
+            <div class="font-cute font-black text-zinc-800 text-lg sm:text-xl md:text-2xl leading-tight">Happy Birthday!</div>
+            <p class="text-xs sm:text-sm text-zinc-500 font-cute mt-1 font-medium leading-relaxed">Một món quà ngọt ngào đang chờ bạn...</p>
+            <div class="mt-3 inline-flex items-center gap-1.5 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-rose-500 hover:bg-rose-600 text-white font-cute text-xs sm:text-sm font-bold shadow-md shadow-rose-400/30 transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
+              <span>Khám phá ngay</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
+            </div>
+          </div>
+
+          <!-- 4. Front Pocket (z-20, in front of the letter paper) -->
+          <div class="absolute inset-0 z-20 pointer-events-none rounded-[2.2rem] overflow-hidden">
+            <svg viewBox="0 0 100 65" preserveAspectRatio="none" class="w-full h-full filter drop-shadow-sm">
+              <path d="M 0 0 L 50 42 L 100 0 L 100 65 L 0 65 Z" fill="#ef6877" />
+              <path d="M 0 65 L 50 42 L 0 0 Z" fill="#ea5867" opacity="0.32" />
+              <path d="M 100 65 L 50 42 L 100 0 Z" fill="#ea5867" opacity="0.32" />
+              <path d="M 0 65 L 100 65 L 50 42 Z" fill="#f47482" opacity="0.22" />
+              <path d="M 0 0 L 50 42 L 100 0" fill="none" stroke="#e04e5e" stroke-width="0.75" opacity="0.5" />
+            </svg>
+          </div>
+
+          <!-- 5. Red Heart Seal (z-40, pops and unseals) -->
+          <div id="intro-heart-seal" class="heart-seal absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 w-12 sm:w-14 h-12 sm:h-14 flex items-center justify-center pointer-events-none">
+            <svg viewBox="0 0 24 24" class="w-full h-full filter drop-shadow text-[#e11d48]" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </div>
+
+        </div>
+
+        <!-- Shadow Beneath Floating Envelope -->
+        <div class="w-56 sm:w-68 h-4 rounded-full bg-rose-950/15 blur-md mt-6 animate-shadow-pulse pointer-events-none"></div>
+
+      </div>
+
+    </div>
+
+    <!-- Text Below: "Có tin nhắn nè!" (No emoji) -->
+    <div id="intro-text" class="mt-5 text-center cursor-pointer group" onclick="openIntroLetter()">
+      <p class="font-cute text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-700 tracking-wide flex items-center justify-center gap-2 group-hover:scale-105 transition-transform">
+        Có tin nhắn nè!
+      </p>
+      <p class="text-xs sm:text-sm text-zinc-500 font-cute mt-1.5 font-medium">
+        (Chạm vào lá thư để mở nha)
+      </p>
+    </div>
+
+  </div>
+
+  <!-- BACKGROUND CANVAS: Monochrome Stardust -->
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-60"></canvas>
+
+  <!-- SUBTLE MONOCHROME AMBIENT LIGHTS -->
+  <div class="fixed top-[-8%] left-[10%] w-[500px] h-[500px] rounded-full bg-amber-200/35 blur-[140px] pointer-events-none -z-10 animate-pulse-soft"></div>
+  <div class="fixed bottom-[10%] right-[8%] w-[600px] h-[600px] rounded-full bg-stone-300/30 blur-[150px] pointer-events-none -z-10 animate-float-delayed"></div>
+  <div class="fixed top-[45%] right-[25%] w-[450px] h-[450px] rounded-full bg-amber-100/40 blur-[130px] pointer-events-none -z-10"></div>
+
+  <!-- FLOATING CONFETTI (Top Right) -->
+  <div class="fixed top-5 right-5 z-40 flex items-center gap-2.5">
+    <!-- Confetti Trigger -->
+    <button id="nav-confetti-btn" class="w-9 h-9 rounded-full glass-pill hover:bg-stone-100/70 text-zinc-700 flex items-center justify-center border border-stone-300/80 shadow-md transition hover:scale-110 active:scale-95" title="Bắn pháo hoa giấy">
+      <svg class="w-4 h-4 text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- ======================== HERO SECTION ======================== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-6 z-10">
+    <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+      
+      <!-- Main Headline in Cute Bold B&W Typography -->
+      <h1 class="reveal-element font-cute text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.12] mb-5 font-bold">
+        <span class="text-zinc-700 block">A Special Day for an</span>
+        <span class="bw-gradient-text block mt-1 tracking-normal font-extrabold">
+          Extraordinary Person.
+        </span>
+      </h1>
+
+      <!-- Cute Small Usagi Mascot Greeting (Small and charming) -->
+      <div class="reveal-element my-4 flex items-center justify-center gap-3">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden border-2 border-stone-300/80 shadow-md bg-white -rotate-6 hover:rotate-0 hover:scale-110 transition-transform duration-300">
+          <img src="./assets/usagi-apple.jpg" alt="Usagi" class="w-full h-full object-cover mix-blend-multiply">
+        </div>
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-stone-300/80 shadow-lg bg-white hover:scale-110 transition-transform duration-300">
+          <img src="./assets/usagi-bouquet.jpg" alt="Usagi" class="w-full h-full object-cover mix-blend-multiply">
+        </div>
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden border-2 border-stone-300/80 shadow-md bg-white rotate-6 hover:rotate-0 hover:scale-110 transition-transform duration-300">
+          <img src="./assets/usagi-heart.jpg" alt="Usagi" class="w-full h-full object-cover mix-blend-multiply">
+        </div>
+      </div>
+
+      <!-- Personal Dedication Quote -->
+      <p class="reveal-element max-w-2xl mx-auto text-zinc-600 text-base sm:text-lg md:text-xl font-medium leading-relaxed mb-10">
+        Hôm nay là thời khắc dành riêng cho sự hiện diện độc nhất vô nhị của 
+        <span id="hero-recipient-highlight" class="font-bold text-zinc-800 underline decoration-zinc-400 decoration-wavy decoration-2 underline-offset-4">Bạn</span>! 
+        Chúc bạn tuổi mới luôn giữ vững khí chất kiêu hãnh, cá tính cuốn hút, tâm hồn bình an và ngập tràn hạnh phúc thuần khiết nhất.
+      </p>
+
+      <!-- Primary Action Buttons -->
+      <div class="reveal-element flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+        <!-- Black Pill CTA: Make a Wish -->
+        <a href="#wish-candle" id="start-journey-btn" class="btn-black group inline-flex items-center justify-center gap-3 px-9 py-4 rounded-full font-bold text-base tracking-wide w-full sm:w-auto font-cute">
+          <span>Thổi nến ước nguyện</span>
+          <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+
+        <!-- Secondary Button: Flower Bouquet -->
+        <a href="#flower-bouquet" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full glass-card hover:bg-stone-100/70 text-zinc-700 text-base font-bold tracking-wide transition duration-300 border-2 border-stone-300/80 w-full sm:w-auto font-cute">
+          <span>Nhận bó hoa chúc mừng</span>
+        </a>
+      </div>
+
+      <!-- Down Arrow Indicator -->
+      <div class="reveal-element mt-12 animate-bounce text-zinc-400 hover:text-zinc-700 transition cursor-pointer">
+        <a href="#wish-candle" aria-label="Cuộn xuống thổi nến">
+          <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== INTERACTIVE CAKE & CANDLE SECTION ======================== -->
+  <section id="wish-candle" class="relative py-24 px-6 z-10 bg-[#fff1cc]">
+    <div class="max-w-4xl mx-auto text-center">
+
+      <div class="reveal-element mb-12">
+        <span class="inline-block text-xs uppercase tracking-widest text-zinc-500 font-bold font-cute mb-2">
+          Warm Pastel Birthday Cake
+        </span>
+        <h2 class="font-cute text-3xl sm:text-5xl font-extrabold tracking-tight mb-3 text-zinc-700">
+          Thổi Nến & <span class="bw-gradient-text">Gửi Điều Ước Vào Không Gian</span>
+        </h2>
+        <p class="max-w-lg mx-auto text-zinc-500 text-sm sm:text-base font-normal">
+          Nhắm mắt lại trong 3 giây, nghĩ về điều bạn khao khát nhất cho tuổi mới, và nhấn nút để thổi nến nhé!
+        </p>
+      </div>
+
+      <!-- Black & White Minimalist Cake Container -->
+      <div class="reveal-element relative max-w-sm mx-auto p-9 glass-card rounded-[2.5rem] border-2 border-stone-300/80 shadow-xl flex flex-col items-center bg-white/90">
+        
+        <!-- CANDLE & FLAME -->
+        <div class="relative flex flex-col items-center cursor-pointer group" id="candle-element" title="Nhấn vào ngọn nến để thổi">
+          <!-- Warm Glow Aura -->
+          <div id="candle-aura" class="absolute -top-6 w-20 h-20 bg-amber-400/25 rounded-full blur-xl pointer-events-none transition-opacity duration-500"></div>
+
+          <!-- Flame -->
+          <div id="flame" class="flame mb-1 transition-all duration-500"></div>
+
+          <!-- Wick -->
+          <div class="w-1 h-3 bg-zinc-700 rounded-t"></div>
+
+          <!-- Candle Body -->
+          <div class="w-5 h-16 bg-zinc-700 rounded-sm shadow-md border-t border-white/60 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.4)_50%,transparent_75%)] bg-[length:8px_8px]"></div>
+          </div>
+        </div>
+
+        <!-- MONOCHROME CHIC CAKE TIERS -->
+        <div class="w-full flex flex-col items-center mt-[-4px]">
+          <!-- Top Tier -->
+          <div class="w-40 h-10 rounded-t-2xl bg-white border-2 border-zinc-600 flex items-center justify-center relative shadow-sm">
+            <div class="text-[11px] font-bold tracking-wider text-zinc-600 font-cute">Vanilla & Dark Cocoa</div>
+          </div>
+          <!-- Middle Tier -->
+          <div class="w-56 h-12 bg-zinc-700 border-x-2 border-t-2 border-zinc-700 relative flex items-center justify-around px-4 shadow-sm text-white">
+            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+            <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+            <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+          </div>
+          <!-- Base Tier -->
+          <div class="w-72 h-14 rounded-b-3xl bg-white border-2 border-zinc-600 flex items-center justify-center shadow-md relative">
+            <span class="font-cute text-sm tracking-wider text-zinc-700 font-extrabold drop-shadow-sm">Happy Birthday To You</span>
+          </div>
+          <!-- Plate -->
+          <div class="w-80 h-3 rounded-full bg-zinc-700 shadow-md mt-1"></div>
+        </div>
+
+        <!-- STATUS MESSAGE -->
+        <div id="wish-status" class="mt-7 transition-all duration-500">
+          <p class="text-xs uppercase tracking-widest text-zinc-600 font-bold font-cute">Ngọn nến đang cháy sáng • Đang chờ điều ước của bạn</p>
+        </div>
+
+        <!-- INTERACTION BUTTONS (No emoji) -->
+        <div class="mt-5 flex gap-3">
+          <button id="blow-candle-btn" class="btn-black px-7 py-3 rounded-full font-bold text-sm tracking-wide transition flex items-center gap-2 font-cute">
+            <span>Thổi nến ước nguyện</span>
+          </button>
+          <button id="relight-btn" class="hidden px-5 py-3 rounded-full bg-stone-100 hover:bg-stone-200 text-zinc-700 text-sm font-bold border border-stone-300/80 transition font-cute">
+            <span>Thắp nến lại</span>
+          </button>
+        </div>
+
+        <!-- WISH CONGRATULATION POPUP -->
+        <div id="wish-congrats" class="hidden mt-6 p-4 rounded-2xl bg-stone-50 border border-stone-300/80 text-zinc-700 text-xs sm:text-sm leading-relaxed">
+          <strong>Vũ trụ đã ghi nhận điều ước của bạn!</strong> Chúc mọi ước mơ kiên định trong tim bạn đều nở rộ thành công rực rỡ!
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== AESTHETIC CASSETTE & MEDIA STATION ======================== -->
+  <section id="cassette-music-section" class="relative py-20 px-6 z-10 bg-gradient-to-b from-[#fff1cc] via-[#fdf8e6] to-[#fff1cc]">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Section Title Header -->
+      <div class="reveal-element text-center mb-12">
+        <span class="inline-block text-xs uppercase tracking-widest text-zinc-500 font-bold font-cute mb-2">
+          Aesthetic Mixtape & Retro Player
+        </span>
+        <h2 class="font-cute text-3xl sm:text-5xl font-extrabold tracking-tight mb-3 text-zinc-700">
+          Giai Điệu Tuổi Mới <span class="bw-gradient-text">• Dành Riêng Cho Bạn</span>
+        </h2>
+        <p class="max-w-md mx-auto text-zinc-500 text-sm font-normal">
+          Thả mình vào những giai điệu ngọt ngào, lãng mạn và dịu êm nhất trong ngày sinh nhật của bạn.
+        </p>
+      </div>
+
+      <!-- Two-Column Showcase (Left: Media Player Card, Right: Vintage Cassette & Playlist) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
+        
+        <!-- ================= LEFT COLUMN: MEDIA PLAYER CARD ================= -->
+        <div class="reveal-element lg:col-span-6 flex flex-col">
+          <div class="glass-card rounded-[2.5rem] bg-zinc-950 border-2 border-zinc-800/80 p-5 sm:p-6 shadow-2xl overflow-hidden text-white flex flex-col gap-4 flex-1 justify-between relative">
+            
+            <!-- 1. Top Visual: Hanging Dried Flower Bouquet (Upside down with kraft paper & twine) -->
+            <div class="relative w-full h-44 sm:h-48 rounded-2xl bg-gradient-to-b from-stone-900 via-zinc-900 to-black overflow-hidden flex items-start justify-center pt-1 border border-zinc-800/70 shadow-inner">
+              <!-- Soft ambient backdrop glow -->
+              <div class="absolute inset-0 bg-radial from-rose-950/25 via-transparent to-transparent pointer-events-none"></div>
+              
+              <!-- Hanging Dried Flower Arrangement SVG -->
+              <div class="relative animate-hanging-sway select-none pointer-events-none">
+                <svg width="150" height="170" viewBox="0 0 150 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Twine String From Top Edge -->
+                  <line x1="75" y1="0" x2="75" y2="38" stroke="#d4af37" stroke-width="1.8" stroke-dasharray="2 2" />
+                  <!-- Twine Knot & Bow -->
+                  <circle cx="75" cy="38" r="3.5" fill="#c29a27" />
+                  <path d="M 75 38 Q 62 31 58 41 Q 67 45 75 38 Z" fill="#d4af37" opacity="0.9" />
+                  <path d="M 75 38 Q 88 31 92 41 Q 83 45 75 38 Z" fill="#d4af37" opacity="0.9" />
+                  <path d="M 75 38 L 70 53" stroke="#d4af37" stroke-width="1.5" />
+                  <path d="M 75 38 L 79 55" stroke="#d4af37" stroke-width="1.5" />
+                  
+                  <!-- Kraft Paper Cone (Upside down cone holding stems) -->
+                  <path d="M 64 36 L 86 36 L 94 92 Q 75 97 56 92 Z" fill="#c49a6c" stroke="#a07a4f" stroke-width="1.2" />
+                  <path d="M 64 36 L 75 95 L 86 36" fill="#b3895a" opacity="0.45" />
+                  <line x1="68" y1="48" x2="82" y2="48" stroke="#926c42" stroke-width="1" stroke-dasharray="3 2" />
+                  
+                  <!-- Dried Leaves & Foliage (Hanging downwards) -->
+                  <path d="M 65 92 Q 50 112 44 132" stroke="#52664b" stroke-width="1.6" fill="none" />
+                  <circle cx="47" cy="116" r="4.5" fill="#697f62" opacity="0.8" />
+                  <circle cx="44" cy="128" r="4" fill="#586c52" opacity="0.8" />
+                  
+                  <path d="M 85 92 Q 100 112 106 132" stroke="#52664b" stroke-width="1.6" fill="none" />
+                  <circle cx="103" cy="116" r="4.5" fill="#697f62" opacity="0.8" />
+                  <circle cx="106" cy="128" r="4" fill="#586c52" opacity="0.8" />
+                  
+                  <!-- Dried Rosebuds (Hanging upside down) -->
+                  <!-- Rosebud Left -->
+                  <g transform="translate(60, 120)">
+                    <path d="M 0 -25 L 0 0" stroke="#485c42" stroke-width="1.5" />
+                    <ellipse cx="0" cy="10" rx="7" ry="9" fill="#9e3a47" />
+                    <path d="M -5 5 Q 0 14 5 5 Q 0 18 -5 5 Z" fill="#be4d5c" />
+                    <path d="M -2 0 L -4 -5 M 2 0 L 4 -5" stroke="#3d4f38" stroke-width="1.2" />
+                  </g>
+                  
+                  <!-- Rosebud Right -->
+                  <g transform="translate(88, 124)">
+                    <path d="M 0 -30 L 0 0" stroke="#485c42" stroke-width="1.5" />
+                    <ellipse cx="0" cy="10" rx="7.5" ry="9.5" fill="#b04352" />
+                    <path d="M -5 5 Q 0 14 5 5 Q 0 18 -5 5 Z" fill="#d15a6b" />
+                    <path d="M -2 0 L -4 -5 M 2 0 L 4 -5" stroke="#3d4f38" stroke-width="1.2" />
+                  </g>
+                  
+                  <!-- Central Rose Bloom (Hanging lowest) -->
+                  <g transform="translate(74, 136)">
+                    <path d="M 0 -41 L 0 0" stroke="#485c42" stroke-width="1.8" />
+                    <ellipse cx="0" cy="11" rx="9" ry="11" fill="#c04e5f" />
+                    <path d="M -6 6 Q 0 16 6 6 Q 0 20 -6 6 Z" fill="#e26d7f" />
+                    <path d="M -3 0 L -5 -6 M 3 0 L 5 -6" stroke="#3d4f38" stroke-width="1.4" />
+                  </g>
+                  
+                  <!-- Baby's breath blooms -->
+                  <circle cx="56" cy="108" r="2.2" fill="#fff7e6" />
+                  <circle cx="62" cy="102" r="2" fill="#fff7e6" />
+                  <circle cx="88" cy="106" r="2" fill="#fff7e6" />
+                  <circle cx="94" cy="112" r="2.2" fill="#fff7e6" />
+                  <circle cx="76" cy="114" r="2.4" fill="#fff7e6" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- 2. Middle: Spotify-Style Player Bar -->
+            <div class="bg-[#0b485b] border border-cyan-700/50 rounded-2xl p-3 sm:p-3.5 flex flex-col gap-2.5 shadow-lg select-none">
+              <div class="flex items-center justify-between gap-3">
+                <!-- Album Art Thumbnail (Divide cyan cover by default) -->
+                <div id="spotify-cover-box" class="w-11 h-11 rounded-xl bg-[#0096c7] flex items-center justify-center font-black text-black text-2xl shadow-md flex-shrink-0">
+                  ÷
+                </div>
+                <!-- Track Info -->
+                <div class="flex-1 min-w-0">
+                  <div id="spotify-track-title" class="font-cute font-bold text-sm text-white truncate tracking-wide">
+                    Perfect
+                  </div>
+                  <div id="spotify-track-artist" class="text-xs text-cyan-200/80 truncate font-cute">
+                    Ed Sheeran
+                  </div>
+                </div>
+                <!-- Controls: Like Heart + Play/Pause Button -->
+                <div class="flex items-center gap-2">
+                  <button onclick="burstStationHearts(event)" class="text-cyan-200 hover:text-white transition p-1" title="Thả tim">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  </button>
+                  <button id="station-play-btn" onclick="toggleStationPlay()" class="w-8 h-8 rounded-full bg-white text-zinc-900 flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition" title="Phát / Dừng">
+                    <svg id="station-play-icon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <svg id="station-pause-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="flex items-center gap-2 text-[10px] text-cyan-200/70 font-mono">
+                <span id="station-time-cur">01:24</span>
+                <div class="flex-1 h-1.5 bg-black/35 rounded-full overflow-hidden cursor-pointer relative" onclick="seekStationTrack(event)">
+                  <div id="station-progress-bar" class="h-full bg-white rounded-full transition-all duration-300" style="width: 32%;"></div>
+                </div>
+                <span id="station-time-total">04:23</span>
+              </div>
+            </div>
+
+            <!-- 3. Bottom: YouTube Music Video Embed Frame -->
+            <div class="relative rounded-2xl overflow-hidden border border-zinc-800 bg-black shadow-lg">
+              <div class="aspect-video w-full">
+                <iframe id="station-yt-iframe" class="w-full h-full" src="https://www.youtube-nocookie.com/embed/2Vv-BfVoq4g?enablejsapi=1" title="Music Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+
+            <!-- 4. Bottom-Left Heart Button Row -->
+            <div class="flex items-center justify-between pt-1">
+              <button onclick="burstStationHearts(event)" class="w-10 h-10 rounded-full bg-rose-500/20 border-2 border-rose-400/80 text-rose-400 hover:bg-rose-500 hover:text-white flex items-center justify-center transition-all shadow-md animate-heart-pulse active:scale-90" title="Chạm để thả tim yêu thương">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </button>
+              <div class="text-[11px] text-zinc-400 font-cute">
+                Chạm trái tim để gửi lời yêu thương ✨
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================= RIGHT COLUMN: VINTAGE CASSETTE & PLAYLIST ================= -->
+        <div class="reveal-element lg:col-span-6 flex flex-col">
+          <div id="cassette-card-container" class="glass-card rounded-[2.5rem] bg-[#f5efdf] border-2 border-stone-300/90 p-6 sm:p-8 shadow-xl flex flex-col items-center justify-between flex-1 relative overflow-hidden">
+            
+            <!-- THE VINTAGE CASSETTE TAPE (SVG & Pure CSS) -->
+            <div class="w-full flex justify-center py-2">
+              <div id="cassette-tape-widget" class="relative w-full max-w-[340px] sm:max-w-[380px] h-[210px] sm:h-[235px] rounded-[1.6rem] bg-[#d9d3c0] border-2 border-[#b5ae9b] shadow-[0_15px_30px_-5px_rgba(70,60,40,0.18)] p-3 flex flex-col justify-between select-none">
+                
+                <!-- Metallic Corner Screws -->
+                <!-- Top-Left Screw -->
+                <div class="absolute top-2.5 left-2.5 w-3.5 h-3.5 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
+                  <div class="w-2 h-0.5 bg-[#6e6856] rotate-45"></div>
+                </div>
+                <!-- Top-Right Screw -->
+                <div class="absolute top-2.5 right-2.5 w-3.5 h-3.5 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
+                  <div class="w-2 h-0.5 bg-[#6e6856] -rotate-45"></div>
+                </div>
+                <!-- Bottom-Left Screw -->
+                <div class="absolute bottom-2.5 left-2.5 w-3.5 h-3.5 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
+                  <div class="w-2 h-0.5 bg-[#6e6856] rotate-12"></div>
+                </div>
+                <!-- Bottom-Right Screw -->
+                <div class="absolute bottom-2.5 right-2.5 w-3.5 h-3.5 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
+                  <div class="w-2 h-0.5 bg-[#6e6856] -rotate-12"></div>
+                </div>
+
+                <!-- Cassette Paper Label (Cream with Botanical Leaf Illustrations) -->
+                <div class="relative w-full h-[145px] sm:h-[160px] rounded-xl bg-[#fcf8ec] border border-[#cdc5b0] p-2.5 shadow-sm flex flex-col justify-between overflow-hidden">
+                  
+                  <!-- Botanical Leaf Line Art (Left & Right) -->
+                  <div class="absolute inset-y-0 left-1 w-14 pointer-events-none opacity-60 flex items-center">
+                    <svg viewBox="0 0 50 100" class="w-full h-full fill-none stroke-[#7c745f]" stroke-width="1.3">
+                      <path d="M 25 90 Q 15 50 35 15" />
+                      <ellipse cx="20" cy="30" rx="7" ry="4" transform="rotate(-30 20 30)" />
+                      <ellipse cx="32" cy="45" rx="7" ry="4" transform="rotate(30 32 45)" />
+                      <ellipse cx="18" cy="62" rx="7" ry="4" transform="rotate(-25 18 62)" />
+                      <ellipse cx="30" cy="76" rx="6" ry="3.5" transform="rotate(25 30 76)" />
+                    </svg>
+                  </div>
+                  <div class="absolute inset-y-0 right-1 w-14 pointer-events-none opacity-60 flex items-center">
+                    <svg viewBox="0 0 50 100" class="w-full h-full fill-none stroke-[#7c745f]" stroke-width="1.3">
+                      <path d="M 25 90 Q 35 50 15 15" />
+                      <ellipse cx="30" cy="30" rx="7" ry="4" transform="rotate(30 30 30)" />
+                      <ellipse cx="18" cy="45" rx="7" ry="4" transform="rotate(-30 18 45)" />
+                      <ellipse cx="32" cy="62" rx="7" ry="4" transform="rotate(25 32 62)" />
+                      <ellipse cx="20" cy="76" rx="6" ry="3.5" transform="rotate(-25 20 76)" />
+                    </svg>
+                  </div>
+
+                  <!-- Label Header -->
+                  <div class="flex items-center justify-between px-3 pt-0.5 z-10">
+                    <span class="text-[9px] font-black tracking-widest text-zinc-600 font-cute">SIDE A • STEREO</span>
+                    <span class="text-[9px] font-bold text-zinc-400 tracking-wider font-mono">NR [B] 120µs</span>
+                  </div>
+
+                  <!-- Center Cassette Tape Window & Rotating Reels -->
+                  <div class="relative w-[78%] mx-auto h-14 sm:h-16 rounded-xl bg-zinc-900/90 border border-zinc-950 p-1 flex items-center justify-between px-4 sm:px-6 shadow-inner overflow-hidden z-10">
+                    
+                    <!-- Dark brown magnetic tape ribbon in background -->
+                    <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-3.5 bg-[#402615] opacity-90"></div>
+                    
+                    <!-- Left Reel (Spool with 6 teeth) -->
+                    <div class="relative z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center">
+                      <svg viewBox="0 0 40 40" class="w-full h-full cassette-reel-wheel">
+                        <circle cx="20" cy="20" r="18" fill="#f8f6ed" stroke="#ded8c4" stroke-width="1.5" />
+                        <circle cx="20" cy="20" r="7" fill="#18181b" />
+                        <!-- 6 Cog teeth around center -->
+                        <g fill="#402615">
+                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" />
+                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" />
+                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+                        </g>
+                      </svg>
+                    </div>
+
+                    <!-- Center Window Ruler Marks -->
+                    <div class="relative z-10 flex flex-col items-center justify-center text-[8px] sm:text-[9px] font-mono text-zinc-400 font-semibold tracking-wider">
+                      <div class="flex items-center gap-1.5 opacity-80">
+                        <span>100</span>
+                        <span>50</span>
+                        <span>0</span>
+                      </div>
+                      <div class="w-10 h-0.5 bg-zinc-600/60 rounded-full mt-0.5"></div>
+                    </div>
+
+                    <!-- Right Reel (Spool with 6 teeth) -->
+                    <div class="relative z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center">
+                      <svg viewBox="0 0 40 40" class="w-full h-full cassette-reel-wheel">
+                        <circle cx="20" cy="20" r="18" fill="#f8f6ed" stroke="#ded8c4" stroke-width="1.5" />
+                        <circle cx="20" cy="20" r="7" fill="#18181b" />
+                        <!-- 6 Cog teeth around center -->
+                        <g fill="#402615">
+                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" />
+                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" />
+                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+                        </g>
+                      </svg>
+                    </div>
+
+                  </div>
+
+                  <!-- Label Footer: Title and Subtitle -->
+                  <div class="text-center pb-0.5 z-10">
+                    <div id="cassette-label-title" class="font-cute font-extrabold text-xs sm:text-sm text-zinc-800 tracking-wide">
+                      Perfect • Ed Sheeran
+                    </div>
+                    <div class="text-[9px] text-zinc-500 font-cute">
+                      Mixtape Sinh Nhật 2026
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Lower Cassette Trapezoid Guide Base -->
+                <div class="relative w-[70%] mx-auto h-7 bg-[#cbbfab] border border-[#a89e8a] rounded-b-lg flex items-center justify-around px-5 shadow-inner">
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#4a4233] border border-[#2b261e]"></div>
+                  <!-- Center Screw -->
+                  <div class="w-3 h-3 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
+                    <div class="w-1.5 h-0.5 bg-[#6e6856] rotate-90"></div>
+                  </div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#4a4233] border border-[#2b261e]"></div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- THE TRACKLIST BELOW CASSETTE (Matching screenshot layout) -->
+            <div class="mt-6 w-full max-w-[340px] sm:max-w-[380px] space-y-1.5 text-left font-cute">
+              
+              <!-- Track 01 -->
+              <div id="track-row-0" class="tracklist-row active-track p-2.5 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(0)">
+                <div class="flex items-center gap-3">
+                  <span class="text-xs font-bold text-zinc-400 font-mono">01</span>
+                  <div>
+                    <div class="text-sm font-bold text-zinc-800">Perfect</div>
+                    <div class="text-[11px] text-zinc-500 font-medium">Ed Sheeran</div>
+                  </div>
+                </div>
+                <div id="track-indicator-0" class="flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                </div>
+              </div>
+
+              <!-- Track 02 -->
+              <div id="track-row-1" class="tracklist-row p-2.5 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(1)">
+                <div class="flex items-center gap-3">
+                  <span class="text-xs font-bold text-zinc-400 font-mono">02</span>
+                  <div>
+                    <div class="text-sm font-bold text-zinc-800">All of Me</div>
+                    <div class="text-[11px] text-zinc-500 font-medium">John Legend</div>
+                  </div>
+                </div>
+                <div id="track-indicator-1" class="hidden flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                </div>
+              </div>
+
+              <!-- Track 03 -->
+              <div id="track-row-2" class="tracklist-row p-2.5 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(2)">
+                <div class="flex items-center gap-3">
+                  <span class="text-xs font-bold text-zinc-400 font-mono">03</span>
+                  <div>
+                    <div class="text-sm font-bold text-zinc-800">Happy Birthday</div>
+                    <div class="text-[11px] text-zinc-500 font-medium">Lofi Celesta Music Box</div>
+                  </div>
+                </div>
+                <div id="track-indicator-2" class="hidden flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                </div>
+              </div>
+
+              <!-- Currently Playing Status line: "Playing: [Song Name]" -->
+              <div class="pt-3 text-xs text-zinc-500 font-medium flex items-center gap-2 border-t border-stone-300/80">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Playing: <strong id="cassette-playing-label" class="text-zinc-800 font-bold">Perfect</strong></span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== SECRET LETTER SECTION ======================== -->
+  <section id="special-letter" class="relative py-24 px-6 z-10 bg-gradient-to-b from-[#fff1cc] via-[#fff5d6] to-[#fff1cc]">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="reveal-element text-center mb-14">
+        <span class="inline-block text-xs uppercase tracking-widest text-zinc-500 font-bold font-cute mb-2">
+          Confidential & Sincere Letter
+        </span>
+        <h2 class="font-cute text-3xl sm:text-5xl font-extrabold tracking-tight mb-3 text-zinc-700">
+          Bức Thư <span class="bw-gradient-text">Chân Tình Dành Riêng Cho Bạn</span>
+        </h2>
+        <p class="max-w-md mx-auto text-zinc-500 text-sm font-normal">
+          Có những tâm tư sâu sắc nhất chỉ có thể giãi bày qua từng con chữ được viết bằng sự trân quý.
+        </p>
+      </div>
+
+      <!-- Letter Card -->
+      <div class="reveal-element max-w-2xl mx-auto">
+        <div class="glass-card rounded-[2.5rem] p-8 sm:p-12 relative overflow-hidden border-2 border-stone-300/80 bg-white/90 shadow-xl">
+          
+          <!-- Letter Header -->
+          <div class="flex items-center justify-between border-b border-stone-200/80 pb-5 mb-7">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-zinc-600 shadow-md bg-white">
+                <img src="./assets/usagi-heart.jpg" alt="Usagi" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="text-xs uppercase tracking-wider text-zinc-400 block font-cute font-bold">Thân gửi tới</span>
+                <span id="letter-recipient-name" class="font-cute text-xl font-bold text-zinc-800">Người Bạn Tuyệt Vời</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-zinc-500 font-hand text-lg">Mùa Sinh Nhật 2026</span>
+              <span class="block text-[10px] text-zinc-600 uppercase tracking-wider font-bold">Thư Đặc Biệt</span>
+            </div>
+          </div>
+
+          <!-- Letter Content -->
+          <div class="space-y-4 text-zinc-700 font-normal leading-relaxed text-sm sm:text-base">
+            <p>
+              Chào bạn yêu quý,
+            </p>
+            <p>
+              Người ta thường nói: màu đen đại diện cho sự bí ẩn, bản lĩnh và chiều sâu; còn màu trắng đại diện cho sự thuần khiết, chân thành và tinh khôi. Và ở bạn, sự giao thoa ấy tạo nên một nét cuốn hút rất riêng mà không một ai có thể sao chép được.
+            </p>
+            <p>
+              Cảm ơn bạn vì đã luôn kiên cường bước qua những ngày khó khăn, cảm ơn vì đã giữ cho mình một tâm hồn độc lập, ấm áp và kiêu hãnh. Dù ngoài kia thế giới có ồn ào và đổi thay, mong bạn luôn giữ được sự an yên và tự do tuyệt đối trong tâm trí.
+            </p>
+            <p>
+              Bước sang tuổi mới, chúc bạn:
+            </p>
+            <ul class="list-none space-y-2.5 pl-2 font-medium text-zinc-700">
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-zinc-500"></span>
+                <span><strong>Sức khỏe dẻo dai</strong> và một tinh thần tự tại, không âu lo.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-zinc-500"></span>
+                <span><strong>Sự nghiệp thăng hoa</strong>, chinh phục mọi mục tiêu bằng chính bản lĩnh của mình.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-zinc-500"></span>
+                <span><strong>Hạnh phúc trọn vẹn</strong> và luôn được yêu thương bởi những người xứng đáng nhất.</span>
+              </li>
+            </ul>
+            <p class="pt-3 font-hand text-2xl text-zinc-700 font-bold">
+              "Mong bạn luôn mỉm cười kiêu hãnh, vì bạn sinh ra là một phiên bản độc nhất!"
+            </p>
+          </div>
+
+          <!-- Letter Footer Sign-off -->
+          <div class="mt-8 pt-6 border-t border-stone-200/80 text-center">
+            <div class="font-hand text-3xl sm:text-4xl text-zinc-700 font-bold">
+              With all my respect & love
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== ANIMATED SWEET BOUQUET SECTION (End Gift) ======================== -->
+  <section id="flower-bouquet" class="relative py-24 px-6 z-10 bg-gradient-to-b from-[#fff1cc] via-[#fff3d0] to-[#fff1cc] overflow-hidden">
+    
+    <!-- Background floral ambient glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-amber-200/30 blur-[140px] pointer-events-none -z-10 animate-pulse-soft"></div>
+
+    <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+
+      <!-- Section Header -->
+      <div class="reveal-element text-center mb-10">
+        <span class="inline-block text-xs uppercase tracking-widest text-zinc-500 font-bold font-cute mb-2">
+          Sweetest Gift For You • Bó Hoa Chúc Mừng
+        </span>
+        <h2 class="font-cute text-3xl sm:text-5xl font-extrabold tracking-tight mb-3 text-zinc-700">
+          Gửi Tặng Bạn <span class="bw-gradient-text">Một Bó Hoa Tươi Thắm</span>
+        </h2>
+        <p class="max-w-lg mx-auto text-zinc-500 text-sm sm:text-base font-normal">
+          Mỗi đóa hoa là một lời chúc ngọt ngào cho tuổi mới luôn rạng rỡ và ngập tràn hạnh phúc. Chạm vào bó hoa để hoa nở rộ nha!
+        </p>
+      </div>
+
+      <!-- Main Interactive Bouquet Container -->
+      <div class="reveal-element relative flex flex-col items-center my-4">
+
+        <!-- Floating Petals Around Bouquet -->
+        <div class="absolute -top-10 -left-10 pointer-events-none floating-petal" style="animation-delay: 0s;">
+          <svg class="w-6 h-6 text-rose-300 fill-current opacity-70" viewBox="0 0 24 24"><path d="M12 2C9 7 4 9 4 14a8 8 0 0 0 16 0c0-5-5-7-8-12z"/></svg>
+        </div>
+        <div class="absolute -top-6 -right-10 pointer-events-none floating-petal" style="animation-delay: 1.2s;">
+          <svg class="w-5 h-5 text-pink-300 fill-current opacity-70" viewBox="0 0 24 24"><path d="M12 2C9 7 4 9 4 14a8 8 0 0 0 16 0c0-5-5-7-8-12z"/></svg>
+        </div>
+        <div class="absolute top-1/2 -left-14 pointer-events-none floating-petal" style="animation-delay: 2.2s;">
+          <svg class="w-4 h-4 text-amber-200 fill-current opacity-70" viewBox="0 0 24 24"><path d="M12 2C9 7 4 9 4 14a8 8 0 0 0 16 0c0-5-5-7-8-12z"/></svg>
+        </div>
+        <div class="absolute top-1/3 -right-14 pointer-events-none floating-petal" style="animation-delay: 0.7s;">
+          <svg class="w-5 h-5 text-rose-200 fill-current opacity-70" viewBox="0 0 24 24"><path d="M12 2C9 7 4 9 4 14a8 8 0 0 0 16 0c0-5-5-7-8-12z"/></svg>
+        </div>
+
+        <!-- The Interactive Cute Animated Bouquet (Using User's Hand-drawn Illustration) -->
+        <div id="interactive-bouquet" class="relative cursor-pointer group animate-bouquet-sway select-none" onclick="bloomBouquet(event)" title="Chạm vào bó hoa để hoa nở rộ!">
+          
+          <!-- Cute Usagi Mascot Beside Bouquet -->
+          <div class="absolute -top-10 -right-6 sm:-top-12 sm:-right-8 z-20 w-16 h-16 sm:w-20 sm:h-20 pointer-events-none transition-transform duration-500 group-hover:-translate-y-2 group-hover:rotate-6">
+            <img src="./assets/usagi-heart.jpg" alt="Usagi" class="w-full h-full object-contain rounded-2xl drop-shadow-md">
+          </div>
+
+          <!-- The User Handdrawn Bouquet Illustration -->
+          <div id="bouquet-svg-container" class="relative z-10 w-72 sm:w-84 md:w-96 transition-transform duration-500 group-hover:scale-105 group-active:scale-95 flex items-center justify-center">
+            <img src="./assets/bouquet-handdrawn.jpg" alt="Bó hoa chúc mừng sinh nhật" class="w-full h-auto object-contain mix-blend-multiply drop-shadow-xl select-none pointer-events-none">
+          </div>
+
+          <!-- Bottom Soft Shadow -->
+          <div class="w-48 sm:w-60 h-3 rounded-full bg-stone-400/20 blur-md mx-auto mt-2 pointer-events-none"></div>
+
+        </div>
+
+        <!-- Interactive Hint Button -->
+        <button id="bloom-btn" onclick="bloomBouquet(event)" class="mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full btn-black font-cute text-sm font-bold shadow-lg hover:scale-105 active:scale-95 transition">
+          <svg class="w-4 h-4 text-rose-400" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span>Chạm để hoa nở rộ & nhận lời chúc</span>
+        </button>
+
+        <!-- Blooming Congratulation Message Card -->
+        <div id="bouquet-message" class="hidden mt-6 max-w-md mx-auto p-6 rounded-3xl glass-card border-2 border-pink-200/80 bg-white/90 shadow-xl transition-all duration-500 text-center">
+          <div class="w-10 h-10 rounded-full bg-rose-50 border border-rose-200 flex items-center justify-center mx-auto mb-2.5">
+            <svg class="w-5 h-5 text-rose-500" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </div>
+          <h4 class="font-cute text-xl font-bold text-zinc-700 mb-1.5">Hoa Nở Rực Rỡ Dành Tặng Bạn!</h4>
+          <p class="text-zinc-600 text-sm font-cute leading-relaxed mb-3">
+            "Chúc bạn tuổi mới luôn ngát hương thơm như đóa hồng, rạng rỡ như cúc họa mi và luôn kiêu hãnh vươn mình như búp tulip xinh đẹp nhất!"
+          </p>
+          <div class="text-xs font-bold text-rose-500 font-cute">
+            • Happy Birthday To An Extraordinary Soul •
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="relative py-14 px-6 z-10 border-t border-stone-300/70 text-center bg-[#fcedbe]/70">
+    <div class="max-w-4xl mx-auto flex flex-col items-center">
+      
+      <div class="w-10 h-10 rounded-full bg-zinc-700 text-[#fff1cc] flex items-center justify-center shadow-sm mb-4">
+        <svg class="w-4 h-4 text-[#fff1cc]" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+
+      <h3 class="font-cute text-2xl sm:text-3xl font-bold text-zinc-700 mb-2">
+        A Special Day for an <span class="bw-gradient-text">Extraordinary Person.</span>
+      </h3>
+      <p class="text-zinc-500 text-xs sm:text-sm font-normal max-w-md mx-auto mb-6">
+        Thiết kế với tất cả sự trân trọng và tinh tế nhất dành tặng bạn trong ngày sinh nhật đáng nhớ này.
+      </p>
+
+      <div class="flex items-center gap-4 text-xs text-zinc-500 font-cute font-medium">
+        <a href="#hero" class="hover:text-zinc-800 transition">Về đầu trang ↑</a>
+        <span>•</span>
+        <button onclick="reopenIntroLetter()" class="hover:text-zinc-800 transition">Xem lại phong thư</button>
+        <span>•</span>
+        <button id="footer-confetti-btn" class="hover:text-zinc-800 transition">Bắn pháo hoa</button>
+        <span>•</span>
+        <span class="text-zinc-400">© 2026 Special Birthday Edition</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ======================== FLOATING MUSIC PLAYER ======================== -->
+  <div id="audio-player-container" class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+    <div class="glass-pill px-4 py-2.5 rounded-full shadow-lg flex items-center gap-3 border border-stone-300/80 bg-white/90">
+      
+      <!-- Mini Cassette Icon with spinning wheel -->
+      <div id="mini-cassette-icon" class="w-6 h-6 rounded-lg bg-[#d9d3c0] border border-[#b5ae9b] flex items-center justify-center shadow-sm cursor-pointer" onclick="document.getElementById('cassette-music-section')?.scrollIntoView({behavior:'smooth'})" title="Xem Cassette Player">
+        <svg viewBox="0 0 40 40" class="w-4 h-4 cassette-reel-wheel">
+          <circle cx="20" cy="20" r="16" fill="#f8f6ed" stroke="#b5ae9b" stroke-width="2" />
+          <circle cx="20" cy="20" r="6" fill="#18181b" />
+          <g fill="#402615">
+            <rect x="18.5" y="5" width="3" height="4" rx="0.5" />
+            <rect x="18.5" y="31" width="3" height="4" rx="0.5" />
+            <rect x="18.5" y="5" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+            <rect x="18.5" y="31" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+            <rect x="18.5" y="5" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+            <rect x="18.5" y="31" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Animated Equalizer Bars -->
+      <div id="equalizer-bars" class="flex items-end gap-[3px] h-5 equalizer-paused cursor-pointer" title="Bật/Tắt nhạc nền">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+      <!-- Track Info (Click to jump to Cassette Player) -->
+      <div class="text-left pr-1 cursor-pointer select-none" id="music-title-click" title="Nhấn để xem Cassette Player">
+        <div id="current-track-title" class="text-[11px] font-bold text-zinc-700 tracking-wide font-cute flex items-center gap-1">
+          <span>Perfect • Ed Sheeran</span>
+        </div>
+        <div id="current-track-sub" class="text-[9px] text-zinc-500 font-medium">Bấm để mở Cassette Player ♫</div>
+      </div>
+
+      <!-- Play / Pause Button -->
+      <button id="play-pause-btn" class="w-8 h-8 rounded-full bg-zinc-700 text-[#fff1cc] flex items-center justify-center shadow-md hover:bg-zinc-800 hover:scale-105 active:scale-95 transition" title="Bật/Tắt nhạc nền">
+        <svg id="play-icon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id="pause-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+
+      <!-- Next Track Button -->
+      <button id="next-track-btn" class="w-7 h-7 rounded-full bg-stone-100/80 hover:bg-stone-200 text-zinc-700 flex items-center justify-center transition hover:scale-105 active:scale-95" title="Đổi sang bài tiếp theo">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+        </svg>
+      </button>
+
+      <!-- Volume Slider -->
+      <div class="hidden sm:flex items-center gap-1.5 pl-1">
+        <svg class="w-3.5 h-3.5 text-zinc-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+        </svg>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7" class="w-16 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-zinc-600">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================== CUSTOMIZE RECIPIENT MODAL ======================== -->
+  <div id="customize-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm hidden transition-all duration-300">
+    <div class="glass-card max-w-md w-full p-7 rounded-[2rem] border-2 border-stone-300/80 shadow-2xl relative bg-white/95">
+      <button id="close-modal-btn" class="absolute top-5 right-5 text-zinc-400 hover:text-zinc-800 text-lg font-bold">✕</button>
+      
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 rounded-full bg-stone-100 text-zinc-700 flex items-center justify-center text-xl mx-auto mb-3">
+          <svg class="w-6 h-6 text-zinc-700" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <h3 class="font-cute text-2xl font-bold text-zinc-700">Đổi Tên Người Nhận</h3>
+        <p class="text-zinc-500 text-xs mt-1">Nhập tên người bạn muốn gửi tặng để trang web tự động cập nhật trang trọng nhất nhé!</p>
+      </div>
+
+      <form id="recipient-form" class="space-y-4">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-zinc-600 mb-1 font-bold font-cute">Tên hoặc Biệt danh:</label>
+          <input type="text" id="recipient-input" placeholder="Ví dụ: Hoàng Anh, Linh Đan, Em Yêu..." class="w-full px-4 py-2.5 rounded-xl bg-stone-50 border-2 border-stone-200 focus:border-zinc-700 focus:ring-2 focus:ring-amber-100 focus:outline-none text-zinc-700 text-sm font-medium">
+        </div>
+        <div class="flex gap-3 pt-2">
+          <button type="submit" class="flex-1 btn-black py-2.5 rounded-xl font-bold text-sm transition font-cute">
+            Lưu thay đổi
+          </button>
+          <button type="button" id="reset-name-btn" class="px-4 py-2.5 rounded-xl bg-stone-100 text-zinc-600 text-xs font-bold hover:bg-stone-200 transition font-cute">
+            Mặc định
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- AUDIO ELEMENT (Primary Royalty-Free Track) -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    <source src="https://actions.google.com/sounds/v1/weather/light_rain.ogg" type="audio/ogg">
+  </audio>
+
+  <!-- ======================== JAVASCRIPT LOGIC ======================== -->
+  <script>
+    let isLetterOpened = false;
+    let letterAutoTransitionTimer = null;
+
+    function finishLetterTransition() {
+      if (letterAutoTransitionTimer) {
+        clearTimeout(letterAutoTransitionTimer);
+        letterAutoTransitionTimer = null;
+      }
+      const overlay = document.getElementById('intro-letter-overlay');
+      if (!overlay || overlay.style.display === 'none') return;
+
+      overlay.style.transition = 'opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 0.75s cubic-bezier(0.4, 0, 0.2, 1)';
+      overlay.style.opacity = '0';
+      overlay.style.transform = 'scale(1.04)';
+      overlay.style.pointerEvents = 'none';
+
+      document.querySelectorAll('#hero .reveal-element').forEach(el => {
+        el.classList.add('active');
+      });
+
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 750);
+    }
+
+    function openIntroLetter() {
+      const overlay = document.getElementById('intro-letter-overlay');
+
+      if (isLetterOpened) {
+        // If already opened, clicking anywhere immediately transitions to website
+        finishLetterTransition();
+        return;
+      }
+      isLetterOpened = true;
+
+      const flap = document.getElementById('intro-flap');
+      const heartSeal = document.getElementById('intro-heart-seal');
+      const letterCard = document.getElementById('intro-letter-card');
+      const introText = document.getElementById('intro-text');
+
+      // 1. Fade out the prompt text below
+      if (introText) {
+        introText.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        introText.style.opacity = '0';
+        introText.style.transform = 'translateY(10px)';
+      }
+
+      // 2. Heart seal pops and unseals
+      if (heartSeal) {
+        heartSeal.classList.add('unsealed');
+      }
+
+      // 3. Top flap flips open 180deg upwards in 3D
+      setTimeout(() => {
+        if (flap) {
+          flap.classList.add('opened');
+        }
+      }, 120);
+
+      // 4. When flap passes 90 degrees (facing upwards/backwards), lower its z-index behind letter
+      setTimeout(() => {
+        if (flap) {
+          flap.style.zIndex = '5';
+        }
+      }, 300);
+
+      // 5. Letter paper smoothly glides UP out of the pocket
+      setTimeout(() => {
+        if (letterCard) {
+          letterCard.classList.add('popped');
+        }
+      }, 380);
+
+      // 6. Raise letter card z-index so it sits cleanly in front of front pocket without any clipping
+      setTimeout(() => {
+        if (letterCard) {
+          letterCard.style.zIndex = '35';
+          letterCard.style.pointerEvents = 'auto';
+          letterCard.style.cursor = 'pointer';
+          letterCard.onclick = (e) => {
+            e.stopPropagation();
+            finishLetterTransition();
+          };
+        }
+      }, 540);
+
+      // 7. Confetti explosion (NO flower bloom on envelope open!)
+      setTimeout(() => {
+        if (typeof triggerMonochromeConfetti === 'function') {
+          triggerMonochromeConfetti();
+        }
+      }, 620);
+
+      // 8. Start audio smoothly
+      setTimeout(() => {
+        if (typeof startAudio === 'function') {
+          startAudio();
+        }
+      }, 700);
+
+      // 9. Gracefully transition to website after comfortable viewing time
+      letterAutoTransitionTimer = setTimeout(() => {
+        finishLetterTransition();
+      }, 3800);
+    }
+
+    function reopenIntroLetter() {
+      const overlay = document.getElementById('intro-letter-overlay');
+      const flap = document.getElementById('intro-flap');
+      const heartSeal = document.getElementById('intro-heart-seal');
+      const letterCard = document.getElementById('intro-letter-card');
+      const introText = document.getElementById('intro-text');
+
+      if (!overlay) return;
+      isLetterOpened = false;
+      if (letterAutoTransitionTimer) {
+        clearTimeout(letterAutoTransitionTimer);
+        letterAutoTransitionTimer = null;
+      }
+
+      if (heartSeal) {
+        heartSeal.classList.remove('unsealed');
+      }
+      if (flap) {
+        flap.classList.remove('opened');
+        flap.style.zIndex = '30';
+      }
+      if (letterCard) {
+        letterCard.classList.remove('popped');
+        letterCard.style.zIndex = '15';
+        letterCard.style.pointerEvents = 'none';
+      }
+      if (introText) {
+        introText.style.opacity = '1';
+        introText.style.transform = 'translateY(0)';
+      }
+
+      overlay.style.display = 'flex';
+      overlay.style.pointerEvents = 'auto';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      setTimeout(() => {
+        overlay.style.opacity = '1';
+        overlay.style.transform = 'scale(1)';
+      }, 50);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* ========================================================
+         1. PARTICLE CANVAS (Monochrome Stardust)
+         ======================================================== */
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        initParticles();
+      });
+
+      class MonochromeSparkle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.size = Math.random() * 2.2 + 0.8;
+          this.speedY = -(Math.random() * 0.4 + 0.12);
+          this.speedX = (Math.random() - 0.5) * 0.25;
+          this.opacity = Math.random() * 0.45 + 0.15;
+          this.fadeSpeed = Math.random() * 0.015 + 0.005;
+          const colors = ['75, 85, 99', '107, 114, 128', '156, 163, 175', '161, 140, 90'];
+          this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX;
+          this.opacity += this.fadeSpeed;
+          if (this.opacity > 0.65 || this.opacity < 0.15) {
+            this.fadeSpeed = -this.fadeSpeed;
+          }
+          if (this.y < 0 || this.x < 0 || this.x > width) {
+            this.reset();
+            this.y = height + 10;
+          }
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        particles = [];
+        const count = Math.min(Math.floor(width / 16), 65);
+        for (let i = 0; i < count; i++) {
+          particles.push(new MonochromeSparkle());
+        }
+      }
+      initParticles();
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+
+
+      /* ========================================================
+         2. SCROLL REVEAL ANIMATIONS (Intersection Observer)
+         ======================================================== */
+      const revealElements = document.querySelectorAll('.reveal-element');
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+
+      /* ========================================================
+         3. CANVAS CONFETTI CELEBRATIONS
+         ======================================================== */
+      window.triggerMonochromeConfetti = function() {
+        if (typeof confetti !== 'function') return;
+
+        confetti({
+          particleCount: 75,
+          spread: 85,
+          origin: { y: 0.6 },
+          colors: ['#374151', '#4B5563', '#6B7280', '#9CA3AF', '#FCD34D', '#EF6877', '#FFFFFF'],
+          shapes: ['circle', 'star'],
+          scalar: 1.15
+        });
+
+        setTimeout(() => {
+          confetti({
+            particleCount: 45,
+            angle: 60,
+            spread: 65,
+            origin: { x: 0, y: 0.7 },
+            colors: ['#374151', '#4B5563', '#6B7280', '#D1D5DB', '#FCD34D']
+          });
+          confetti({
+            particleCount: 45,
+            angle: 120,
+            spread: 65,
+            origin: { x: 1, y: 0.7 },
+            colors: ['#374151', '#4B5563', '#6B7280', '#D1D5DB', '#FCD34D']
+          });
+        }, 220);
+      };
+
+      document.getElementById('nav-confetti-btn')?.addEventListener('click', window.triggerMonochromeConfetti);
+      document.getElementById('footer-confetti-btn')?.addEventListener('click', window.triggerMonochromeConfetti);
+
+
+      /* ========================================================
+         4. AESTHETIC CASSETTE & MEDIA STATION LOGIC
+         ======================================================== */
+      const audioElement = document.getElementById('bg-audio');
+      const playPauseBtn = document.getElementById('play-pause-btn');
+      const nextTrackBtn = document.getElementById('next-track-btn');
+      const musicTitleClick = document.getElementById('music-title-click');
+      const currentTrackTitle = document.getElementById('current-track-title');
+      const currentTrackSub = document.getElementById('current-track-sub');
+      const playIcon = document.getElementById('play-icon');
+      const pauseIcon = document.getElementById('pause-icon');
+      const equalizer = document.getElementById('equalizer-bars');
+      const volumeSlider = document.getElementById('volume-slider');
+
+      let isPlaying = false;
+      let audioCtx = null;
+      let currentTrackIndex = 0;
+      let musicBoxTimeouts = [];
+      let musicBoxLoopTimeout = null;
+      let stationPlaybackSec = 84; // 01:24 start preview
+      let stationProgressInterval = null;
+
+      const stationTracks = [
+        {
+          id: 0,
+          title: 'Perfect',
+          artist: 'Ed Sheeran',
+          coverText: '÷',
+          coverBg: '#0096c7',
+          durationSec: 263, // 04:23
+          durationStr: '04:23',
+          ytId: '2Vv-BfVoq4g',
+          type: 'audio',
+          audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
+        },
+        {
+          id: 1,
+          title: 'All of Me',
+          artist: 'John Legend',
+          coverText: '🎹',
+          coverBg: '#374151',
+          durationSec: 307, // 05:07
+          durationStr: '05:07',
+          ytId: '450p7goxZqg',
+          type: 'audio',
+          audioUrl: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=piano-moment-9835.mp3'
+        },
+        {
+          id: 2,
+          title: 'Happy Birthday',
+          artist: 'Lofi Celesta Music Box',
+          coverText: '🎂',
+          coverBg: '#ef6877',
+          durationSec: 150, // 02:30
+          durationStr: '02:30',
+          ytId: 'nl62hhiBMOM',
+          type: 'synth-birthday'
+        }
+      ];
+
+      // Happy Birthday Melody Note Frequencies & Durations (Music Box Celesta)
+      const hbMelody = [
+        { f: 392.00, d: 0.35 },
+        { f: 392.00, d: 0.35 },
+        { f: 440.00, d: 0.65 },
+        { f: 392.00, d: 0.65 },
+        { f: 523.25, d: 0.65 },
+        { f: 493.88, d: 1.15 },
+
+        { f: 392.00, d: 0.35 },
+        { f: 392.00, d: 0.35 },
+        { f: 440.00, d: 0.65 },
+        { f: 392.00, d: 0.65 },
+        { f: 587.33, d: 0.65 },
+        { f: 523.25, d: 1.15 },
+
+        { f: 392.00, d: 0.35 },
+        { f: 392.00, d: 0.35 },
+        { f: 783.99, d: 0.65 },
+        { f: 659.25, d: 0.65 },
+        { f: 523.25, d: 0.65 },
+        { f: 493.88, d: 0.65 },
+        { f: 440.00, d: 1.10 },
+
+        { f: 698.46, d: 0.35 },
+        { f: 698.46, d: 0.35 },
+        { f: 659.25, d: 0.65 },
+        { f: 523.25, d: 0.65 },
+        { f: 587.33, d: 0.65 },
+        { f: 523.25, d: 1.45 }
+      ];
+
+      function initWebAudio() {
+        if (!audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            audioCtx = new AudioContext();
+          }
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      }
+
+      function stopMusicBox() {
+        musicBoxTimeouts.forEach(t => clearTimeout(t));
+        musicBoxTimeouts = [];
+        if (musicBoxLoopTimeout) {
+          clearTimeout(musicBoxLoopTimeout);
+          musicBoxLoopTimeout = null;
+        }
+      }
+
+      function playMusicBoxBell(freq, duration) {
+        if (!audioCtx) return;
+        const vol = parseFloat(volumeSlider?.value) || 0.7;
+
+        const osc1 = audioCtx.createOscillator();
+        const gain1 = audioCtx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+        const osc2 = audioCtx.createOscillator();
+        const gain2 = audioCtx.createGain();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(freq * 2.005, audioCtx.currentTime);
+
+        const now = audioCtx.currentTime;
+        gain1.gain.setValueAtTime(0.001, now);
+        gain1.gain.exponentialRampToValueAtTime(0.18 * vol, now + 0.015);
+        gain1.gain.exponentialRampToValueAtTime(0.0001, now + Math.max(duration + 0.8, 1.4));
+
+        gain2.gain.setValueAtTime(0.001, now);
+        gain2.gain.exponentialRampToValueAtTime(0.06 * vol, now + 0.015);
+        gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
+
+        osc1.connect(gain1);
+        gain1.connect(audioCtx.destination);
+        osc2.connect(gain2);
+        gain2.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc1.stop(now + 2.0);
+        osc2.start(now);
+        osc2.stop(now + 1.2);
+      }
+
+      function startMusicBox() {
+        stopMusicBox();
+        if (!isPlaying) return;
+
+        let accumulatedTime = 0;
+        hbMelody.forEach(note => {
+          const timeout = setTimeout(() => {
+            if (isPlaying && currentTrackIndex === 2) {
+              playMusicBoxBell(note.f, note.d);
+            }
+          }, accumulatedTime);
+          musicBoxTimeouts.push(timeout);
+          accumulatedTime += (note.d * 750);
+        });
+
+        musicBoxLoopTimeout = setTimeout(() => {
+          if (isPlaying && currentTrackIndex === 2) {
+            startMusicBox();
+          }
+        }, accumulatedTime + 1200);
+      }
+
+      function formatTimeStr(sec) {
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      function updateStationProgressUI() {
+        const track = stationTracks[currentTrackIndex];
+        const curTimeEl = document.getElementById('station-time-cur');
+        const totalTimeEl = document.getElementById('station-time-total');
+        const barEl = document.getElementById('station-progress-bar');
+
+        if (curTimeEl) curTimeEl.textContent = formatTimeStr(stationPlaybackSec);
+        if (totalTimeEl) totalTimeEl.textContent = track.durationStr;
+        if (barEl) {
+          const pct = Math.min(100, Math.max(0, (stationPlaybackSec / track.durationSec) * 100));
+          barEl.style.width = pct + '%';
+        }
+      }
+
+      function startProgressTimer() {
+        stopProgressTimer();
+        stationProgressInterval = setInterval(() => {
+          if (!isPlaying) return;
+          const track = stationTracks[currentTrackIndex];
+          stationPlaybackSec++;
+          if (stationPlaybackSec > track.durationSec) {
+            stationPlaybackSec = 0;
+            window.selectStationTrack((currentTrackIndex + 1) % stationTracks.length);
+          } else {
+            updateStationProgressUI();
+          }
+        }, 1000);
+      }
+
+      function stopProgressTimer() {
+        if (stationProgressInterval) {
+          clearInterval(stationProgressInterval);
+          stationProgressInterval = null;
+        }
+      }
+
+      window.seekStationTrack = function(e) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const pct = Math.max(0, Math.min(1, clickX / rect.width));
+        const track = stationTracks[currentTrackIndex];
+        stationPlaybackSec = Math.floor(pct * track.durationSec);
+        updateStationProgressUI();
+      };
+
+      window.selectStationTrack = function(index) {
+        currentTrackIndex = (index + stationTracks.length) % stationTracks.length;
+        const track = stationTracks[currentTrackIndex];
+
+        // 1. Update tracklist UI
+        for (let i = 0; i < stationTracks.length; i++) {
+          const row = document.getElementById('track-row-' + i);
+          const ind = document.getElementById('track-indicator-' + i);
+          if (row) {
+            if (i === currentTrackIndex) {
+              row.classList.add('active-track');
+            } else {
+              row.classList.remove('active-track');
+            }
+          }
+          if (ind) {
+            if (i === currentTrackIndex) {
+              ind.classList.remove('hidden');
+            } else {
+              ind.classList.add('hidden');
+            }
+          }
+        }
+
+        // 2. Update Cassette Tape
+        const cassetteLabel = document.getElementById('cassette-label-title');
+        const cassettePlaying = document.getElementById('cassette-playing-label');
+        if (cassetteLabel) cassetteLabel.textContent = track.title + ' • ' + track.artist;
+        if (cassettePlaying) cassettePlaying.textContent = track.title;
+
+        // 3. Update Spotify Bar
+        const coverBox = document.getElementById('spotify-cover-box');
+        const titleBox = document.getElementById('spotify-track-title');
+        const artistBox = document.getElementById('spotify-track-artist');
+        if (coverBox) {
+          coverBox.textContent = track.coverText;
+          coverBox.style.backgroundColor = track.coverBg;
+        }
+        if (titleBox) titleBox.textContent = track.title;
+        if (artistBox) artistBox.textContent = track.artist;
+
+        stationPlaybackSec = 0;
+        updateStationProgressUI();
+
+        // 4. Update YouTube Iframe Video
+        const ytIframe = document.getElementById('station-yt-iframe');
+        if (ytIframe && track.ytId) {
+          ytIframe.src = 'https://www.youtube-nocookie.com/embed/' + track.ytId + '?enablejsapi=1' + (isPlaying ? '&autoplay=1' : '');
+        }
+
+        // 5. Update Floating Player Title
+        if (currentTrackTitle) currentTrackTitle.textContent = track.title + ' • ' + track.artist;
+
+        // 6. Play Audio
+        stopMusicBox();
+        audioElement.pause();
+
+        if (isPlaying) {
+          playCurrentTrack();
+        }
+      };
+
+      window.toggleStationPlay = function() {
+        if (isPlaying) {
+          pauseAudio();
+        } else {
+          window.startAudio();
+        }
+      };
+
+      function playCurrentTrack() {
+        initWebAudio();
+        const track = stationTracks[currentTrackIndex];
+
+        if (track.type === 'synth-birthday') {
+          audioElement.pause();
+          startMusicBox();
+          setPlayingState(true);
+        } else {
+          stopMusicBox();
+          audioElement.src = track.audioUrl;
+          audioElement.volume = volumeSlider ? volumeSlider.value : 0.7;
+          audioElement.play().then(() => {
+            setPlayingState(true);
+          }).catch(e => {
+            console.warn('External audio play blocked, falling back to Music Box', e);
+            window.selectStationTrack(2);
+          });
+        }
+      }
+
+      window.startAudio = function() {
+        initWebAudio();
+        isPlaying = true;
+        playCurrentTrack();
+      };
+
+      function pauseAudio() {
+        isPlaying = false;
+        stopMusicBox();
+        audioElement.pause();
+        setPlayingState(false);
+      }
+
+      function setPlayingState(playing) {
+        isPlaying = playing;
+
+        // 1. Floating player icons
+        if (playing) {
+          playIcon.classList.add('hidden');
+          pauseIcon.classList.remove('hidden');
+          equalizer.classList.remove('equalizer-paused');
+        } else {
+          playIcon.classList.remove('hidden');
+          pauseIcon.classList.add('hidden');
+          equalizer.classList.add('equalizer-paused');
+        }
+
+        // 2. Cassette tape reel wheels spin
+        const cassetteWidget = document.getElementById('cassette-tape-widget');
+        const miniCassette = document.getElementById('mini-cassette-icon');
+        if (cassetteWidget) {
+          if (playing) {
+            cassetteWidget.classList.add('is-playing');
+            cassetteWidget.classList.remove('is-paused');
+          } else {
+            cassetteWidget.classList.remove('is-playing');
+            cassetteWidget.classList.add('is-paused');
+          }
+        }
+        if (miniCassette) {
+          if (playing) {
+            miniCassette.classList.add('is-playing');
+            miniCassette.classList.remove('is-paused');
+          } else {
+            miniCassette.classList.remove('is-playing');
+            miniCassette.classList.add('is-paused');
+          }
+        }
+
+        // 3. Spotify player play/pause icons
+        const stationPlayIcon = document.getElementById('station-play-icon');
+        const stationPauseIcon = document.getElementById('station-pause-icon');
+        if (stationPlayIcon && stationPauseIcon) {
+          if (playing) {
+            stationPlayIcon.classList.add('hidden');
+            stationPauseIcon.classList.remove('hidden');
+            startProgressTimer();
+          } else {
+            stationPlayIcon.classList.remove('hidden');
+            stationPauseIcon.classList.add('hidden');
+            stopProgressTimer();
+          }
+        }
+      }
+
+      window.burstStationHearts = function(event) {
+        initWebAudio();
+        // Play sweet chime bell
+        [659.25, 783.99, 1046.50].forEach((f, i) => {
+          setTimeout(() => playMusicBoxBell(f, 0.4), i * 85);
+        });
+
+        // Spawn floating hearts
+        const count = 10;
+        const rect = event ? event.currentTarget.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top + rect.height / 2;
+
+        for (let i = 0; i < count; i++) {
+          const heart = document.createElement('div');
+          heart.textContent = ['💖', '💕', '✨', '🌸', '❤️'][Math.floor(Math.random() * 5)];
+          heart.style.position = 'fixed';
+          heart.style.left = originX + 'px';
+          heart.style.top = originY + 'px';
+          heart.style.fontSize = Math.floor(18 + Math.random() * 16) + 'px';
+          heart.style.pointerEvents = 'none';
+          heart.style.zIndex = '99999';
+          heart.style.transition = 'all 1.4s cubic-bezier(0.2, 0.8, 0.3, 1)';
+          document.body.appendChild(heart);
+
+          const offsetX = (Math.random() - 0.5) * 140;
+          const offsetY = -(60 + Math.random() * 120);
+
+          requestAnimationFrame(() => {
+            heart.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(1.3) rotate(${(Math.random() - 0.5) * 40}deg)`;
+            heart.style.opacity = '0';
+          });
+
+          setTimeout(() => heart.remove(), 1500);
+        }
+      };
+
+      playPauseBtn?.addEventListener('click', () => {
+        if (isPlaying) pauseAudio(); else window.startAudio();
+      });
+
+      equalizer?.addEventListener('click', () => {
+        if (isPlaying) pauseAudio(); else window.startAudio();
+      });
+
+      nextTrackBtn?.addEventListener('click', () => {
+        window.selectStationTrack((currentTrackIndex + 1) % stationTracks.length);
+        if (typeof window.triggerMonochromeConfetti === 'function') {
+          window.triggerMonochromeConfetti();
+        }
+      });
+
+      musicTitleClick?.addEventListener('click', () => {
+        const sec = document.getElementById('cassette-music-section');
+        if (sec) {
+          sec.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+
+      volumeSlider?.addEventListener('input', (e) => {
+        audioElement.volume = e.target.value;
+      });
+
+      const startJourneyBtn = document.getElementById('start-journey-btn');
+      startJourneyBtn?.addEventListener('click', () => {
+        if (typeof window.triggerMonochromeConfetti === 'function') {
+          window.triggerMonochromeConfetti();
+        }
+        if (!isPlaying) {
+          window.startAudio();
+        }
+      });
+
+
+      /* ========================================================
+         5. INTERACTIVE CANDLE & WISH CEREMONY
+         ======================================================== */
+      const candleElement = document.getElementById('candle-element');
+      const flame = document.getElementById('flame');
+      const candleAura = document.getElementById('candle-aura');
+      const blowCandleBtn = document.getElementById('blow-candle-btn');
+      const relightBtn = document.getElementById('relight-btn');
+      const wishStatus = document.getElementById('wish-status');
+      const wishCongrats = document.getElementById('wish-congrats');
+      let isFlameLit = true;
+
+      function blowCandle() {
+        if (!isFlameLit) return;
+        isFlameLit = false;
+
+        flame.classList.add('flame-extinguished');
+        candleAura.style.opacity = '0';
+        blowCandleBtn.classList.add('hidden');
+        relightBtn.classList.remove('hidden');
+
+        wishStatus.innerHTML = '<p class="text-xs uppercase tracking-widest text-zinc-700 font-bold font-cute animate-pulse">Điều ước đã bay vào vũ trụ...</p>';
+        wishCongrats.classList.remove('hidden');
+
+        if (audioCtx) {
+          const chimeOsc = audioCtx.createOscillator();
+          const chimeGain = audioCtx.createGain();
+          chimeOsc.type = 'triangle';
+          chimeOsc.frequency.setValueAtTime(880, audioCtx.currentTime);
+          chimeOsc.frequency.exponentialRampToValueAtTime(1760, audioCtx.currentTime + 0.8);
+          chimeGain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+          chimeGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+          chimeOsc.connect(chimeGain);
+          chimeGain.connect(audioCtx.destination);
+          chimeOsc.start();
+          chimeOsc.stop(audioCtx.currentTime + 1.3);
+        }
+
+        window.triggerMonochromeConfetti();
+        setTimeout(window.triggerMonochromeConfetti, 350);
+      }
+
+      function relightCandle() {
+        isFlameLit = true;
+        flame.classList.remove('flame-extinguished');
+        candleAura.style.opacity = '1';
+        blowCandleBtn.classList.remove('hidden');
+        relightBtn.classList.add('hidden');
+        wishCongrats.classList.add('hidden');
+        wishStatus.innerHTML = '<p class="text-xs uppercase tracking-widest text-zinc-500 font-bold font-cute">Ngọn nến đã thắp sáng trở lại • Cậu có thể ước thêm nha!</p>';
+      }
+
+      blowCandleBtn.addEventListener('click', blowCandle);
+      candleElement.addEventListener('click', () => {
+        if (isFlameLit) blowCandle(); else relightCandle();
+      });
+      relightBtn.addEventListener('click', relightCandle);
+
+
+      /* ========================================================
+         6. COPY LETTER CONTENT
+         ======================================================== */
+      const copyWishBtn = document.getElementById('copy-wish-btn');
+      if (copyWishBtn) {
+        copyWishBtn.addEventListener('click', () => {
+          const textToCopy = `Chúc mừng sinh nhật! Hôm nay là một ngày siêu đặc biệt dành cho một người tuyệt vời. Cảm ơn bạn vì đã luôn kiên cường, ấm áp và độc bản. Chúc bạn tuổi mới sức khỏe dồi dào, sự nghiệp thăng hoa, hạnh phúc viên mãn và luôn mỉm cười kiêu hãnh nhé! Happy Birthday!`;
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalText = copyWishBtn.innerHTML;
+            copyWishBtn.innerHTML = `<span>✓ Đã sao chép!</span>`;
+            setTimeout(() => {
+              copyWishBtn.innerHTML = originalText;
+            }, 2000);
+          });
+        });
+      }
+
+
+      /* ========================================================
+         7. PERSONALIZATION SYSTEM (Name Customizer Modal)
+         ======================================================== */
+      const customizeBtn = document.getElementById('customize-btn');
+      const customizeModal = document.getElementById('customize-modal');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const recipientForm = document.getElementById('recipient-form');
+      const recipientInput = document.getElementById('recipient-input');
+      const resetNameBtn = document.getElementById('reset-name-btn');
+
+      const navRecipientName = document.getElementById('nav-recipient-name');
+      const heroRecipientHighlight = document.getElementById('hero-recipient-highlight');
+      const letterRecipientName = document.getElementById('letter-recipient-name');
+
+      const savedRecipient = localStorage.getItem('luxury_birthday_recipient');
+      if (savedRecipient) {
+        updateRecipientDisplay(savedRecipient);
+      }
+
+      function updateRecipientDisplay(name) {
+        if (navRecipientName) navRecipientName.textContent = name;
+        if (heroRecipientHighlight) heroRecipientHighlight.textContent = name;
+        if (letterRecipientName) letterRecipientName.textContent = name;
+      }
+
+      if (customizeBtn) {
+        customizeBtn.addEventListener('click', () => recipientModalOpen(true));
+      }
+      closeModalBtn.addEventListener('click', () => recipientModalOpen(false));
+      customizeModal.addEventListener('click', (e) => {
+        if (e.target === customizeModal) recipientModalOpen(false);
+      });
+
+      function recipientModalOpen(isOpen) {
+        if (isOpen) {
+          customizeModal.classList.remove('hidden');
+          recipientInput.value = localStorage.getItem('luxury_birthday_recipient') || '';
+          recipientInput.focus();
+        } else {
+          customizeModal.classList.add('hidden');
+        }
+      }
+
+      recipientForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newName = recipientInput.value.trim();
+        if (newName) {
+          localStorage.setItem('luxury_birthday_recipient', newName);
+          updateRecipientDisplay(newName);
+          window.triggerMonochromeConfetti();
+        }
+        recipientModalOpen(false);
+      });
+
+      resetNameBtn.addEventListener('click', () => {
+        localStorage.removeItem('luxury_birthday_recipient');
+        updateRecipientDisplay('Bạn');
+        recipientInput.value = '';
+        recipientModalOpen(false);
+      });
+
+
+      /* ========================================================
+         8. FULL-SCREEN FLOWER BLOOM ENGINE & INTERACTIVE BOUQUET
+         ======================================================== */
+      const flowerSvgTemplates = [
+        // 1. Sakura / Cherry Blossom (Pink with warm yellow core)
+        `<svg viewBox="0 0 80 80" class="w-full h-full">
+          <g transform="translate(40,40)">
+            <path d="M0 0 C-10 -20, -18 -32, 0 -38 C18 -32, 10 -20, 0 0" fill="#f472b6" />
+            <path d="M0 0 C-10 -20, -18 -32, 0 -38 C18 -32, 10 -20, 0 0" fill="#fb7185" transform="rotate(72)" />
+            <path d="M0 0 C-10 -20, -18 -32, 0 -38 C18 -32, 10 -20, 0 0" fill="#f472b6" transform="rotate(144)" />
+            <path d="M0 0 C-10 -20, -18 -32, 0 -38 C18 -32, 10 -20, 0 0" fill="#fb7185" transform="rotate(216)" />
+            <path d="M0 0 C-10 -20, -18 -32, 0 -38 C18 -32, 10 -20, 0 0" fill="#f472b6" transform="rotate(288)" />
+            <circle cx="0" cy="0" r="7" fill="#facc15" stroke="#fbbf24" stroke-width="1.5" />
+            <circle cx="0" cy="0" r="3.5" fill="#f97316" />
+          </g>
+        </svg>`,
+
+        // 2. Pure White Daisy / Cúc Họa Mi (White petals, radiant golden core)
+        `<svg viewBox="0 0 80 80" class="w-full h-full">
+          <g transform="translate(40,40)">
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(36)" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(72)" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(108)" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(144)" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(180)" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(216)" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(252)" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(288)" />
+            <ellipse cx="0" cy="-24" rx="4.5" ry="14" fill="#ffffff" stroke="#fef08a" stroke-width="0.8" transform="rotate(324)" />
+            <circle cx="0" cy="0" r="9" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5" />
+            <circle cx="0" cy="0" r="4.5" fill="#f59e0b" />
+          </g>
+        </svg>`,
+
+        // 3. Cheerful Sunflower / Buttercup (Golden yellow with amber center)
+        `<svg viewBox="0 0 80 80" class="w-full h-full">
+          <g transform="translate(40,40)">
+            <path d="M0 0 C-8 -15, -12 -28, 0 -35 C12 -28, 8 -15, 0 0" fill="#fde047" stroke="#facc15" stroke-width="1" />
+            <path d="M0 0 C-8 -15, -12 -28, 0 -35 C12 -28, 8 -15, 0 0" fill="#fde047" stroke="#facc15" stroke-width="1" transform="rotate(45)" />
+            <path d="M0 0 C-8 -15, -12 -28, 0 -35 C12 -28, 8 -15, 0 0" fill="#fde047" stroke="#facc15" stroke-width="1" transform="rotate(90)" />
+            <path d="M0 0 C-8 -15, -12 -28, 0 -35 C12 -28, 8 -15, 0 0" fill="#fde047" stroke="#facc15" stroke-width="1" transform="rotate(135)" />
+            <path d="M0 0 C-8 -15, -12 -28, 0 -35 C12 -28, 8 -15, 0 0" fill="#fde047" stroke="#facc15" stroke-width="1" transform="rotate(180)" />
+            <path d="M0 0 C-8 -15, -12 -28, 0 -35 C12 -28, 8 -15, 0 0" fill="#fde047" stroke="#facc15" stroke-width="1" transform="rotate(225)" />
+            <path d="M0 0 C-8 -15, -12 -28, 0 -35 C12 -28, 8 -15, 0 0" fill="#fde047" stroke="#facc15" stroke-width="1" transform="rotate(270)" />
+            <path d="M0 0 C-8 -15, -12 -28, 0 -35 C12 -28, 8 -15, 0 0" fill="#fde047" stroke="#facc15" stroke-width="1" transform="rotate(315)" />
+            <circle cx="0" cy="0" r="10" fill="#d97706" stroke="#b45309" stroke-width="1.5" />
+            <circle cx="0" cy="0" r="5" fill="#92400e" />
+          </g>
+        </svg>`,
+
+        // 4. Pastel Lavender Peony (Dreamy lilac and purple petals)
+        `<svg viewBox="0 0 80 80" class="w-full h-full">
+          <g transform="translate(40,40)">
+            <circle cx="0" cy="-14" r="13" fill="#e9d5ff" opacity="0.95" />
+            <circle cx="13" cy="-5" r="13" fill="#d8b4fe" opacity="0.95" />
+            <circle cx="8" cy="11" r="13" fill="#c084fc" opacity="0.95" />
+            <circle cx="-8" cy="11" r="13" fill="#d8b4fe" opacity="0.95" />
+            <circle cx="-13" cy="-5" r="13" fill="#e9d5ff" opacity="0.95" />
+            <circle cx="0" cy="0" r="8.5" fill="#fef08a" stroke="#facc15" stroke-width="1" />
+          </g>
+        </svg>`,
+
+        // 5. Sweet Coral Rose (Tender pink rose)
+        `<svg viewBox="0 0 80 80" class="w-full h-full">
+          <g transform="translate(40,40)">
+            <circle cx="0" cy="0" r="26" fill="#fecdd3" opacity="0.9" />
+            <path d="M-15 -8 C-10 -22, 10 -22, 15 -8 C18 10, -18 10, -15 -8 Z" fill="#fb7185" />
+            <path d="M-10 2 C-5 -10, 8 -10, 10 2 C12 12, -12 12, -10 2 Z" fill="#f43f5e" />
+            <circle cx="0" cy="0" r="5" fill="#be123c" />
+          </g>
+        </svg>`
+      ];
+
+      const petalColors = ['#f472b6', '#fb7185', '#fde047', '#ffffff', '#c084fc', '#fda4af', '#fcd34d'];
+
+      function createBloomFlower(overlay, x, y, size, delay) {
+        const flower = document.createElement('div');
+        flower.className = 'bloom-flower';
+        flower.style.left = `${x}px`;
+        flower.style.top = `${y}px`;
+        flower.style.width = `${size}px`;
+        flower.style.height = `${size}px`;
+        flower.style.animationDelay = `${delay}ms`;
+
+        const rotStart = Math.floor(Math.random() * 140 - 70);
+        const rotMid = Math.floor(Math.random() * 40 - 20);
+        const rotMid2 = Math.floor(Math.random() * 20 - 10);
+        const rotEnd = Math.floor(Math.random() * 20 - 10);
+        const rotDrift = Math.floor(Math.random() * 30 - 15);
+        const rotDrift2 = Math.floor(Math.random() * 40 - 20);
+        const rotDrift3 = Math.floor(Math.random() * 60 - 30);
+        const driftY1 = Math.floor(Math.random() * -16 - 4);
+        const driftY2 = Math.floor(Math.random() * 18 + 6);
+        const driftY3 = Math.floor(Math.random() * 35 + 15);
+
+        flower.style.setProperty('--rot-start', `${rotStart}deg`);
+        flower.style.setProperty('--rot-mid', `${rotMid}deg`);
+        flower.style.setProperty('--rot-mid2', `${rotMid2}deg`);
+        flower.style.setProperty('--rot-end', `${rotEnd}deg`);
+        flower.style.setProperty('--rot-drift', `${rotDrift}deg`);
+        flower.style.setProperty('--rot-drift2', `${rotDrift2}deg`);
+        flower.style.setProperty('--rot-drift3', `${rotDrift3}deg`);
+        flower.style.setProperty('--drift-y1', `${driftY1}px`);
+        flower.style.setProperty('--drift-y2', `${driftY2}px`);
+        flower.style.setProperty('--drift-y3', `${driftY3}px`);
+
+        const tplIndex = Math.floor(Math.random() * flowerSvgTemplates.length);
+        flower.innerHTML = flowerSvgTemplates[tplIndex];
+
+        overlay.appendChild(flower);
+        setTimeout(() => flower.remove(), delay + 3500);
+      }
+
+      function createBloomPetal(overlay, x, y, size, delay) {
+        const petal = document.createElement('div');
+        petal.className = 'bloom-petal';
+        petal.style.left = `${x}px`;
+        petal.style.top = `${y}px`;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 1.3}px`;
+        petal.style.animationDelay = `${delay}ms`;
+
+        const pdx = Math.floor((Math.random() - 0.45) * 160);
+        const pdy = Math.floor(60 + Math.random() * 160);
+        const prot = Math.floor(Math.random() * 360);
+
+        petal.style.setProperty('--pdx', `${pdx}px`);
+        petal.style.setProperty('--pdy', `${pdy}px`);
+        petal.style.setProperty('--prot', `${prot}deg`);
+
+        const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+        petal.style.color = color;
+        petal.innerHTML = `<svg viewBox="0 0 30 40" class="w-full h-full"><path d="M15 2 C25 10, 28 26, 15 38 C2 26, 5 10, 15 2 Z" fill="currentColor" opacity="0.9" /></svg>`;
+
+        overlay.appendChild(petal);
+        setTimeout(() => petal.remove(), delay + 3900);
+      }
+
+      window.triggerFullScreenFlowerBloom = function(epicenterX, epicenterY) {
+        let overlay = document.getElementById('flower-bloom-overlay');
+        if (!overlay) {
+          overlay = document.createElement('div');
+          overlay.id = 'flower-bloom-overlay';
+          document.body.appendChild(overlay);
+        }
+
+        const winW = window.innerWidth;
+        const winH = window.innerHeight;
+
+        if (typeof epicenterX !== 'number' || typeof epicenterY !== 'number') {
+          const bouquet = document.getElementById('interactive-bouquet');
+          if (bouquet) {
+            const rect = bouquet.getBoundingClientRect();
+            epicenterX = rect.left + rect.width / 2;
+            epicenterY = rect.top + rect.height / 2;
+          } else {
+            epicenterX = winW / 2;
+            epicenterY = winH / 2;
+          }
+        }
+
+        // 1. Epicenter Radiant Burst (14 flowers expanding out from touched gift)
+        const burstCount = 14;
+        for (let i = 0; i < burstCount; i++) {
+          const angle = (i / burstCount) * (Math.PI * 2) + (Math.random() - 0.5) * 0.4;
+          const dist = 70 + Math.random() * 180;
+          const x = Math.max(30, Math.min(winW - 30, epicenterX + Math.cos(angle) * dist));
+          const y = Math.max(30, Math.min(winH - 30, epicenterY + Math.sin(angle) * dist));
+          const size = Math.floor(40 + Math.random() * 32);
+          const delay = Math.floor(Math.random() * 180);
+          createBloomFlower(overlay, x, y, size, delay);
+        }
+
+        // 2. Full-Screen Distributed Bloom (24 flowers blooming all over the window)
+        const screenPoints = [
+          { x: 0.08, y: 0.10 }, { x: 0.22, y: 0.08 }, { x: 0.38, y: 0.14 },
+          { x: 0.50, y: 0.06 }, { x: 0.64, y: 0.12 }, { x: 0.78, y: 0.09 }, { x: 0.92, y: 0.15 },
+          { x: 0.06, y: 0.32 }, { x: 0.18, y: 0.38 }, { x: 0.82, y: 0.30 }, { x: 0.94, y: 0.36 },
+          { x: 0.05, y: 0.58 }, { x: 0.16, y: 0.65 }, { x: 0.84, y: 0.56 }, { x: 0.95, y: 0.62 },
+          { x: 0.32, y: 0.42 }, { x: 0.68, y: 0.45 },
+          { x: 0.10, y: 0.85 }, { x: 0.25, y: 0.88 }, { x: 0.40, y: 0.82 },
+          { x: 0.52, y: 0.90 }, { x: 0.66, y: 0.84 }, { x: 0.80, y: 0.88 }, { x: 0.92, y: 0.82 }
+        ];
+
+        screenPoints.forEach((pt) => {
+          const jitterX = (Math.random() - 0.5) * 0.08;
+          const jitterY = (Math.random() - 0.5) * 0.08;
+          const x = Math.max(30, Math.min(winW - 30, (pt.x + jitterX) * winW));
+          const y = Math.max(30, Math.min(winH - 30, (pt.y + jitterY) * winH));
+          const size = Math.floor(38 + Math.random() * 34);
+          const delay = Math.floor(80 + Math.random() * 450);
+          createBloomFlower(overlay, x, y, size, delay);
+        });
+
+        // 3. Floating Petal Shower across the screen (22 fluttering petals)
+        const petalCount = 22;
+        for (let i = 0; i < petalCount; i++) {
+          const x = Math.random() * winW;
+          const y = Math.random() * (winH * 0.85);
+          const size = Math.floor(18 + Math.random() * 18);
+          const delay = Math.floor(Math.random() * 400);
+          createBloomPetal(overlay, x, y, size, delay);
+        }
+      };
+
+      window.bloomBouquet = function(event) {
+        const bouquetContainer = document.getElementById('bouquet-svg-container');
+        const messageCard = document.getElementById('bouquet-message');
+        const bloomBtn = document.getElementById('bloom-btn');
+
+        if (bouquetContainer) {
+          bouquetContainer.classList.add('scale-110');
+          setTimeout(() => {
+            bouquetContainer.classList.remove('scale-110');
+          }, 600);
+        }
+
+        if (messageCard) {
+          messageCard.classList.remove('hidden');
+        }
+
+        if (bloomBtn) {
+          bloomBtn.innerHTML = `
+            <svg class="w-4 h-4 text-rose-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span>Hoa đã nở rộ ngát hương!</span>
+          `;
+        }
+
+        // Extract touch or click position if provided
+        let originX = null;
+        let originY = null;
+        if (event) {
+          if (typeof event.clientX === 'number' && typeof event.clientY === 'number' && (event.clientX !== 0 || event.clientY !== 0)) {
+            originX = event.clientX;
+            originY = event.clientY;
+          } else if (event.touches && event.touches[0]) {
+            originX = event.touches[0].clientX;
+            originY = event.touches[0].clientY;
+          }
+        }
+
+        // TRIGGER FULL-SCREEN BLOOMING FLOWERS!
+        window.triggerFullScreenFlowerBloom(originX, originY);
+
+        // Celebratory melodic chimes
+        initWebAudio();
+        if (audioCtx) {
+          [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, i) => {
+            setTimeout(() => {
+              playMusicBoxBell(freq, 0.6);
+            }, i * 95);
+          });
+        }
+
+        // Flower petal confetti burst matching hand-drawn bouquet
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 80,
+            spread: 100,
+            origin: { y: 0.72 },
+            colors: ['#FACC15', '#FDE047', '#F472B6', '#FB7185', '#C084FC', '#A855F7', '#86EFAC', '#18181B', '#FFFFFF'],
+            shapes: ['circle', 'star'],
+            scalar: 1.2
+          });
+        }
+      };
+
+    });
+  </script>
+</body>
+</html>
