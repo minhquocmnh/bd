@@ -317,6 +317,31 @@
       animation: pulseHeartBeat 1.8s ease-in-out infinite;
     }
 
+    /* Collapsible Left Music Drawer */
+    #music-drawer {
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      will-change: transform;
+    }
+    #music-drawer.drawer-open {
+      transform: translateX(0) !important;
+      box-shadow: 20px 0 50px rgba(0, 0, 0, 0.45);
+    }
+    #music-drawer-backdrop.backdrop-open {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+    @keyframes diskSpinAnimation {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .drawer-disk-spin {
+      animation: diskSpinAnimation 3s linear infinite;
+    }
+    .drawer-disk-paused {
+      animation-play-state: paused;
+    }
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
@@ -672,350 +697,6 @@
     </div>
   </section>
 
-  <!-- ======================== AESTHETIC CASSETTE & MEDIA STATION ======================== -->
-  <section id="cassette-music-section" class="relative py-20 px-6 z-10 bg-gradient-to-b from-[#fff1cc] via-[#fdf8e6] to-[#fff1cc]">
-    <div class="max-w-5xl mx-auto">
-
-      <!-- Section Title Header -->
-      <div class="reveal-element text-center mb-12">
-        <span class="inline-block text-xs uppercase tracking-widest text-zinc-500 font-bold font-cute mb-2">
-          Aesthetic Mixtape & Retro Player
-        </span>
-        <h2 class="font-cute text-3xl sm:text-5xl font-extrabold tracking-tight mb-3 text-zinc-700">
-          Giai Điệu Tuổi Mới <span class="bw-gradient-text">• Dành Riêng Cho Bạn</span>
-        </h2>
-        <p class="max-w-md mx-auto text-zinc-500 text-sm font-normal">
-          Thả mình vào những giai điệu ngọt ngào, lãng mạn và dịu êm nhất trong ngày sinh nhật của bạn.
-        </p>
-      </div>
-
-      <!-- Two-Column Showcase (Left: Media Player Card, Right: Vintage Cassette & Playlist) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
-        
-        <!-- ================= LEFT COLUMN: MEDIA PLAYER CARD ================= -->
-        <div class="reveal-element lg:col-span-6 flex flex-col">
-          <div class="glass-card rounded-[2.5rem] bg-zinc-950 border-2 border-zinc-800/80 p-5 sm:p-6 shadow-2xl overflow-hidden text-white flex flex-col gap-4 flex-1 justify-between relative">
-            
-            <!-- 1. Top Visual: Hanging Dried Flower Bouquet (Upside down with kraft paper & twine) -->
-            <div class="relative w-full h-44 sm:h-48 rounded-2xl bg-gradient-to-b from-stone-900 via-zinc-900 to-black overflow-hidden flex items-start justify-center pt-1 border border-zinc-800/70 shadow-inner">
-              <!-- Soft ambient backdrop glow -->
-              <div class="absolute inset-0 bg-radial from-rose-950/25 via-transparent to-transparent pointer-events-none"></div>
-              
-              <!-- Hanging Dried Flower Arrangement SVG -->
-              <div class="relative animate-hanging-sway select-none pointer-events-none">
-                <svg width="150" height="170" viewBox="0 0 150 170" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Twine String From Top Edge -->
-                  <line x1="75" y1="0" x2="75" y2="38" stroke="#d4af37" stroke-width="1.8" stroke-dasharray="2 2" />
-                  <!-- Twine Knot & Bow -->
-                  <circle cx="75" cy="38" r="3.5" fill="#c29a27" />
-                  <path d="M 75 38 Q 62 31 58 41 Q 67 45 75 38 Z" fill="#d4af37" opacity="0.9" />
-                  <path d="M 75 38 Q 88 31 92 41 Q 83 45 75 38 Z" fill="#d4af37" opacity="0.9" />
-                  <path d="M 75 38 L 70 53" stroke="#d4af37" stroke-width="1.5" />
-                  <path d="M 75 38 L 79 55" stroke="#d4af37" stroke-width="1.5" />
-                  
-                  <!-- Kraft Paper Cone (Upside down cone holding stems) -->
-                  <path d="M 64 36 L 86 36 L 94 92 Q 75 97 56 92 Z" fill="#c49a6c" stroke="#a07a4f" stroke-width="1.2" />
-                  <path d="M 64 36 L 75 95 L 86 36" fill="#b3895a" opacity="0.45" />
-                  <line x1="68" y1="48" x2="82" y2="48" stroke="#926c42" stroke-width="1" stroke-dasharray="3 2" />
-                  
-                  <!-- Dried Leaves & Foliage (Hanging downwards) -->
-                  <path d="M 65 92 Q 50 112 44 132" stroke="#52664b" stroke-width="1.6" fill="none" />
-                  <circle cx="47" cy="116" r="4.5" fill="#697f62" opacity="0.8" />
-                  <circle cx="44" cy="128" r="4" fill="#586c52" opacity="0.8" />
-                  
-                  <path d="M 85 92 Q 100 112 106 132" stroke="#52664b" stroke-width="1.6" fill="none" />
-                  <circle cx="103" cy="116" r="4.5" fill="#697f62" opacity="0.8" />
-                  <circle cx="106" cy="128" r="4" fill="#586c52" opacity="0.8" />
-                  
-                  <!-- Dried Rosebuds (Hanging upside down) -->
-                  <!-- Rosebud Left -->
-                  <g transform="translate(60, 120)">
-                    <path d="M 0 -25 L 0 0" stroke="#485c42" stroke-width="1.5" />
-                    <ellipse cx="0" cy="10" rx="7" ry="9" fill="#9e3a47" />
-                    <path d="M -5 5 Q 0 14 5 5 Q 0 18 -5 5 Z" fill="#be4d5c" />
-                    <path d="M -2 0 L -4 -5 M 2 0 L 4 -5" stroke="#3d4f38" stroke-width="1.2" />
-                  </g>
-                  
-                  <!-- Rosebud Right -->
-                  <g transform="translate(88, 124)">
-                    <path d="M 0 -30 L 0 0" stroke="#485c42" stroke-width="1.5" />
-                    <ellipse cx="0" cy="10" rx="7.5" ry="9.5" fill="#b04352" />
-                    <path d="M -5 5 Q 0 14 5 5 Q 0 18 -5 5 Z" fill="#d15a6b" />
-                    <path d="M -2 0 L -4 -5 M 2 0 L 4 -5" stroke="#3d4f38" stroke-width="1.2" />
-                  </g>
-                  
-                  <!-- Central Rose Bloom (Hanging lowest) -->
-                  <g transform="translate(74, 136)">
-                    <path d="M 0 -41 L 0 0" stroke="#485c42" stroke-width="1.8" />
-                    <ellipse cx="0" cy="11" rx="9" ry="11" fill="#c04e5f" />
-                    <path d="M -6 6 Q 0 16 6 6 Q 0 20 -6 6 Z" fill="#e26d7f" />
-                    <path d="M -3 0 L -5 -6 M 3 0 L 5 -6" stroke="#3d4f38" stroke-width="1.4" />
-                  </g>
-                  
-                  <!-- Baby's breath blooms -->
-                  <circle cx="56" cy="108" r="2.2" fill="#fff7e6" />
-                  <circle cx="62" cy="102" r="2" fill="#fff7e6" />
-                  <circle cx="88" cy="106" r="2" fill="#fff7e6" />
-                  <circle cx="94" cy="112" r="2.2" fill="#fff7e6" />
-                  <circle cx="76" cy="114" r="2.4" fill="#fff7e6" />
-                </svg>
-              </div>
-            </div>
-
-            <!-- 2. Middle: Spotify-Style Player Bar -->
-            <div class="bg-[#0b485b] border border-cyan-700/50 rounded-2xl p-3 sm:p-3.5 flex flex-col gap-2.5 shadow-lg select-none">
-              <div class="flex items-center justify-between gap-3">
-                <!-- Album Art Thumbnail (Divide cyan cover by default) -->
-                <div id="spotify-cover-box" class="w-11 h-11 rounded-xl bg-[#0096c7] flex items-center justify-center font-black text-black text-2xl shadow-md flex-shrink-0">
-                  ÷
-                </div>
-                <!-- Track Info -->
-                <div class="flex-1 min-w-0">
-                  <div id="spotify-track-title" class="font-cute font-bold text-sm text-white truncate tracking-wide">
-                    Perfect
-                  </div>
-                  <div id="spotify-track-artist" class="text-xs text-cyan-200/80 truncate font-cute">
-                    Ed Sheeran
-                  </div>
-                </div>
-                <!-- Controls: Like Heart + Play/Pause Button -->
-                <div class="flex items-center gap-2">
-                  <button onclick="burstStationHearts(event)" class="text-cyan-200 hover:text-white transition p-1" title="Thả tim">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                  </button>
-                  <button id="station-play-btn" onclick="toggleStationPlay()" class="w-8 h-8 rounded-full bg-white text-zinc-900 flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition" title="Phát / Dừng">
-                    <svg id="station-play-icon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    <svg id="station-pause-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Progress Bar -->
-              <div class="flex items-center gap-2 text-[10px] text-cyan-200/70 font-mono">
-                <span id="station-time-cur">01:24</span>
-                <div class="flex-1 h-1.5 bg-black/35 rounded-full overflow-hidden cursor-pointer relative" onclick="seekStationTrack(event)">
-                  <div id="station-progress-bar" class="h-full bg-white rounded-full transition-all duration-300" style="width: 32%;"></div>
-                </div>
-                <span id="station-time-total">04:23</span>
-              </div>
-            </div>
-
-            <!-- 3. Bottom: YouTube Music Video Embed Frame -->
-            <div class="relative rounded-2xl overflow-hidden border border-zinc-800 bg-black shadow-lg">
-              <div class="aspect-video w-full">
-                <iframe id="station-yt-iframe" class="w-full h-full" src="https://www.youtube-nocookie.com/embed/2Vv-BfVoq4g?enablejsapi=1" title="Music Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-            </div>
-
-            <!-- 4. Bottom-Left Heart Button Row -->
-            <div class="flex items-center justify-between pt-1">
-              <button onclick="burstStationHearts(event)" class="w-10 h-10 rounded-full bg-rose-500/20 border-2 border-rose-400/80 text-rose-400 hover:bg-rose-500 hover:text-white flex items-center justify-center transition-all shadow-md animate-heart-pulse active:scale-90" title="Chạm để thả tim yêu thương">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-              </button>
-              <div class="text-[11px] text-zinc-400 font-cute">
-                Chạm trái tim để gửi lời yêu thương ✨
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ================= RIGHT COLUMN: VINTAGE CASSETTE & PLAYLIST ================= -->
-        <div class="reveal-element lg:col-span-6 flex flex-col">
-          <div id="cassette-card-container" class="glass-card rounded-[2.5rem] bg-[#f5efdf] border-2 border-stone-300/90 p-6 sm:p-8 shadow-xl flex flex-col items-center justify-between flex-1 relative overflow-hidden">
-            
-            <!-- THE VINTAGE CASSETTE TAPE (SVG & Pure CSS) -->
-            <div class="w-full flex justify-center py-2">
-              <div id="cassette-tape-widget" class="relative w-full max-w-[340px] sm:max-w-[380px] h-[210px] sm:h-[235px] rounded-[1.6rem] bg-[#d9d3c0] border-2 border-[#b5ae9b] shadow-[0_15px_30px_-5px_rgba(70,60,40,0.18)] p-3 flex flex-col justify-between select-none">
-                
-                <!-- Metallic Corner Screws -->
-                <!-- Top-Left Screw -->
-                <div class="absolute top-2.5 left-2.5 w-3.5 h-3.5 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
-                  <div class="w-2 h-0.5 bg-[#6e6856] rotate-45"></div>
-                </div>
-                <!-- Top-Right Screw -->
-                <div class="absolute top-2.5 right-2.5 w-3.5 h-3.5 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
-                  <div class="w-2 h-0.5 bg-[#6e6856] -rotate-45"></div>
-                </div>
-                <!-- Bottom-Left Screw -->
-                <div class="absolute bottom-2.5 left-2.5 w-3.5 h-3.5 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
-                  <div class="w-2 h-0.5 bg-[#6e6856] rotate-12"></div>
-                </div>
-                <!-- Bottom-Right Screw -->
-                <div class="absolute bottom-2.5 right-2.5 w-3.5 h-3.5 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
-                  <div class="w-2 h-0.5 bg-[#6e6856] -rotate-12"></div>
-                </div>
-
-                <!-- Cassette Paper Label (Cream with Botanical Leaf Illustrations) -->
-                <div class="relative w-full h-[145px] sm:h-[160px] rounded-xl bg-[#fcf8ec] border border-[#cdc5b0] p-2.5 shadow-sm flex flex-col justify-between overflow-hidden">
-                  
-                  <!-- Botanical Leaf Line Art (Left & Right) -->
-                  <div class="absolute inset-y-0 left-1 w-14 pointer-events-none opacity-60 flex items-center">
-                    <svg viewBox="0 0 50 100" class="w-full h-full fill-none stroke-[#7c745f]" stroke-width="1.3">
-                      <path d="M 25 90 Q 15 50 35 15" />
-                      <ellipse cx="20" cy="30" rx="7" ry="4" transform="rotate(-30 20 30)" />
-                      <ellipse cx="32" cy="45" rx="7" ry="4" transform="rotate(30 32 45)" />
-                      <ellipse cx="18" cy="62" rx="7" ry="4" transform="rotate(-25 18 62)" />
-                      <ellipse cx="30" cy="76" rx="6" ry="3.5" transform="rotate(25 30 76)" />
-                    </svg>
-                  </div>
-                  <div class="absolute inset-y-0 right-1 w-14 pointer-events-none opacity-60 flex items-center">
-                    <svg viewBox="0 0 50 100" class="w-full h-full fill-none stroke-[#7c745f]" stroke-width="1.3">
-                      <path d="M 25 90 Q 35 50 15 15" />
-                      <ellipse cx="30" cy="30" rx="7" ry="4" transform="rotate(30 30 30)" />
-                      <ellipse cx="18" cy="45" rx="7" ry="4" transform="rotate(-30 18 45)" />
-                      <ellipse cx="32" cy="62" rx="7" ry="4" transform="rotate(25 32 62)" />
-                      <ellipse cx="20" cy="76" rx="6" ry="3.5" transform="rotate(-25 20 76)" />
-                    </svg>
-                  </div>
-
-                  <!-- Label Header -->
-                  <div class="flex items-center justify-between px-3 pt-0.5 z-10">
-                    <span class="text-[9px] font-black tracking-widest text-zinc-600 font-cute">SIDE A • STEREO</span>
-                    <span class="text-[9px] font-bold text-zinc-400 tracking-wider font-mono">NR [B] 120µs</span>
-                  </div>
-
-                  <!-- Center Cassette Tape Window & Rotating Reels -->
-                  <div class="relative w-[78%] mx-auto h-14 sm:h-16 rounded-xl bg-zinc-900/90 border border-zinc-950 p-1 flex items-center justify-between px-4 sm:px-6 shadow-inner overflow-hidden z-10">
-                    
-                    <!-- Dark brown magnetic tape ribbon in background -->
-                    <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-3.5 bg-[#402615] opacity-90"></div>
-                    
-                    <!-- Left Reel (Spool with 6 teeth) -->
-                    <div class="relative z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center">
-                      <svg viewBox="0 0 40 40" class="w-full h-full cassette-reel-wheel">
-                        <circle cx="20" cy="20" r="18" fill="#f8f6ed" stroke="#ded8c4" stroke-width="1.5" />
-                        <circle cx="20" cy="20" r="7" fill="#18181b" />
-                        <!-- 6 Cog teeth around center -->
-                        <g fill="#402615">
-                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" />
-                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" />
-                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
-                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
-                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
-                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
-                        </g>
-                      </svg>
-                    </div>
-
-                    <!-- Center Window Ruler Marks -->
-                    <div class="relative z-10 flex flex-col items-center justify-center text-[8px] sm:text-[9px] font-mono text-zinc-400 font-semibold tracking-wider">
-                      <div class="flex items-center gap-1.5 opacity-80">
-                        <span>100</span>
-                        <span>50</span>
-                        <span>0</span>
-                      </div>
-                      <div class="w-10 h-0.5 bg-zinc-600/60 rounded-full mt-0.5"></div>
-                    </div>
-
-                    <!-- Right Reel (Spool with 6 teeth) -->
-                    <div class="relative z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center">
-                      <svg viewBox="0 0 40 40" class="w-full h-full cassette-reel-wheel">
-                        <circle cx="20" cy="20" r="18" fill="#f8f6ed" stroke="#ded8c4" stroke-width="1.5" />
-                        <circle cx="20" cy="20" r="7" fill="#18181b" />
-                        <!-- 6 Cog teeth around center -->
-                        <g fill="#402615">
-                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" />
-                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" />
-                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
-                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
-                          <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
-                          <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
-                        </g>
-                      </svg>
-                    </div>
-
-                  </div>
-
-                  <!-- Label Footer: Title and Subtitle -->
-                  <div class="text-center pb-0.5 z-10">
-                    <div id="cassette-label-title" class="font-cute font-extrabold text-xs sm:text-sm text-zinc-800 tracking-wide">
-                      Perfect • Ed Sheeran
-                    </div>
-                    <div class="text-[9px] text-zinc-500 font-cute">
-                      Mixtape Sinh Nhật 2026
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- Lower Cassette Trapezoid Guide Base -->
-                <div class="relative w-[70%] mx-auto h-7 bg-[#cbbfab] border border-[#a89e8a] rounded-b-lg flex items-center justify-around px-5 shadow-inner">
-                  <div class="w-2.5 h-2.5 rounded-full bg-[#4a4233] border border-[#2b261e]"></div>
-                  <!-- Center Screw -->
-                  <div class="w-3 h-3 rounded-full bg-[#bbb4a0] border border-[#8e8774] flex items-center justify-center shadow-inner">
-                    <div class="w-1.5 h-0.5 bg-[#6e6856] rotate-90"></div>
-                  </div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-[#4a4233] border border-[#2b261e]"></div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- THE TRACKLIST BELOW CASSETTE (Matching screenshot layout) -->
-            <div class="mt-6 w-full max-w-[340px] sm:max-w-[380px] space-y-1.5 text-left font-cute">
-              
-              <!-- Track 01 -->
-              <div id="track-row-0" class="tracklist-row active-track p-2.5 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(0)">
-                <div class="flex items-center gap-3">
-                  <span class="text-xs font-bold text-zinc-400 font-mono">01</span>
-                  <div>
-                    <div class="text-sm font-bold text-zinc-800">Perfect</div>
-                    <div class="text-[11px] text-zinc-500 font-medium">Ed Sheeran</div>
-                  </div>
-                </div>
-                <div id="track-indicator-0" class="flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-                </div>
-              </div>
-
-              <!-- Track 02 -->
-              <div id="track-row-1" class="tracklist-row p-2.5 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(1)">
-                <div class="flex items-center gap-3">
-                  <span class="text-xs font-bold text-zinc-400 font-mono">02</span>
-                  <div>
-                    <div class="text-sm font-bold text-zinc-800">All of Me</div>
-                    <div class="text-[11px] text-zinc-500 font-medium">John Legend</div>
-                  </div>
-                </div>
-                <div id="track-indicator-1" class="hidden flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-                </div>
-              </div>
-
-              <!-- Track 03 -->
-              <div id="track-row-2" class="tracklist-row p-2.5 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(2)">
-                <div class="flex items-center gap-3">
-                  <span class="text-xs font-bold text-zinc-400 font-mono">03</span>
-                  <div>
-                    <div class="text-sm font-bold text-zinc-800">Happy Birthday</div>
-                    <div class="text-[11px] text-zinc-500 font-medium">Lofi Celesta Music Box</div>
-                  </div>
-                </div>
-                <div id="track-indicator-2" class="hidden flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-                </div>
-              </div>
-
-              <!-- Currently Playing Status line: "Playing: [Song Name]" -->
-              <div class="pt-3 text-xs text-zinc-500 font-medium flex items-center gap-2 border-t border-stone-300/80">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Playing: <strong id="cassette-playing-label" class="text-zinc-800 font-bold">Perfect</strong></span>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
   <!-- ======================== SECRET LETTER SECTION ======================== -->
   <section id="special-letter" class="relative py-24 px-6 z-10 bg-gradient-to-b from-[#fff1cc] via-[#fff5d6] to-[#fff1cc]">
     <div class="max-w-4xl mx-auto">
@@ -1184,6 +865,53 @@
     </div>
   </section>
 
+  <!-- ======================== FINAL SURPRISE & NEXT PAGE SECTION ======================== -->
+  <section id="final-gift-section" class="relative py-20 px-6 z-10 text-center bg-gradient-to-b from-[#fff1cc] via-[#ffeab5] to-[#fff1cc] overflow-hidden border-t border-amber-300/40">
+    <!-- Floating background sparkles & emojis -->
+    <div class="absolute inset-0 pointer-events-none opacity-40 select-none">
+      <div class="absolute top-8 left-1/4 text-2xl animate-bounce">✨</div>
+      <div class="absolute bottom-8 right-1/4 text-2xl animate-pulse">🎁</div>
+      <div class="absolute top-1/2 left-8 text-xl animate-spin">🌸</div>
+      <div class="absolute top-1/3 right-8 text-xl animate-bounce">💖</div>
+    </div>
+
+    <div class="max-w-xl mx-auto relative z-10">
+      <!-- Special badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/85 border border-amber-300/80 shadow-sm text-xs font-cute font-bold text-amber-900 mb-4">
+        <span>🎉 Điều Bất Ngờ Cuối Cùng</span>
+      </div>
+
+      <h3 class="font-cute text-3xl sm:text-4xl font-extrabold text-zinc-800 tracking-tight mb-3">
+        Vẫn Còn Một <span class="bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 bg-clip-text text-transparent">Món Quà Bí Mật!</span>
+      </h3>
+
+      <p class="font-cute text-zinc-600 text-sm sm:text-base leading-relaxed mb-8 max-w-md mx-auto">
+        Hành trình chúc mừng sinh nhật chưa dừng lại ở đây đâu. Có một trang đặc biệt chứa đựng những bất ngờ và món quà riêng dành cho bạn...
+      </p>
+
+      <!-- Grand interactive button navigating to gift.html -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="gift.html" id="open-next-gift-btn"
+          class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-zinc-800 via-zinc-900 to-zinc-800 text-[#fff1cc] font-cute font-bold text-base shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 border border-amber-300/40">
+          <!-- Sparkling icon -->
+          <span class="text-xl group-hover:rotate-12 transition-transform duration-300">🎁</span>
+          <span>Mở Món Quà Tiếp Theo</span>
+          <svg class="w-5 h-5 text-amber-300 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+          <!-- Shimmer light effect -->
+          <div class="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
+            <div class="w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000"></div>
+          </div>
+        </a>
+      </div>
+
+      <p class="font-cute text-xs text-zinc-500 mt-4 italic">
+        Nhấn nút để bước vào căn phòng quà tặng bí mật ✨
+      </p>
+    </div>
+  </section>
+
   <!-- ======================== FOOTER ======================== -->
   <footer class="relative py-14 px-6 z-10 border-t border-stone-300/70 text-center bg-[#fcedbe]/70">
     <div class="max-w-4xl mx-auto flex flex-col items-center">
@@ -1214,69 +942,346 @@
     </div>
   </footer>
 
-  <!-- ======================== FLOATING MUSIC PLAYER ======================== -->
-  <div id="audio-player-container" class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-    <div class="glass-pill px-4 py-2.5 rounded-full shadow-lg flex items-center gap-3 border border-stone-300/80 bg-white/90">
-      
-      <!-- Mini Cassette Icon with spinning wheel -->
-      <div id="mini-cassette-icon" class="w-6 h-6 rounded-lg bg-[#d9d3c0] border border-[#b5ae9b] flex items-center justify-center shadow-sm cursor-pointer" onclick="document.getElementById('cassette-music-section')?.scrollIntoView({behavior:'smooth'})" title="Xem Cassette Player">
-        <svg viewBox="0 0 40 40" class="w-4 h-4 cassette-reel-wheel">
-          <circle cx="20" cy="20" r="16" fill="#f8f6ed" stroke="#b5ae9b" stroke-width="2" />
-          <circle cx="20" cy="20" r="6" fill="#18181b" />
-          <g fill="#402615">
-            <rect x="18.5" y="5" width="3" height="4" rx="0.5" />
-            <rect x="18.5" y="31" width="3" height="4" rx="0.5" />
-            <rect x="18.5" y="5" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
-            <rect x="18.5" y="31" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
-            <rect x="18.5" y="5" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
-            <rect x="18.5" y="31" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
-          </g>
-        </svg>
-      </div>
+  <!-- ======================== COLLAPSIBLE LEFT MUSIC DRAWER ======================== -->
+  <!-- Backdrop for clicking outside to close drawer -->
+  <div id="music-drawer-backdrop" onclick="toggleMusicDrawer(false)"
+    class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+  </div>
 
-      <!-- Animated Equalizer Bars -->
-      <div id="equalizer-bars" class="flex items-end gap-[3px] h-5 equalizer-paused cursor-pointer" title="Bật/Tắt nhạc nền">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
+  <!-- Docked Toggle Tab on Left Screen Edge -->
+  <button id="music-drawer-toggle" onclick="toggleMusicDrawer()"
+    class="fixed left-0 top-1/2 -translate-y-1/2 z-40 bg-zinc-900/95 hover:bg-zinc-800 text-[#fff1cc] px-2.5 py-3.5 rounded-r-2xl shadow-2xl border-y border-r border-amber-300/40 flex flex-col items-center gap-2 backdrop-blur-md hover:translate-x-1 transition-all duration-300 group cursor-pointer"
+    title="Mở Bảng Nhạc & Cassette">
+    <!-- Spinning mini disk icon -->
+    <div id="drawer-toggle-disk" class="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-500/30 to-amber-200/30 border border-amber-300/60 flex items-center justify-center group-hover:scale-110 transition-transform">
+      <svg class="w-4 h-4 text-amber-300 drawer-disk-spin drawer-disk-paused" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+    </div>
+    <span class="text-[11px] font-cute font-bold tracking-widest uppercase [writing-mode:vertical-rl] rotate-180 text-amber-200/90 group-hover:text-amber-100">
+      ♫ Nhạc
+    </span>
+    <!-- Little status indicator dot -->
+    <span id="drawer-toggle-indicator" class="w-2 h-2 rounded-full bg-zinc-500"></span>
+  </button>
 
-      <!-- Track Info (Click to jump to Cassette Player) -->
-      <div class="text-left pr-1 cursor-pointer select-none" id="music-title-click" title="Nhấn để xem Cassette Player">
-        <div id="current-track-title" class="text-[11px] font-bold text-zinc-700 tracking-wide font-cute flex items-center gap-1">
-          <span>Perfect • Ed Sheeran</span>
+  <!-- Left Drawer Aside Panel -->
+  <aside id="music-drawer" class="fixed top-0 bottom-0 left-0 z-50 w-[360px] sm:w-[420px] max-w-[92vw] h-full bg-[#18181b]/98 backdrop-blur-2xl border-r border-zinc-700/60 shadow-2xl flex flex-col -translate-x-full transition-transform duration-400 ease-out overflow-hidden text-zinc-100">
+    
+    <!-- Drawer Header -->
+    <div class="px-5 py-4 border-b border-zinc-800/80 flex items-center justify-between bg-zinc-900/60 shrink-0">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-amber-300">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
         </div>
-        <div id="current-track-sub" class="text-[9px] text-zinc-500 font-medium">Bấm để mở Cassette Player ♫</div>
+        <div>
+          <h3 class="font-cute font-bold text-sm text-zinc-100 flex items-center gap-1.5">
+            Music Box & Cassette
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-semibold border border-amber-400/30">Mixtape</span>
+          </h3>
+          <p class="text-[11px] text-zinc-400 font-cute">Giai điệu lãng mạn dành riêng cho bạn</p>
+        </div>
+      </div>
+      
+      <!-- Close Button -->
+      <button onclick="toggleMusicDrawer(false)" class="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition active:scale-95" title="Đóng bảng nhạc">
+        ✕
+      </button>
+    </div>
+
+    <!-- Scrollable Drawer Content -->
+    <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-6 custom-scrollbar">
+      
+      <!-- CARD 1: MEDIA PLAYER WITH DRIED BOUQUET -->
+      <div class="rounded-3xl bg-zinc-900/90 border border-zinc-800 shadow-xl overflow-hidden p-4 relative">
+        
+        <!-- Hanging Dried Flower Illustration -->
+        <div class="flex flex-col items-center justify-center mb-3">
+          <div class="animate-hanging-sway">
+            <svg class="w-24 h-24 sm:w-28 sm:h-28 filter drop-shadow-md" viewBox="0 0 160 160" fill="none">
+              <!-- Hanging Twine Rope -->
+              <path d="M80 0 L80 32" stroke="#a38b68" stroke-width="2.5" stroke-dasharray="2 1.5" />
+              <!-- Ribbon Bow Tie -->
+              <ellipse cx="68" cy="34" rx="12" ry="7" fill="#d97706" opacity="0.85" transform="rotate(-20 68 34)" />
+              <ellipse cx="92" cy="34" rx="12" ry="7" fill="#d97706" opacity="0.85" transform="rotate(20 92 34)" />
+              <circle cx="80" cy="34" r="5" fill="#b45309" />
+              <path d="M78 36 Q70 52 65 62" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" fill="none" />
+              <path d="M82 36 Q90 52 95 62" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" fill="none" />
+              
+              <!-- Stems of inverted bouquet -->
+              <path d="M80 34 L65 110" stroke="#716755" stroke-width="2" stroke-linecap="round" />
+              <path d="M80 34 L75 125" stroke="#857962" stroke-width="2.5" stroke-linecap="round" />
+              <path d="M80 34 L85 130" stroke="#685f4e" stroke-width="2.5" stroke-linecap="round" />
+              <path d="M80 34 L96 115" stroke="#7e725c" stroke-width="2" stroke-linecap="round" />
+              <path d="M80 34 L54 100" stroke="#8a7c64" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M80 34 L106 102" stroke="#8a7c64" stroke-width="1.8" stroke-linecap="round" />
+
+              <!-- Dried Eucalyptus Leaves & Baby's Breath -->
+              <ellipse cx="68" cy="70" rx="6" ry="10" fill="#9ca3af" opacity="0.75" transform="rotate(-35 68 70)" />
+              <ellipse cx="92" cy="72" rx="6" ry="10" fill="#9ca3af" opacity="0.75" transform="rotate(35 92 72)" />
+              <ellipse cx="60" cy="90" rx="5" ry="9" fill="#6b7280" opacity="0.7" transform="rotate(-40 60 90)" />
+              <ellipse cx="100" cy="92" rx="5" ry="9" fill="#6b7280" opacity="0.7" transform="rotate(40 100 92)" />
+
+              <!-- Inverted Dried Blossoms (Roses & Lavender heads) -->
+              <g transform="translate(0, 10)">
+                <ellipse cx="75" cy="115" rx="9" ry="12" fill="#c084fc" opacity="0.9" />
+                <ellipse cx="85" cy="118" rx="8" ry="11" fill="#f472b6" opacity="0.95" />
+                <ellipse cx="64" cy="102" rx="7" ry="10" fill="#fb7185" opacity="0.85" />
+                <ellipse cx="96" cy="104" rx="7" ry="10" fill="#fcd34d" opacity="0.9" />
+                <ellipse cx="53" cy="94" rx="5" ry="7" fill="#a78bfa" opacity="0.8" />
+                <ellipse cx="107" cy="95" rx="5" ry="7" fill="#f43f5e" opacity="0.8" />
+              </g>
+            </svg>
+          </div>
+          <span class="text-[10px] font-cute text-zinc-400 tracking-wider uppercase mt-1">Hanging Floral Melodies</span>
+        </div>
+
+        <!-- Spotify Bar Layout -->
+        <div class="rounded-2xl bg-zinc-800/80 border border-zinc-700/60 p-3 shadow-inner">
+          <div class="flex items-center justify-between gap-3 mb-2.5">
+            <div class="flex items-center gap-3 overflow-hidden">
+              <div id="spotify-cover-box" class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">
+                ÷
+              </div>
+              <div class="min-w-0">
+                <div id="spotify-track-title" class="text-sm font-bold text-zinc-100 truncate font-cute">
+                  Perfect
+                </div>
+                <div id="spotify-track-artist" class="text-xs text-zinc-400 truncate font-cute">
+                  Ed Sheeran
+                </div>
+              </div>
+            </div>
+
+            <!-- Glowing Heart Like Button -->
+            <button onclick="burstStationHearts(event)" class="w-9 h-9 rounded-full bg-zinc-700 hover:bg-rose-900/60 text-rose-400 hover:text-rose-300 flex items-center justify-center shrink-0 transition-transform active:scale-90" title="Thả tim bài hát">
+              <svg class="w-5 h-5 fill-rose-500 hover:fill-rose-400" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Progress Bar & Time -->
+          <div class="space-y-1">
+            <div class="relative w-full h-2 bg-zinc-700/80 rounded-full cursor-pointer overflow-hidden" onclick="seekStationTrack(event)">
+              <div id="station-progress-bar" class="h-full bg-gradient-to-r from-amber-400 to-rose-400 rounded-full transition-all duration-300" style="width: 32%;"></div>
+            </div>
+            <div class="flex items-center justify-between text-[10px] font-mono text-zinc-400">
+              <span id="station-time-cur">01:24</span>
+              <span id="station-time-total">04:23</span>
+            </div>
+          </div>
+
+          <!-- Playback Controls -->
+          <div class="flex items-center justify-between pt-2">
+            <!-- Shuffle -->
+            <button onclick="selectStationTrack(Math.floor(Math.random() * stationTracks.length))" class="text-zinc-400 hover:text-zinc-200 transition" title="Ngẫu nhiên">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H4v-4m12-4h4v4m-4 8l5-5m-17-7l5 5M4 4l16 16"/>
+              </svg>
+            </button>
+
+            <!-- Prev Track -->
+            <button onclick="selectStationTrack(currentTrackIndex - 1)" class="w-8 h-8 rounded-full bg-zinc-700 hover:bg-zinc-600 text-zinc-200 flex items-center justify-center transition active:scale-95" title="Bài trước">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 6l-8.5 6 8.5 6V6zm-10 0l-8.5 6 8.5 6V6z"/>
+              </svg>
+            </button>
+
+            <!-- Main Play / Pause Button -->
+            <button id="station-play-btn" onclick="toggleStationPlay()" class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-400 to-amber-200 hover:from-amber-300 hover:to-amber-100 text-zinc-900 flex items-center justify-center shadow-lg transition active:scale-90" title="Phát / Dừng">
+              <svg id="station-play-icon" class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg id="station-pause-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+              </svg>
+            </button>
+
+            <!-- Next Track -->
+            <button onclick="selectStationTrack(currentTrackIndex + 1)" class="w-8 h-8 rounded-full bg-zinc-700 hover:bg-zinc-600 text-zinc-200 flex items-center justify-center transition active:scale-95" title="Bài tiếp theo">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+              </svg>
+            </button>
+
+            <!-- Volume Icon & Slider -->
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-zinc-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+              </svg>
+              <input type="range" id="drawer-volume-slider" min="0" max="1" step="0.05" value="0.7"
+                oninput="onDrawerVolumeChange(event)"
+                class="w-14 h-1 bg-zinc-600 rounded-lg appearance-none cursor-pointer accent-amber-400">
+            </div>
+          </div>
+        </div>
+
+        <!-- Collapsible YouTube Preview Embed -->
+        <div class="mt-3 rounded-xl overflow-hidden bg-black/50 border border-zinc-800">
+          <div class="relative w-full aspect-video">
+            <iframe id="station-yt-iframe"
+              class="w-full h-full"
+              src="https://www.youtube-nocookie.com/embed/2Vv-BfVoq4g?enablejsapi=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Play / Pause Button -->
-      <button id="play-pause-btn" class="w-8 h-8 rounded-full bg-zinc-700 text-[#fff1cc] flex items-center justify-center shadow-md hover:bg-zinc-800 hover:scale-105 active:scale-95 transition" title="Bật/Tắt nhạc nền">
-        <svg id="play-icon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-        <svg id="pause-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-        </svg>
-      </button>
+      <!-- CARD 2: VINTAGE CASSETTE TAPE & TRACKLIST -->
+      <div class="rounded-3xl bg-[#f5ede0] border border-[#d8ccb8] p-4 text-zinc-800 shadow-xl">
+        
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-[11px] font-bold tracking-wider uppercase text-zinc-600 font-cute">Vintage Tape Deck</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-200/80 text-amber-900 font-bold">TYPE I • NORMAL</span>
+        </div>
 
-      <!-- Next Track Button -->
-      <button id="next-track-btn" class="w-7 h-7 rounded-full bg-stone-100/80 hover:bg-stone-200 text-zinc-700 flex items-center justify-center transition hover:scale-105 active:scale-95" title="Đổi sang bài tiếp theo">
-        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
-        </svg>
-      </button>
+        <!-- The Cassette Box with Spinning spools -->
+        <div id="cassette-tape-widget" class="relative w-full bg-[#dfd6c3] border-2 border-[#b8ab94] rounded-2xl p-3 shadow-md">
+          <!-- 4 Corner Screws -->
+          <div class="absolute top-2 left-2 w-2 h-2 rounded-full bg-[#8c7f68] border border-[#5a513e]"></div>
+          <div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#8c7f68] border border-[#5a513e]"></div>
+          <div class="absolute bottom-2 left-2 w-2 h-2 rounded-full bg-[#8c7f68] border border-[#5a513e]"></div>
+          <div class="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#8c7f68] border border-[#5a513e]"></div>
 
-      <!-- Volume Slider -->
-      <div class="hidden sm:flex items-center gap-1.5 pl-1">
-        <svg class="w-3.5 h-3.5 text-zinc-400" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
-        </svg>
-        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7" class="w-16 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-zinc-600">
+          <!-- Paper Sticker Label -->
+          <div class="relative bg-[#faf7ee] rounded-xl border border-[#c4baa2] p-2.5 shadow-sm space-y-2">
+            <!-- Label Header -->
+            <div class="flex items-center justify-between text-[9px] font-bold text-zinc-500 font-mono tracking-wider border-b border-zinc-200 pb-1">
+              <span>SIDE A</span>
+              <span class="text-rose-600 font-cute font-bold">SPECIAL EDITION</span>
+              <span>45 MIN</span>
+            </div>
+
+            <!-- Tape Window with Reels -->
+            <div class="relative h-14 bg-[#23211e] rounded-lg border border-[#3e3933] flex items-center justify-between px-3 overflow-hidden shadow-inner">
+              <!-- Magnetic brown tape ribbon bar -->
+              <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-3.5 bg-[#402615] opacity-90"></div>
+
+              <!-- Left Reel (Spool with 6 teeth) -->
+              <div class="relative z-10 w-9 h-9 flex items-center justify-center">
+                <svg viewBox="0 0 40 40" class="w-full h-full cassette-reel-wheel">
+                  <circle cx="20" cy="20" r="18" fill="#f8f6ed" stroke="#ded8c4" stroke-width="1.5" />
+                  <circle cx="20" cy="20" r="7" fill="#18181b" />
+                  <g fill="#402615">
+                    <rect x="18.5" y="4" width="3" height="4" rx="0.5" />
+                    <rect x="18.5" y="32" width="3" height="4" rx="0.5" />
+                    <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+                    <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+                    <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+                    <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Center Window Ruler Marks -->
+              <div class="relative z-10 flex flex-col items-center justify-center text-[8px] font-mono text-zinc-400 font-semibold tracking-wider">
+                <div class="flex items-center gap-1 opacity-80">
+                  <span>100</span>
+                  <span>50</span>
+                  <span>0</span>
+                </div>
+                <div class="w-9 h-0.5 bg-zinc-600/60 rounded-full mt-0.5"></div>
+              </div>
+
+              <!-- Right Reel (Spool with 6 teeth) -->
+              <div class="relative z-10 w-9 h-9 flex items-center justify-center">
+                <svg viewBox="0 0 40 40" class="w-full h-full cassette-reel-wheel">
+                  <circle cx="20" cy="20" r="18" fill="#f8f6ed" stroke="#ded8c4" stroke-width="1.5" />
+                  <circle cx="20" cy="20" r="7" fill="#18181b" />
+                  <g fill="#402615">
+                    <rect x="18.5" y="4" width="3" height="4" rx="0.5" />
+                    <rect x="18.5" y="32" width="3" height="4" rx="0.5" />
+                    <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+                    <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(60 20 20)" />
+                    <rect x="18.5" y="4" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+                    <rect x="18.5" y="32" width="3" height="4" rx="0.5" transform="rotate(120 20 20)" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Label Footer -->
+            <div class="text-center pt-1 z-10">
+              <div id="cassette-label-title" class="font-cute font-extrabold text-xs text-zinc-800 tracking-wide truncate">
+                Perfect • Ed Sheeran
+              </div>
+              <div class="text-[9px] text-zinc-500 font-cute">
+                Mixtape Sinh Nhật 2026
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRACKLIST SELECTOR -->
+        <div class="mt-4 space-y-1 text-left font-cute">
+          
+          <!-- Track 01 -->
+          <div id="track-row-0" class="tracklist-row active-track p-2 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(0)">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xs font-bold text-zinc-400 font-mono">01</span>
+              <div>
+                <div class="text-xs font-bold text-zinc-800">Perfect</div>
+                <div class="text-[10px] text-zinc-500 font-medium">Ed Sheeran</div>
+              </div>
+            </div>
+            <div id="track-indicator-0" class="flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+            </div>
+          </div>
+
+          <!-- Track 02 -->
+          <div id="track-row-1" class="tracklist-row p-2 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(1)">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xs font-bold text-zinc-400 font-mono">02</span>
+              <div>
+                <div class="text-xs font-bold text-zinc-800">All of Me</div>
+                <div class="text-[10px] text-zinc-500 font-medium">John Legend</div>
+              </div>
+            </div>
+            <div id="track-indicator-1" class="hidden flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+            </div>
+          </div>
+
+          <!-- Track 03 -->
+          <div id="track-row-2" class="tracklist-row p-2 rounded-xl cursor-pointer flex items-center justify-between" onclick="selectStationTrack(2)">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xs font-bold text-zinc-400 font-mono">03</span>
+              <div>
+                <div class="text-xs font-bold text-zinc-800">Happy Birthday</div>
+                <div class="text-[10px] text-zinc-500 font-medium">Lofi Celesta Music Box</div>
+              </div>
+            </div>
+            <div id="track-indicator-2" class="hidden flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+            </div>
+          </div>
+
+          <!-- Status indicator -->
+          <div class="pt-2 text-[11px] text-zinc-500 font-medium flex items-center gap-2 border-t border-stone-300/80">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Đang phát: <strong id="cassette-playing-label" class="text-zinc-800 font-bold">Perfect</strong></span>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
-  </div>
+
+  </aside>
 
   <!-- ======================== CUSTOMIZE RECIPIENT MODAL ======================== -->
   <div id="customize-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm hidden transition-all duration-300">
@@ -1597,15 +1602,7 @@
          4. AESTHETIC CASSETTE & MEDIA STATION LOGIC
          ======================================================== */
       const audioElement = document.getElementById('bg-audio');
-      const playPauseBtn = document.getElementById('play-pause-btn');
-      const nextTrackBtn = document.getElementById('next-track-btn');
-      const musicTitleClick = document.getElementById('music-title-click');
-      const currentTrackTitle = document.getElementById('current-track-title');
-      const currentTrackSub = document.getElementById('current-track-sub');
-      const playIcon = document.getElementById('play-icon');
-      const pauseIcon = document.getElementById('pause-icon');
-      const equalizer = document.getElementById('equalizer-bars');
-      const volumeSlider = document.getElementById('volume-slider');
+      const drawerVolumeSlider = document.getElementById('drawer-volume-slider');
 
       let isPlaying = false;
       let audioCtx = null;
@@ -1708,7 +1705,7 @@
 
       function playMusicBoxBell(freq, duration) {
         if (!audioCtx) return;
-        const vol = parseFloat(volumeSlider?.value) || 0.7;
+        const vol = parseFloat(drawerVolumeSlider?.value) || 0.7;
 
         const osc1 = audioCtx.createOscillator();
         const gain1 = audioCtx.createGain();
@@ -1894,7 +1891,7 @@
         } else {
           stopMusicBox();
           audioElement.src = track.audioUrl;
-          audioElement.volume = volumeSlider ? volumeSlider.value : 0.7;
+          audioElement.volume = drawerVolumeSlider ? drawerVolumeSlider.value : 0.7;
           audioElement.play().then(() => {
             setPlayingState(true);
           }).catch(e => {
@@ -1920,20 +1917,26 @@
       function setPlayingState(playing) {
         isPlaying = playing;
 
-        // 1. Floating player icons
-        if (playing) {
-          playIcon.classList.add('hidden');
-          pauseIcon.classList.remove('hidden');
-          equalizer.classList.remove('equalizer-paused');
-        } else {
-          playIcon.classList.remove('hidden');
-          pauseIcon.classList.add('hidden');
-          equalizer.classList.add('equalizer-paused');
+        // 1. Drawer toggle tab disk spinning & indicator dot
+        const toggleDisk = document.getElementById('drawer-toggle-disk');
+        const toggleInd = document.getElementById('drawer-toggle-indicator');
+        if (toggleDisk) {
+          const svg = toggleDisk.querySelector('svg');
+          if (svg) {
+            if (playing) svg.classList.remove('drawer-disk-paused');
+            else svg.classList.add('drawer-disk-paused');
+          }
+        }
+        if (toggleInd) {
+          if (playing) {
+            toggleInd.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
+          } else {
+            toggleInd.className = 'w-2 h-2 rounded-full bg-zinc-500';
+          }
         }
 
         // 2. Cassette tape reel wheels spin
         const cassetteWidget = document.getElementById('cassette-tape-widget');
-        const miniCassette = document.getElementById('mini-cassette-icon');
         if (cassetteWidget) {
           if (playing) {
             cassetteWidget.classList.add('is-playing');
@@ -1941,15 +1944,6 @@
           } else {
             cassetteWidget.classList.remove('is-playing');
             cassetteWidget.classList.add('is-paused');
-          }
-        }
-        if (miniCassette) {
-          if (playing) {
-            miniCassette.classList.add('is-playing');
-            miniCassette.classList.remove('is-paused');
-          } else {
-            miniCassette.classList.remove('is-playing');
-            miniCassette.classList.add('is-paused');
           }
         }
 
@@ -1968,6 +1962,26 @@
           }
         }
       }
+
+      /* Collapsible Music Drawer Control Functions */
+      window.toggleMusicDrawer = function(forceState) {
+        const drawer = document.getElementById('music-drawer');
+        const backdrop = document.getElementById('music-drawer-backdrop');
+        if (!drawer) return;
+        const willOpen = typeof forceState === 'boolean' ? forceState : !drawer.classList.contains('drawer-open');
+        if (willOpen) {
+          drawer.classList.add('drawer-open');
+          if (backdrop) backdrop.classList.add('backdrop-open');
+        } else {
+          drawer.classList.remove('drawer-open');
+          if (backdrop) backdrop.classList.remove('backdrop-open');
+        }
+      };
+
+      window.onDrawerVolumeChange = function(e) {
+        const val = parseFloat(e.target.value) || 0.7;
+        if (audioElement) audioElement.volume = val;
+      };
 
       window.burstStationHearts = function(event) {
         initWebAudio();
@@ -2005,32 +2019,6 @@
           setTimeout(() => heart.remove(), 1500);
         }
       };
-
-      playPauseBtn?.addEventListener('click', () => {
-        if (isPlaying) pauseAudio(); else window.startAudio();
-      });
-
-      equalizer?.addEventListener('click', () => {
-        if (isPlaying) pauseAudio(); else window.startAudio();
-      });
-
-      nextTrackBtn?.addEventListener('click', () => {
-        window.selectStationTrack((currentTrackIndex + 1) % stationTracks.length);
-        if (typeof window.triggerMonochromeConfetti === 'function') {
-          window.triggerMonochromeConfetti();
-        }
-      });
-
-      musicTitleClick?.addEventListener('click', () => {
-        const sec = document.getElementById('cassette-music-section');
-        if (sec) {
-          sec.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-
-      volumeSlider?.addEventListener('input', (e) => {
-        audioElement.volume = e.target.value;
-      });
 
       const startJourneyBtn = document.getElementById('start-journey-btn');
       startJourneyBtn?.addEventListener('click', () => {
