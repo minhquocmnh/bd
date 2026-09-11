@@ -103,38 +103,6 @@
       opacity: 0.3;
     }
 
-    /* Flame Animation */
-    .flame {
-      width: 14px;
-      height: 24px;
-      background: linear-gradient(to top, #ff3b30, #ff9500, #ffcc00, #ffffff);
-      border-radius: 50% 50% 20% 20%;
-      box-shadow: 0 0 12px #ff9500, 0 0 20px #ff3b30, 0 0 28px rgba(255, 204, 0, 0.6);
-      animation: candleFlicker 1.8s infinite alternate ease-in-out;
-      transform-origin: bottom center;
-    }
-    @keyframes candleFlicker {
-      0% { transform: rotate(-2deg) scale(1); filter: brightness(1); }
-      50% { transform: rotate(3deg) scale(1.06, 0.95); filter: brightness(1.2); }
-      100% { transform: rotate(-1deg) scale(0.96, 1.05); filter: brightness(1); }
-    }
-    .flame-extinguished {
-      opacity: 0;
-      transform: scale(0.2) translateY(-10px);
-      transition: all 0.5s ease-out;
-      filter: blur(3px);
-    }
-
-    /* Polaroid Card Hover Tilt */
-    .polaroid-card {
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .polaroid-card:hover {
-      transform: translateY(-6px) scale(1.03) rotate(0deg) !important;
-      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
-      z-index: 20;
-    }
-
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 7px;
@@ -174,12 +142,12 @@
       <!-- Recipient Badge -->
       <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 border border-amber-300/80 shadow-sm text-xs font-cute font-bold text-amber-900">
         <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-        <span>Dành cho: <strong id="nav-recipient-name" class="text-rose-600 font-extrabold">Bạn</strong> 🎀</span>
+        <span>Dành cho: <strong>Nhật Hạ</strong> 🎀</span>
       </div>
 
       <!-- Confetti Trigger -->
       <button onclick="triggerGiftConfetti()" class="glass-pill px-3.5 py-2 rounded-full font-cute font-bold text-xs sm:text-sm text-zinc-700 hover:text-zinc-900 hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 shadow-sm" title="Bắn pháo hoa">
-        <span>✨ Pháo hoa</span>
+        <span>✨</span>
       </button>
 
     </div>
@@ -190,14 +158,12 @@
     
     <!-- Title and Subtitle -->
     <div class="text-center mb-10">
-      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/80 border border-amber-300/70 shadow-sm text-xs font-cute font-bold text-amber-800 mb-3">
-        <span>🎁 Món Quà Cuối Cùng Dành Tặng Bạn</span>
-      </div>
+
       <h1 class="font-cute text-3xl sm:text-5xl font-extrabold text-zinc-800 tracking-tight mb-3">
         Chiếc Hộp Bí Mật & <span class="bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 bg-clip-text text-transparent">Điều Bất Ngờ!</span>
       </h1>
       <p class="font-cute text-zinc-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-        Gửi đến <span id="title-recipient-name" class="font-bold text-rose-600">Bạn</span> tất cả những ấm áp, may mắn và yêu thương trong tuổi mới.
+        Gửi đến Nhật Hạ tất cả những điều tốt đẹp, may mắn và yêu thương trong tuổi mới.
       </p>
     </div>
 
@@ -213,7 +179,7 @@
         
         <!-- Hover Hint Tooltip Badge -->
         <div id="gift-click-hint" class="absolute -top-10 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-zinc-800 text-[#fff1cc] text-xs font-cute font-bold shadow-xl border border-amber-300/40 group-hover:scale-110 transition-transform whitespace-nowrap z-20 flex items-center gap-1.5">
-          <span class="animate-bounce">👉</span> Chạm vào hộp quà để mở! 🎀
+          <span class="animate-bounce">👉</span> Chạm vào hộp quà để mở nè! 🎀
         </div>
 
         <svg class="w-64 h-64 sm:w-72 sm:h-72 filter drop-shadow-2xl mx-auto" viewBox="0 0 260 260" fill="none">
@@ -303,7 +269,7 @@
           </h2>
 
           <p class="text-xs text-zinc-500 font-cute">
-            Chứng nhận người sở hữu: <strong id="card-recipient-name" class="text-rose-600 text-base font-extrabold underline underline-offset-4 decoration-amber-300">Bạn</strong>
+            Chứng nhận người sở hữu: <strong id="card-recipient-name" class="text-rose-600 text-base font-extrabold underline underline-offset-4 decoration-amber-300">Nhật Hạ</strong>
           </p>
 
           <!-- 3 Privilege Rules -->
@@ -340,121 +306,6 @@
           </div>
         </div>
 
-      </div>
-
-      <!-- 2. INTERACTIVE BIRTHDAY CAKE & MAKE A WISH -->
-      <div class="glass-card p-6 sm:p-8 rounded-3xl border-2 border-stone-300/80 shadow-xl text-center bg-white/90 relative">
-        
-        <h3 class="font-cute text-2xl font-bold text-zinc-800 mb-1">
-          Ước Một Điều Thật Đẹp & Thổi Nến! 🎂
-        </h3>
-        <p class="text-xs sm:text-sm text-zinc-500 font-cute mb-6">
-          Nhắm mắt lại, nghĩ về điều bạn mong mỏi nhất trong năm nay rồi chạm vào chiếc bánh nhé.
-        </p>
-
-        <!-- Birthday Cake Illustration with 3 Lit Candles -->
-        <div class="relative inline-block my-3">
-          
-          <!-- Cake Candle 1 (Left) -->
-          <div class="absolute -top-10 left-12 flex flex-col items-center">
-            <div id="candle-flame-1" class="flame mb-0.5"></div>
-            <div class="w-2.5 h-10 rounded-t bg-gradient-to-b from-pink-300 to-pink-500 border border-pink-600"></div>
-          </div>
-
-          <!-- Cake Candle 2 (Center) -->
-          <div class="absolute -top-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
-            <div id="candle-flame-2" class="flame mb-0.5"></div>
-            <div class="w-2.5 h-12 rounded-t bg-gradient-to-b from-amber-300 to-amber-500 border border-amber-600"></div>
-          </div>
-
-          <!-- Cake Candle 3 (Right) -->
-          <div class="absolute -top-10 right-12 flex flex-col items-center">
-            <div id="candle-flame-3" class="flame mb-0.5"></div>
-            <div class="w-2.5 h-10 rounded-t bg-gradient-to-b from-sky-300 to-sky-500 border border-sky-600"></div>
-          </div>
-
-          <!-- Cake SVG -->
-          <svg class="w-48 h-32 mx-auto filter drop-shadow-md" viewBox="0 0 160 110" fill="none">
-            <!-- Plate -->
-            <ellipse cx="80" cy="100" rx="75" ry="8" fill="#e5e7eb" stroke="#d1d5db" stroke-width="2" />
-            <!-- Cake Bottom Tier -->
-            <rect x="25" y="60" width="110" height="35" rx="8" fill="#fbcfe8" />
-            <ellipse cx="80" cy="60" rx="55" ry="10" fill="#f472b6" />
-            <!-- Cream Swirls bottom -->
-            <path d="M25 72 Q40 82 55 72 Q70 82 85 72 Q100 82 115 72 Q130 82 135 72" stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none" />
-
-            <!-- Cake Top Tier -->
-            <rect x="42" y="32" width="76" height="28" rx="6" fill="#fed7aa" />
-            <ellipse cx="80" cy="32" rx="38" ry="7" fill="#fb923c" />
-            <!-- Strawberries on top -->
-            <circle cx="56" cy="30" r="5" fill="#e11d48" />
-            <circle cx="80" cy="28" r="6" fill="#e11d48" />
-            <circle cx="104" cy="30" r="5" fill="#e11d48" />
-          </svg>
-
-        </div>
-
-        <!-- Button to blow candles -->
-        <div class="mt-4">
-          <button id="blow-cake-candles-btn" onclick="blowCakeCandles()"
-            class="btn-black px-6 py-3 rounded-full font-cute font-bold text-sm inline-flex items-center gap-2 shadow-lg">
-            <span>💨 Thổi nến ước nguyện</span>
-          </button>
-        </div>
-
-        <!-- Wish Congrats Reveal Note -->
-        <div id="cake-wish-message" class="hidden mt-6 p-4 rounded-2xl bg-amber-50 border border-amber-300 shadow-md max-w-md mx-auto transition-all duration-500">
-          <div class="text-2xl mb-1">🌟</div>
-          <h4 class="font-cute font-bold text-base text-zinc-800 mb-1">Điều Ước Đã Được Gửi Tới Các Vì Sao!</h4>
-          <p class="font-cute text-xs text-zinc-600 leading-relaxed">
-            "Nguyện chúc mọi tâm nguyện chân thành nhất của bạn trong khoảnh khắc này sớm đơm hoa kết trái. Tuổi mới rực rỡ và luôn bình yên nhé!"
-          </p>
-        </div>
-
-      </div>
-
-      <!-- 3. THREE POLAROID WISH CARDS -->
-      <div>
-        <div class="text-center mb-6">
-          <h3 class="font-cute text-2xl font-bold text-zinc-800">
-            Những Tấm Thiệp Kỷ Niệm 📸
-          </h3>
-          <p class="text-xs text-zinc-500 font-cute">Những điều nhỏ bé nhưng chan chứa tình cảm</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 font-cute">
-          
-          <!-- Polaroid 1 -->
-          <div class="polaroid-card p-4 rounded-2xl bg-white shadow-lg border border-stone-200 text-center transform -rotate-2">
-            <div class="h-44 rounded-xl bg-gradient-to-tr from-amber-100 via-rose-100 to-amber-50 flex items-center justify-center p-4 mb-3 relative overflow-hidden">
-              <span class="text-5xl animate-bounce">☀️</span>
-              <div class="absolute top-2 right-2 text-xs px-2 py-0.5 rounded-full bg-white/80 font-bold text-amber-700">Smile</div>
-            </div>
-            <h4 class="font-bold text-sm text-zinc-800 mb-1">Rạng Rỡ Mỗi Ngày</h4>
-            <p class="text-[11px] text-zinc-500 leading-relaxed">Giữ nụ cười tỏa nắng trên môi, bởi vì nụ cười của bạn làm bừng sáng cả thế giới xung quanh.</p>
-          </div>
-
-          <!-- Polaroid 2 -->
-          <div class="polaroid-card p-4 rounded-2xl bg-white shadow-lg border border-stone-200 text-center transform rotate-1">
-            <div class="h-44 rounded-xl bg-gradient-to-tr from-sky-100 via-indigo-100 to-pink-50 flex items-center justify-center p-4 mb-3 relative overflow-hidden">
-              <span class="text-5xl animate-pulse">🚀</span>
-              <div class="absolute top-2 right-2 text-xs px-2 py-0.5 rounded-full bg-white/80 font-bold text-indigo-700">Dream</div>
-            </div>
-            <h4 class="font-bold text-sm text-zinc-800 mb-1">Dũng Cảm Vươn Xa</h4>
-            <p class="text-[11px] text-zinc-500 leading-relaxed">Mọi ước mơ bạn ấp ủ đều xứng đáng trở thành hiện thực. Hãy tự tin bước tới nhé!</p>
-          </div>
-
-          <!-- Polaroid 3 -->
-          <div class="polaroid-card p-4 rounded-2xl bg-white shadow-lg border border-stone-200 text-center transform -rotate-1">
-            <div class="h-44 rounded-xl bg-gradient-to-tr from-rose-100 via-pink-100 to-amber-50 flex items-center justify-center p-4 mb-3 relative overflow-hidden">
-              <span class="text-5xl animate-bounce">🌸</span>
-              <div class="absolute top-2 right-2 text-xs px-2 py-0.5 rounded-full bg-white/80 font-bold text-rose-700">Loved</div>
-            </div>
-            <h4 class="font-bold text-sm text-zinc-800 mb-1">Được Yêu Thương</h4>
-            <p class="text-[11px] text-zinc-500 leading-relaxed">Dù thế giới ngoài kia có bận rộn đến đâu, bạn luôn là một điều vô cùng đặc biệt và đáng trân trọng.</p>
-          </div>
-
-        </div>
       </div>
 
       <!-- 4. CUTE GIFT VOUCHER TICKET -->
@@ -512,7 +363,6 @@
   <!-- ======================== JAVASCRIPT ======================== -->
   <script>
     let isBoxOpened = false;
-    let areCandlesBlown = false;
     let audioCtx = null;
 
     // Load recipient name from localStorage if set in index.html
@@ -598,35 +448,6 @@
           treasures.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 150);
       }
-    }
-
-    // Cake candle blowing
-    function blowCakeCandles() {
-      if (areCandlesBlown) return;
-      areCandlesBlown = true;
-
-      playChime(783.99, 0.6);
-
-      const f1 = document.getElementById('candle-flame-1');
-      const f2 = document.getElementById('candle-flame-2');
-      const f3 = document.getElementById('candle-flame-3');
-      const btn = document.getElementById('blow-cake-candles-btn');
-      const msg = document.getElementById('cake-wish-message');
-
-      if (f1) f1.classList.add('flame-extinguished');
-      if (f2) f2.classList.add('flame-extinguished');
-      if (f3) f3.classList.add('flame-extinguished');
-
-      if (btn) {
-        btn.innerHTML = '✨ Nến Đã Thổi • Ước Nguyện Thành Hiện Thực!';
-        btn.classList.add('opacity-60', 'cursor-default');
-      }
-
-      if (msg) {
-        msg.classList.remove('hidden');
-      }
-
-      triggerGiftConfetti();
     }
 
     // Confetti celebration
