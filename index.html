@@ -195,49 +195,6 @@
       filter: blur(4px);
     }
 
-    /* 3D Envelope Animation & Perspective */
-    .envelope-perspective {
-      perspective: 1200px;
-    }
-
-    .envelope-top-flap {
-      transform-origin: top center;
-      transform-style: preserve-3d;
-      transition: transform 0.65s cubic-bezier(0.35, 0.05, 0.2, 1);
-      backface-visibility: visible;
-    }
-
-    .envelope-top-flap.opened {
-      transform: rotateX(180deg);
-    }
-
-    .envelope-letter {
-      transform: translateY(20px);
-      transition: transform 0.8s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.6s ease;
-      will-change: transform, box-shadow;
-    }
-
-    .envelope-letter.popped {
-      transform: translateY(-138px) scale(1.04);
-      box-shadow: 0 22px 45px -10px rgba(225, 29, 72, 0.22), 0 0 0 1px rgba(254, 205, 211, 0.6);
-    }
-
-    @media (min-width: 640px) {
-      .envelope-letter.popped {
-        transform: translateY(-165px) scale(1.06);
-      }
-    }
-
-    .heart-seal {
-      transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.28s ease;
-    }
-
-    .heart-seal.unsealed {
-      transform: translate(-50%, -50%) scale(1.4) rotate(-8deg);
-      opacity: 0;
-      pointer-events: none;
-    }
-
     /* Cute Flower Bouquet Animations */
     @keyframes bouquetSway {
       0% { transform: rotate(-2deg); }
@@ -465,73 +422,34 @@
         <img src="./assets/usagi-heart.jpg" alt="Usagi Heart" class="w-full h-full object-cover">
       </div>
 
-      <!-- Interactive Envelope (Coordinated 3D Animation) -->
-      <div id="intro-envelope" class="relative cursor-pointer group flex flex-col items-center animate-letter-float envelope-perspective" onclick="openIntroLetter()">
+      <!-- NEW CUTE ENVELOPE (Floating in the center of the screen) -->
+      <div id="intro-envelope" class="relative cursor-pointer group flex flex-col items-center animate-letter-float transition-all duration-300" onclick="openIntroLetter()">
         
-        <!-- Envelope Main Box -->
-        <div id="envelope-box" class="relative w-72 sm:w-84 md:w-96 h-48 sm:h-56 transition-all duration-300 group-hover:scale-105">
-          
-          <!-- 1. Envelope Back Interior (z-0, dark coral pink for depth) -->
-          <div class="absolute inset-0 rounded-[2.2rem] shadow-[0_20px_45px_-10px_rgba(239,104,119,0.3)] overflow-hidden" style="background-color: #df5262;">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/10"></div>
-          </div>
+        <!-- Soft glowing heart aura behind the letter -->
+        <div class="absolute inset-0 -m-6 rounded-full bg-rose-300/30 blur-2xl pointer-events-none group-hover:scale-115 transition-transform duration-500"></div>
 
-          <!-- 2. Top Flap (Hinged at top, lighter pink #f88b97, flips 180deg up) -->
-          <div id="intro-flap" class="envelope-top-flap absolute top-0 left-0 w-full h-[62%] z-30 pointer-events-none">
-            <svg viewBox="0 0 100 62" preserveAspectRatio="none" class="w-full h-full filter drop-shadow-md">
-              <path d="M 0 0 L 100 0 L 50 62 Z" fill="#f88b97" />
-              <path d="M 0 0 L 50 62 L 100 0" fill="none" stroke="#ef6877" stroke-width="0.8" opacity="0.4" />
-            </svg>
-          </div>
-
-          <!-- 3. The Letter Paper (z-15 nestled inside, slides UP and rises to z-35 when opened) -->
-          <div id="intro-letter-card" class="envelope-letter absolute inset-x-5 sm:inset-x-7 bottom-3.5 h-[88%] bg-white rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center shadow-md z-15 border border-pink-100/80 pointer-events-none select-none transition-all">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-rose-200/90 mb-2 shadow-sm bg-rose-50 flex-shrink-0">
-              <img src="./assets/usagi-heart.jpg" alt="Usagi Heart" class="w-full h-full object-cover">
-            </div>
-            <div class="font-cute font-black text-zinc-800 text-lg sm:text-xl md:text-2xl leading-tight">Happy Birthday!</div>
-            <p class="text-xs sm:text-sm text-zinc-500 font-cute mt-1 font-medium leading-relaxed">Một món quà ngọt ngào đang chờ bạn...</p>
-            <div class="mt-3 inline-flex items-center gap-1.5 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-rose-500 hover:bg-rose-600 text-white font-cute text-xs sm:text-sm font-bold shadow-md shadow-rose-400/30 transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
-              <span>Khám phá ngay</span>
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
-            </div>
-          </div>
-
-          <!-- 4. Front Pocket (z-20, in front of the letter paper) -->
-          <div class="absolute inset-0 z-20 pointer-events-none rounded-[2.2rem] overflow-hidden">
-            <svg viewBox="0 0 100 65" preserveAspectRatio="none" class="w-full h-full filter drop-shadow-sm">
-              <path d="M 0 0 L 50 42 L 100 0 L 100 65 L 0 65 Z" fill="#ef6877" />
-              <path d="M 0 65 L 50 42 L 0 0 Z" fill="#ea5867" opacity="0.32" />
-              <path d="M 100 65 L 50 42 L 100 0 Z" fill="#ea5867" opacity="0.32" />
-              <path d="M 0 65 L 100 65 L 50 42 Z" fill="#f47482" opacity="0.22" />
-              <path d="M 0 0 L 50 42 L 100 0" fill="none" stroke="#e04e5e" stroke-width="0.75" opacity="0.5" />
-            </svg>
-          </div>
-
-          <!-- 5. Red Heart Seal (z-40, pops and unseals) -->
-          <div id="intro-heart-seal" class="heart-seal absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 w-12 sm:w-14 h-12 sm:h-14 flex items-center justify-center pointer-events-none">
-            <svg viewBox="0 0 24 24" class="w-full h-full filter drop-shadow text-[#e11d48]" fill="currentColor">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-          </div>
-
+        <!-- The Cute Envelope Image -->
+        <div class="relative w-64 sm:w-80 md:w-96 max-w-[85vw] aspect-square transition-all duration-300 group-hover:scale-105 active:scale-95">
+          <img src="./assets/cute-envelope.png" alt="Phong thư sinh nhật" class="w-full h-full object-contain filter drop-shadow-xl select-none pointer-events-none">
         </div>
 
-        <!-- Shadow Beneath Floating Envelope -->
-        <div class="w-56 sm:w-68 h-4 rounded-full bg-rose-950/15 blur-md mt-6 animate-shadow-pulse pointer-events-none"></div>
+        <!-- Soft Pulsing Shadow Beneath Envelope -->
+        <div class="w-44 sm:w-56 md:w-64 h-3.5 rounded-full bg-amber-950/15 blur-md mt-1 animate-shadow-pulse pointer-events-none"></div>
 
       </div>
 
     </div>
 
-    <!-- Text Below: "Có tin nhắn nè!" (No emoji) -->
-    <div id="intro-text" class="mt-5 text-center cursor-pointer group" onclick="openIntroLetter()">
+    <!-- Text Below: "Có tin nhắn nè!" with interactive button -->
+    <div id="intro-text" class="mt-7 text-center cursor-pointer group" onclick="openIntroLetter()">
       <p class="font-cute text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-700 tracking-wide flex items-center justify-center gap-2 group-hover:scale-105 transition-transform">
         Có tin nhắn nè!
       </p>
-      <p class="text-xs sm:text-sm text-zinc-500 font-cute mt-1.5 font-medium">
-        (Chạm vào lá thư để mở nha)
-      </p>
+      <div class="mt-2.5 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/90 border border-amber-300/90 shadow-md text-xs sm:text-sm text-zinc-700 font-cute font-bold group-hover:bg-rose-500 group-hover:text-white group-hover:border-rose-400 group-hover:shadow-lg transition-all duration-300">
+        <span class="text-rose-500 group-hover:text-white animate-pulse">💌</span>
+        <span>Chạm vào bức thư để mở nhé!</span>
+        <span class="text-amber-500 group-hover:text-white">✨</span>
+      </div>
     </div>
 
   </div>
@@ -1334,9 +1252,9 @@
       const overlay = document.getElementById('intro-letter-overlay');
       if (!overlay || overlay.style.display === 'none') return;
 
-      overlay.style.transition = 'opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 0.75s cubic-bezier(0.4, 0, 0.2, 1)';
+      overlay.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
       overlay.style.opacity = '0';
-      overlay.style.transform = 'scale(1.04)';
+      overlay.style.transform = 'scale(1.05)';
       overlay.style.pointerEvents = 'none';
 
       document.querySelectorAll('#hero .reveal-element').forEach(el => {
@@ -1345,95 +1263,49 @@
 
       setTimeout(() => {
         overlay.style.display = 'none';
-      }, 750);
+      }, 600);
     }
 
     function openIntroLetter() {
-      const overlay = document.getElementById('intro-letter-overlay');
-
       if (isLetterOpened) {
-        // If already opened, clicking anywhere immediately transitions to website
         finishLetterTransition();
         return;
       }
       isLetterOpened = true;
 
-      const flap = document.getElementById('intro-flap');
-      const heartSeal = document.getElementById('intro-heart-seal');
-      const letterCard = document.getElementById('intro-letter-card');
+      const envelope = document.getElementById('intro-envelope');
       const introText = document.getElementById('intro-text');
 
-      // 1. Fade out the prompt text below
+      if (envelope) {
+        envelope.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease';
+        envelope.style.transform = 'scale(1.12) rotate(2deg)';
+        envelope.style.opacity = '0.9';
+      }
+
       if (introText) {
-        introText.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        introText.style.transition = 'opacity 0.25s ease';
         introText.style.opacity = '0';
-        introText.style.transform = 'translateY(10px)';
       }
 
-      // 2. Heart seal pops and unseals
-      if (heartSeal) {
-        heartSeal.classList.add('unsealed');
+      // Fire celebratory confetti!
+      if (typeof window.triggerMonochromeConfetti === 'function') {
+        window.triggerMonochromeConfetti();
       }
 
-      // 3. Top flap flips open 180deg upwards in 3D
-      setTimeout(() => {
-        if (flap) {
-          flap.classList.add('opened');
-        }
-      }, 120);
+      // Auto start birthday music!
+      if (typeof window.startAudio === 'function') {
+        window.startAudio();
+      }
 
-      // 4. When flap passes 90 degrees (facing upwards/backwards), lower its z-index behind letter
-      setTimeout(() => {
-        if (flap) {
-          flap.style.zIndex = '5';
-        }
-      }, 300);
-
-      // 5. Letter paper smoothly glides UP out of the pocket
-      setTimeout(() => {
-        if (letterCard) {
-          letterCard.classList.add('popped');
-        }
-      }, 380);
-
-      // 6. Raise letter card z-index so it sits cleanly in front of front pocket without any clipping
-      setTimeout(() => {
-        if (letterCard) {
-          letterCard.style.zIndex = '35';
-          letterCard.style.pointerEvents = 'auto';
-          letterCard.style.cursor = 'pointer';
-          letterCard.onclick = (e) => {
-            e.stopPropagation();
-            finishLetterTransition();
-          };
-        }
-      }, 540);
-
-      // 7. Confetti explosion (NO flower bloom on envelope open!)
-      setTimeout(() => {
-        if (typeof triggerMonochromeConfetti === 'function') {
-          triggerMonochromeConfetti();
-        }
-      }, 620);
-
-      // 8. Start audio smoothly
-      setTimeout(() => {
-        if (typeof startAudio === 'function') {
-          startAudio();
-        }
-      }, 700);
-
-      // 9. Gracefully transition to website after comfortable viewing time
+      // Transition immediately to next page (the main celebration site)
       letterAutoTransitionTimer = setTimeout(() => {
         finishLetterTransition();
-      }, 3800);
+      }, 280);
     }
 
     function reopenIntroLetter() {
       const overlay = document.getElementById('intro-letter-overlay');
-      const flap = document.getElementById('intro-flap');
-      const heartSeal = document.getElementById('intro-heart-seal');
-      const letterCard = document.getElementById('intro-letter-card');
+      const envelope = document.getElementById('intro-envelope');
       const introText = document.getElementById('intro-text');
 
       if (!overlay) return;
@@ -1443,17 +1315,9 @@
         letterAutoTransitionTimer = null;
       }
 
-      if (heartSeal) {
-        heartSeal.classList.remove('unsealed');
-      }
-      if (flap) {
-        flap.classList.remove('opened');
-        flap.style.zIndex = '30';
-      }
-      if (letterCard) {
-        letterCard.classList.remove('popped');
-        letterCard.style.zIndex = '15';
-        letterCard.style.pointerEvents = 'none';
+      if (envelope) {
+        envelope.style.transform = 'scale(1) rotate(0deg)';
+        envelope.style.opacity = '1';
       }
       if (introText) {
         introText.style.opacity = '1';
