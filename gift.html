@@ -194,31 +194,6 @@
     }
   
   
-    /* Typewriter Keycaps */
-    .type-key {
-      width: 1.65rem;
-      height: 1.65rem;
-      border-radius: 9999px;
-      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #f4f4f5 70%, #d4d4d8 100%);
-      border: 1.5px solid #a1a1aa;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.8);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: monospace;
-      font-weight: 700;
-      font-size: 0.65rem;
-      color: #3f3f46;
-      user-select: none;
-    }
-    @media (min-width: 640px) {
-      .type-key {
-        width: 2.1rem;
-        height: 2.1rem;
-        font-size: 0.8rem;
-      }
-    }
-  
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative selection:bg-zinc-700 selection:text-amber-100">
@@ -402,14 +377,17 @@
         <!-- ======================== TOP BANNER & MUSIC BUTTON ======================== -->
         <div class="relative z-10 text-center pt-2 pb-4 max-w-xl mx-auto">
           
-          <!-- Music Play/Pause Quick Circle Button & Text -->
-          <div class="flex items-center justify-center gap-2.5 mb-2">
-            <button id="music-circle-btn" onclick="togglePlayMusic()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-600/90 hover:bg-rose-500 text-white shadow-lg flex items-center justify-center transition active:scale-90 border-2 border-white/80 cursor-pointer" title="Phát / Tạm dừng nhạc">
-              <span id="music-circle-icon" class="text-xs sm:text-sm font-bold ml-0.5">▶</span>
+          <!-- Music Play/Pause Quick Pill Button & Text -->
+          <div class="flex items-center justify-center mb-2">
+            <button id="music-quick-btn" onclick="togglePlayMusic()" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 hover:bg-white text-rose-600 border border-rose-200/90 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-95 cursor-pointer group select-none" title="Nhấn để phát hoặc tạm dừng nhạc 'Để Dành Cho Em'">
+              <span id="music-circle-btn" class="w-8 h-8 rounded-full bg-rose-500 group-hover:bg-rose-600 text-white shadow-sm flex items-center justify-center transition-transform group-hover:scale-105">
+                <span id="music-circle-icon" class="text-xs font-bold ml-0.5">▶</span>
+              </span>
+              <span id="music-status-text" class="text-[11px] sm:text-xs font-cute font-extrabold tracking-wider uppercase text-rose-600 group-hover:text-rose-700">
+                TAP THE BUTTON TO PLAY THE MUSIC
+              </span>
+              <span id="music-pulse-indicator" class="hidden text-xs">🎵</span>
             </button>
-            <span class="text-[11px] sm:text-xs font-cute font-extrabold tracking-widest uppercase text-rose-500 select-none">
-              TAP THE BUTTON TO PLAY THE MUSIC
-            </span>
           </div>
 
           <!-- Stylized Title 100 REASONS -->
@@ -430,27 +408,27 @@
         </div>
 
         <!-- ======================== THE WHITE PAPER DOCUMENT SHEET ======================== -->
-        <div class="relative max-w-xl mx-auto z-10">
+        <div class="relative max-w-2xl mx-auto z-10">
           
           <!-- PLUMERIA 2: Left Edge of Paper -->
-          <div class="absolute top-1/4 -left-6 sm:-left-9 z-30 pointer-events-none drop-shadow-lg -rotate-12">
-            <svg viewBox="-60 -60 120 120" class="w-18 h-18 sm:w-24 sm:h-24">
+          <div class="absolute top-24 -left-5 sm:-left-8 z-30 pointer-events-none drop-shadow-lg -rotate-12">
+            <svg viewBox="-60 -60 120 120" class="w-16 h-16 sm:w-22 sm:h-22">
               <use href="#plumeria-symbol" />
             </svg>
           </div>
 
           <!-- PLUMERIA 3: Right Edge of Paper -->
-          <div class="absolute top-2/3 -right-6 sm:-right-9 z-30 pointer-events-none drop-shadow-lg rotate-45">
-            <svg viewBox="-60 -60 120 120" class="w-20 h-20 sm:w-26 sm:h-26">
+          <div class="absolute top-64 -right-5 sm:-right-8 z-30 pointer-events-none drop-shadow-lg rotate-45">
+            <svg viewBox="-60 -60 120 120" class="w-18 h-18 sm:w-24 sm:h-24">
               <use href="#plumeria-symbol" />
             </svg>
           </div>
 
           <!-- PAPER SHEET CONTAINER -->
-          <div class="bg-white rounded-t-3xl border-t border-x border-rose-100 shadow-xl p-5 sm:p-8 relative overflow-hidden">
+          <div class="bg-white/95 rounded-3xl border border-rose-200/80 shadow-2xl p-5 sm:p-8 relative overflow-hidden backdrop-blur-sm">
             
             <!-- Controls Toolbar (Status, Speed, Language, Actions) -->
-            <div class="border-b border-rose-100 pb-3 mb-3">
+            <div class="border-b border-rose-100 pb-3 mb-4">
               <div class="flex flex-wrap items-center justify-between gap-2.5 text-xs font-cute">
                 
                 <!-- Status & Count -->
@@ -498,117 +476,35 @@
               </div>
             </div>
 
-            <!-- Scrollable Flow Container (Where 100 Reasons stream out!) -->
-            <div id="reasons-paper-flow" class="max-h-[520px] overflow-y-auto custom-scrollbar pr-1 sm:pr-2 space-y-2.5 scroll-smooth">
+            <!-- Flow Container (100 Reasons stream directly down the main page without inner scroll box) -->
+            <div id="reasons-paper-flow" class="space-y-3 pt-2">
               <!-- Dynamically populated line-by-line via JS -->
             </div>
 
             <!-- Completed Celebration Banner -->
-            <div id="reasons-completed-banner" class="hidden mt-6 p-4 rounded-2xl bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border-2 border-rose-200 text-center space-y-2">
+            <div id="reasons-completed-banner" class="hidden mt-8 p-5 rounded-2xl bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border-2 border-rose-200 text-center space-y-2.5">
               <div class="text-3xl animate-bounce">💖 🎂 🎉</div>
               <h3 class="font-cute font-extrabold text-base sm:text-lg text-zinc-800">
-                100 Reasons Why I Love Nhật Hạ! 💕
+                100 Reasons Why I Love <span class="card-recipient-name">Nhật Hạ</span>! 💕
               </h3>
               <p class="text-xs sm:text-sm text-zinc-600 font-cute leading-relaxed">
                 "And there are millions more reasons I want to spend my whole life loving you..."
               </p>
-              <button onclick="triggerGiftConfetti()" class="mt-2 px-4 py-1.5 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-cute font-bold shadow-md transition hover:scale-105 active:scale-95 cursor-pointer">
+              <button onclick="triggerGiftConfetti()" class="mt-2 px-5 py-2 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-cute font-bold shadow-md transition hover:scale-105 active:scale-95 cursor-pointer">
                 🎉 Thả pháo hoa chúc mừng
               </button>
             </div>
 
-          </div>
-
-          <!-- ======================== VINTAGE TYPEWRITER AT BOTTOM ======================== -->
-          <div class="relative w-full select-none">
-            
-            <!-- PLUMERIA 4: Resting on Left Side of Typewriter -->
-            <div class="absolute -top-10 -left-6 sm:-top-14 sm:-left-8 z-30 pointer-events-none drop-shadow-xl rotate-[-15deg]">
-              <svg viewBox="-60 -60 120 120" class="w-20 h-20 sm:w-28 sm:h-28">
-                <use href="#plumeria-symbol" />
-              </svg>
-            </div>
-
-            <!-- Roller / Carriage (Where paper feeds in) -->
-            <div class="relative bg-gradient-to-r from-zinc-700 via-zinc-800 to-zinc-700 h-9 sm:h-11 rounded-t-xl border-x-4 border-t-4 border-zinc-600 shadow-md flex items-center justify-between px-3">
-              <!-- Left Platen Knob -->
-              <div class="w-4 h-9 sm:w-5 sm:h-11 bg-gradient-to-b from-zinc-300 via-zinc-100 to-zinc-400 rounded-l border border-zinc-500 -ml-5 shadow-md"></div>
-              
-              <!-- Paper Bail Bar with Tick Marks -->
-              <div class="w-full flex items-center justify-center relative">
-                <div class="w-11/12 h-1.5 bg-gradient-to-r from-zinc-400 via-zinc-200 to-zinc-400 rounded-full border border-zinc-500 shadow-sm"></div>
-                <div class="absolute inset-x-0 -bottom-2 flex justify-around opacity-30 text-[7px] font-mono text-white">
-                  <span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
-                </div>
-              </div>
-
-              <!-- Right Platen Knob -->
-              <div class="w-4 h-9 sm:w-5 sm:h-11 bg-gradient-to-b from-zinc-300 via-zinc-100 to-zinc-400 rounded-r border border-zinc-500 -mr-5 shadow-md"></div>
-            </div>
-
-            <!-- Typewriter Main Casing -->
-            <div class="bg-gradient-to-b from-[#fbf9f4] via-[#f4efe5] to-[#e7e1d3] border-2 border-[#ded7c7] rounded-b-[2.5rem] p-4 sm:p-6 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] relative overflow-hidden">
-              
-              <!-- Typebar Segment / Hammer Fan (SVG arc) -->
-              <div class="w-48 sm:w-64 h-11 sm:h-13 mx-auto relative flex items-center justify-center">
-                <svg viewBox="0 0 200 60" class="w-full h-full opacity-60">
-                  <g stroke="#71717a" stroke-width="1.8" stroke-linecap="round">
-                    <line x1="100" y1="58" x2="30" y2="10" />
-                    <line x1="100" y1="58" x2="45" y2="8" />
-                    <line x1="100" y1="58" x2="62" y2="6" />
-                    <line x1="100" y1="58" x2="80" y2="5" />
-                    <line x1="100" y1="58" x2="100" y2="4" />
-                    <line x1="100" y1="58" x2="120" y2="5" />
-                    <line x1="100" y1="58" x2="138" y2="6" />
-                    <line x1="100" y1="58" x2="155" y2="8" />
-                    <line x1="100" y1="58" x2="170" y2="10" />
-                  </g>
-                  <polygon points="94,15 106,15 102,3 98,3" fill="#52525b" />
-                </svg>
-              </div>
-
-              <!-- Brand Name: OMONT -->
-              <div class="text-center my-1.5 sm:my-2">
-                <span class="font-serif font-extrabold tracking-[0.35em] text-zinc-400 text-xs sm:text-sm uppercase drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
-                  OMONT
-                </span>
-              </div>
-
-              <!-- Typewriter Round Keys Rows -->
-              <div class="space-y-1.5 sm:space-y-2 pt-1 max-w-md mx-auto">
-                <div class="flex justify-center gap-1 sm:gap-1.5">
-                  <span class="type-key">Q</span><span class="type-key">W</span><span class="type-key">E</span><span class="type-key">R</span><span class="type-key">T</span>
-                  <span class="type-key">Y</span><span class="type-key">U</span><span class="type-key">I</span><span class="type-key">O</span><span class="type-key">P</span>
-                </div>
-                <div class="flex justify-center gap-1 sm:gap-1.5">
-                  <span class="type-key">A</span><span class="type-key">S</span><span class="type-key">D</span><span class="type-key">F</span><span class="type-key">G</span>
-                  <span class="type-key">H</span><span class="type-key">J</span><span class="type-key">K</span><span class="type-key">L</span>
-                </div>
-                <div class="flex justify-center gap-1 sm:gap-1.5">
-                  <span class="type-key">Z</span><span class="type-key">X</span><span class="type-key">C</span><span class="type-key">V</span><span class="type-key">B</span>
-                  <span class="type-key">N</span><span class="type-key">M</span>
-                </div>
-                <div class="flex justify-center pt-1">
-                  <div class="w-36 sm:w-48 h-3.5 sm:h-4 bg-gradient-to-b from-white via-zinc-100 to-zinc-200 border border-stone-300 rounded-full shadow-inner"></div>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Canva-style Footer below Typewriter -->
-            <div class="text-center pt-3 pb-1 text-[10px] sm:text-xs font-cute text-zinc-500 flex items-center justify-center gap-3">
-              <span>Terms & Support</span>
-              <span>•</span>
-              <span>Privacy Policy</span>
-              <span>•</span>
-              <span class="font-bold text-zinc-700">Designed with Love for Nhật Hạ 💕</span>
+            <!-- Footer note inside card bottom -->
+            <div class="text-center pt-6 pb-2 text-[11px] sm:text-xs font-cute text-zinc-400 border-t border-rose-100/70 mt-6 select-none">
+              <span>Designed with Love for <strong class="card-recipient-name text-rose-500">Nhật Hạ</strong> 💕</span>
             </div>
 
           </div>
 
           <!-- Reopen Gift Box Button at very bottom -->
-          <div class="mt-4 text-center">
-            <button onclick="resetGiftBox()" class="text-rose-500 hover:text-rose-700 font-bold text-xs font-cute hover:underline inline-flex items-center gap-1 transition cursor-pointer">
+          <div class="mt-6 text-center">
+            <button onclick="resetGiftBox()" class="px-4 py-2 rounded-full bg-white/80 hover:bg-white text-rose-500 hover:text-rose-700 font-bold text-xs font-cute shadow-sm border border-rose-200/60 inline-flex items-center gap-1.5 transition hover:scale-105 active:scale-95 cursor-pointer">
               <span>🎁</span>
               <span>Mở lại chiếc hộp bí mật</span>
             </button>
@@ -621,7 +517,11 @@
     </div>
 
 
-  </main>
+    <!-- ======================== BACKGROUND MUSIC AUDIO ======================== -->
+  <audio id="bg-audio" preload="auto" loop>
+    <source src="assets/de-danh-cho-em.mp3" type="audio/mpeg">
+  </audio>
+</main>
 
   <!-- ======================== FOOTER ======================== -->
   <footer class="relative z-10 py-10 px-4 text-center border-t border-stone-300/70 bg-[#fcedbe]/70 font-cute mt-12">
@@ -713,6 +613,16 @@
     const tracks = [
       {
         id: 0,
+        title: 'Để Dành Cho Em',
+        artist: 'Dangrangto',
+        coverText: '🎵',
+        coverBg: '#f43f5e',
+        durationSec: 220,
+        durationStr: '03:40',
+        audioUrl: 'assets/de-danh-cho-em.mp3'
+      },
+      {
+        id: 1,
         title: 'Từ Ngày Em Đến',
         artist: 'Da LAB',
         coverText: '🌸',
@@ -722,7 +632,7 @@
         audioUrl: 'assets/tu-ngay-em-den.mp3'
       },
       {
-        id: 1,
+        id: 2,
         title: 'In Love',
         artist: 'Low G x JustaTee',
         coverText: '⚡',
@@ -732,7 +642,7 @@
         audioUrl: 'assets/in-love.mp3'
       },
       {
-        id: 2,
+        id: 3,
         title: 'Thế Giới Đã Mất Đi Một Người Cô Đơn',
         artist: 'marzuz x Onionn',
         coverText: '✨',
@@ -801,6 +711,9 @@
     }
 
     function toggleStationPlay() {
+      if (!audioElement) {
+        audioElement = document.getElementById('bg-audio');
+      }
       if (!audioElement) return;
       if (audioElement.paused) {
         audioElement.play().then(() => {
@@ -842,50 +755,44 @@
     }
 
     function updateMusicUI() {
-      const track = tracks[currentTrackIdx];
-      const playIcon = document.getElementById('station-play-icon');
-      const pauseIcon = document.getElementById('station-pause-icon');
       const circleIcon = document.getElementById('music-circle-icon');
-      const drawerDisk = document.getElementById('drawer-toggle-disk');
-      const toggleIndicator = document.getElementById('drawer-toggle-indicator');
-      const spotifyTitle = document.getElementById('spotify-track-title');
-      const spotifyArtist = document.getElementById('spotify-track-artist');
-      const spotifyCover = document.getElementById('spotify-cover-box');
-
-      if (spotifyTitle) spotifyTitle.textContent = track.title;
-      if (spotifyArtist) spotifyArtist.textContent = track.artist;
-      if (spotifyCover) {
-        spotifyCover.textContent = track.coverText;
-        spotifyCover.style.backgroundColor = track.coverBg;
-      }
+      const statusText = document.getElementById('music-status-text');
+      const pulseIndicator = document.getElementById('music-pulse-indicator');
+      const quickBtn = document.getElementById('music-quick-btn');
 
       if (isMusicPlaying) {
-        if (playIcon) playIcon.classList.add('hidden');
-        if (pauseIcon) pauseIcon.classList.remove('hidden');
-        if (circleIcon) circleIcon.textContent = '⏸';
-        if (drawerDisk) {
-          drawerDisk.classList.remove('drawer-disk-paused');
-          drawerDisk.classList.add('drawer-disk-spin');
+        if (circleIcon) {
+          circleIcon.textContent = '⏸';
+          circleIcon.classList.remove('ml-0.5');
         }
-        if (toggleIndicator) {
-          toggleIndicator.classList.replace('bg-zinc-500', 'bg-rose-500');
-          toggleIndicator.classList.add('animate-ping');
+        if (statusText) {
+          statusText.textContent = 'TAP TO PAUSE • ĐỂ DÀNH CHO EM';
         }
+        if (pulseIndicator) pulseIndicator.classList.remove('hidden');
+        if (quickBtn) quickBtn.classList.add('ring-2', 'ring-rose-300', 'bg-rose-50/90');
       } else {
-        if (playIcon) playIcon.classList.remove('hidden');
-        if (pauseIcon) pauseIcon.classList.add('hidden');
-        if (circleIcon) circleIcon.textContent = '▶';
-        if (drawerDisk) drawerDisk.classList.add('drawer-disk-paused');
-        if (toggleIndicator) {
-          toggleIndicator.classList.replace('bg-rose-500', 'bg-zinc-500');
-          toggleIndicator.classList.remove('animate-ping');
+        if (circleIcon) {
+          circleIcon.textContent = '▶';
+          circleIcon.classList.add('ml-0.5');
         }
+        if (statusText) {
+          statusText.textContent = 'TAP THE BUTTON TO PLAY THE MUSIC';
+        }
+        if (pulseIndicator) pulseIndicator.classList.add('hidden');
+        if (quickBtn) quickBtn.classList.remove('ring-2', 'ring-rose-300', 'bg-rose-50/90');
       }
-      renderDrawerPlaylist();
     }
 
     if (audioElement) {
-      audioElement.volume = 0.3;
+      audioElement.volume = 0.35;
+      audioElement.onplay = function() {
+        isMusicPlaying = true;
+        updateMusicUI();
+      };
+      audioElement.onpause = function() {
+        isMusicPlaying = false;
+        updateMusicUI();
+      };
       audioElement.ontimeupdate = function() {
         const curEl = document.getElementById('station-time-cur');
         const totalEl = document.getElementById('station-time-total');
@@ -1133,9 +1040,10 @@
         if (r.id % 3 === 0 || r.id === 1 || r.id === 100) {
           playMelodicChime(r.id);
         }
-        const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 320;
-        if (isNearBottom || container.children.length <= 5) {
-          container.scrollTop = container.scrollHeight;
+        // Smoothly scroll window down to follow newly revealed reasons on the main page
+        const rect = row.getBoundingClientRect();
+        if (rect.bottom > window.innerHeight - 80) {
+          window.scrollBy({ top: rect.bottom - (window.innerHeight - 100), behavior: 'smooth' });
         }
       }
     }
@@ -1305,7 +1213,13 @@
             treasures.classList.remove('opacity-0', 'translate-y-8');
             treasures.classList.add('opacity-100', 'translate-y-0');
             treasures.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            triggerGiftConfetti();
+            // Auto play background music 'Để Dành Cho Em' on unboxing
+            if (audioElement && audioElement.paused) {
+              audioElement.play().then(() => {
+                isMusicPlaying = true;
+                updateMusicUI();
+              }).catch(err => console.log('Audio autoplay note:', err));
+            }
             // START SEQUENTIAL REVEAL OF 100 REASONS
             startSequentialReveal();
           }, 150);
@@ -1316,6 +1230,11 @@
     function resetGiftBox() {
       isBoxOpened = false;
       pauseSequentialReveal();
+      if (audioElement && !audioElement.paused) {
+        audioElement.pause();
+        isMusicPlaying = false;
+        updateMusicUI();
+      }
       const unboxingContainer = document.getElementById('unboxing-container');
       const box = document.getElementById('gift-box-interactive');
       const hint = document.getElementById('gift-click-hint');
