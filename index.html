@@ -324,66 +324,61 @@
     .bloom-flower {
       position: fixed;
       transform-origin: center center;
-      will-change: transform, opacity;
-      animation: flowerBloomPop 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
+      animation: flowerBloomPop 2.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       pointer-events: none;
+      contain: layout style paint;
     }
 
     @keyframes flowerBloomPop {
       0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0) rotate(var(--rot-start, -75deg));
+        transform: translate3d(-50%, -50%, 0) scale(0) rotate(var(--rot-start, -60deg));
       }
-      18% {
+      20% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1.22) rotate(var(--rot-mid, 15deg));
+        transform: translate3d(-50%, -50%, 0) scale(1.15) rotate(var(--rot-mid, 15deg));
       }
-      32% {
-        transform: translate(-50%, -50%) scale(0.94) rotate(var(--rot-mid2, -5deg));
-      }
-      46% {
-        transform: translate(-50%, -50%) scale(1.05) rotate(var(--rot-end, 3deg));
+      40% {
+        transform: translate3d(-50%, -50%, 0) scale(0.96) rotate(var(--rot-mid2, -5deg));
       }
       65% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1) translateY(var(--drift-y1, -8px)) rotate(var(--rot-drift, 10deg));
+        transform: translate3d(-50%, -50%, 0) scale(1) translateY(var(--drift-y1, -8px)) rotate(var(--rot-drift, 10deg));
       }
-      82% {
-        opacity: 0.92;
-        transform: translate(-50%, -50%) scale(0.96) translateY(var(--drift-y2, 10px)) rotate(var(--rot-drift2, 18deg));
+      85% {
+        opacity: 0.9;
+        transform: translate3d(-50%, -50%, 0) scale(0.95) translateY(var(--drift-y2, 10px)) rotate(var(--rot-drift2, 18deg));
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.55) translateY(var(--drift-y3, 35px)) rotate(var(--rot-drift3, 32deg));
+        transform: translate3d(-50%, -50%, 0) scale(0.5) translateY(var(--drift-y3, 30px)) rotate(var(--rot-drift3, 28deg));
       }
     }
 
     .bloom-petal {
       position: fixed;
       transform-origin: center center;
-      will-change: transform, opacity;
-      animation: petalFloatFall 3.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      animation: petalFloatFall 2.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
       pointer-events: none;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+      contain: layout style paint;
     }
 
     @keyframes petalFloatFall {
       0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        transform: translate3d(-50%, -50%, 0) scale(0) rotate(0deg);
       }
-      15% {
+      20% {
         opacity: 0.95;
-        transform: translate(calc(-50% + var(--pdx) * 0.25), calc(-50% + var(--pdy) * 0.25)) scale(1.2) rotate(45deg);
+        transform: translate3d(calc(-50% + var(--pdx) * 0.3), calc(-50% + var(--pdy) * 0.3), 0) scale(1.15) rotate(45deg);
       }
       75% {
-        opacity: 0.9;
-        transform: translate(calc(-50% + var(--pdx) * 0.8), calc(-50% + var(--pdy) * 0.8)) scale(1) rotate(var(--prot, 180deg));
+        opacity: 0.85;
+        transform: translate3d(calc(-50% + var(--pdx) * 0.85), calc(-50% + var(--pdy) * 0.85), 0) scale(0.95) rotate(var(--prot, 180deg));
       }
       100% {
         opacity: 0;
-        transform: translate(calc(-50% + var(--pdx)), calc(-50% + var(--pdy))) scale(0.65) rotate(calc(var(--prot, 180deg) + 90deg));
+        transform: translate3d(calc(-50% + var(--pdx)), calc(-50% + var(--pdy)), 0) scale(0.4) rotate(var(--prot, 240deg));
       }
     }
   </style>
@@ -2180,7 +2175,9 @@
 
       const petalColors = ['#f472b6', '#fb7185', '#fde047', '#ffffff', '#c084fc', '#fda4af', '#fcd34d'];
 
-      function createBloomFlower(overlay, x, y, size, delay) {
+      let isBloomingNow = false;
+
+      function createBloomFlower(x, y, size, delay) {
         const flower = document.createElement('div');
         flower.className = 'bloom-flower';
         flower.style.left = `${x}px`;
@@ -2189,21 +2186,19 @@
         flower.style.height = `${size}px`;
         flower.style.animationDelay = `${delay}ms`;
 
-        const rotStart = Math.floor(Math.random() * 140 - 70);
-        const rotMid = Math.floor(Math.random() * 40 - 20);
+        const rotStart = Math.floor(Math.random() * 120 - 60);
+        const rotMid = Math.floor(Math.random() * 30 - 15);
         const rotMid2 = Math.floor(Math.random() * 20 - 10);
-        const rotEnd = Math.floor(Math.random() * 20 - 10);
         const rotDrift = Math.floor(Math.random() * 30 - 15);
         const rotDrift2 = Math.floor(Math.random() * 40 - 20);
         const rotDrift3 = Math.floor(Math.random() * 60 - 30);
-        const driftY1 = Math.floor(Math.random() * -16 - 4);
-        const driftY2 = Math.floor(Math.random() * 18 + 6);
-        const driftY3 = Math.floor(Math.random() * 35 + 15);
+        const driftY1 = Math.floor(Math.random() * -14 - 4);
+        const driftY2 = Math.floor(Math.random() * 16 + 6);
+        const driftY3 = Math.floor(Math.random() * 30 + 12);
 
         flower.style.setProperty('--rot-start', `${rotStart}deg`);
         flower.style.setProperty('--rot-mid', `${rotMid}deg`);
         flower.style.setProperty('--rot-mid2', `${rotMid2}deg`);
-        flower.style.setProperty('--rot-end', `${rotEnd}deg`);
         flower.style.setProperty('--rot-drift', `${rotDrift}deg`);
         flower.style.setProperty('--rot-drift2', `${rotDrift2}deg`);
         flower.style.setProperty('--rot-drift3', `${rotDrift3}deg`);
@@ -2214,11 +2209,11 @@
         const tplIndex = Math.floor(Math.random() * flowerSvgTemplates.length);
         flower.innerHTML = flowerSvgTemplates[tplIndex];
 
-        overlay.appendChild(flower);
-        setTimeout(() => flower.remove(), delay + 3500);
+        setTimeout(() => flower.remove(), delay + 3000);
+        return flower;
       }
 
-      function createBloomPetal(overlay, x, y, size, delay) {
+      function createBloomPetal(x, y, size, delay) {
         const petal = document.createElement('div');
         petal.className = 'bloom-petal';
         petal.style.left = `${x}px`;
@@ -2227,8 +2222,8 @@
         petal.style.height = `${size * 1.3}px`;
         petal.style.animationDelay = `${delay}ms`;
 
-        const pdx = Math.floor((Math.random() - 0.45) * 160);
-        const pdy = Math.floor(60 + Math.random() * 160);
+        const pdx = Math.floor((Math.random() - 0.5) * 120);
+        const pdy = Math.floor(50 + Math.random() * 110);
         const prot = Math.floor(Math.random() * 360);
 
         petal.style.setProperty('--pdx', `${pdx}px`);
@@ -2239,8 +2234,8 @@
         petal.style.color = color;
         petal.innerHTML = `<svg viewBox="0 0 30 40" class="w-full h-full"><path d="M15 2 C25 10, 28 26, 15 38 C2 26, 5 10, 15 2 Z" fill="currentColor" opacity="0.9" /></svg>`;
 
-        overlay.appendChild(petal);
-        setTimeout(() => petal.remove(), delay + 3900);
+        setTimeout(() => petal.remove(), delay + 3000);
+        return petal;
       }
 
       window.triggerFullScreenFlowerBloom = function(epicenterX, epicenterY) {
@@ -2253,6 +2248,7 @@
 
         const winW = window.innerWidth;
         const winH = window.innerHeight;
+        const isMobile = winW < 768 || ('ontouchstart' in window);
 
         if (typeof epicenterX !== 'number' || typeof epicenterY !== 'number') {
           const bouquet = document.getElementById('interactive-bouquet');
@@ -2266,60 +2262,71 @@
           }
         }
 
-        // 1. Epicenter Radiant Burst (14 flowers expanding out from touched gift)
-        const burstCount = 14;
+        const fragment = document.createDocumentFragment();
+
+        // 1. Epicenter Radiant Burst around touched bouquet (6 on mobile, 10 on desktop)
+        const burstCount = isMobile ? 6 : 10;
         for (let i = 0; i < burstCount; i++) {
-          const angle = (i / burstCount) * (Math.PI * 2) + (Math.random() - 0.5) * 0.4;
-          const dist = 70 + Math.random() * 180;
-          const x = Math.max(30, Math.min(winW - 30, epicenterX + Math.cos(angle) * dist));
-          const y = Math.max(30, Math.min(winH - 30, epicenterY + Math.sin(angle) * dist));
-          const size = Math.floor(40 + Math.random() * 32);
-          const delay = Math.floor(Math.random() * 180);
-          createBloomFlower(overlay, x, y, size, delay);
+          const angle = (i / burstCount) * (Math.PI * 2) + (Math.random() - 0.5) * 0.3;
+          const dist = 40 + Math.random() * (isMobile ? 100 : 140);
+          const x = Math.max(20, Math.min(winW - 20, epicenterX + Math.cos(angle) * dist));
+          const y = Math.max(20, Math.min(winH - 20, epicenterY + Math.sin(angle) * dist));
+          const size = Math.floor(isMobile ? 30 + Math.random() * 18 : 38 + Math.random() * 26);
+          const delay = Math.floor(Math.random() * 120);
+          fragment.appendChild(createBloomFlower(x, y, size, delay));
         }
 
-        // 2. Full-Screen Distributed Bloom (24 flowers blooming all over the window)
-        const screenPoints = [
-          { x: 0.08, y: 0.10 }, { x: 0.22, y: 0.08 }, { x: 0.38, y: 0.14 },
-          { x: 0.50, y: 0.06 }, { x: 0.64, y: 0.12 }, { x: 0.78, y: 0.09 }, { x: 0.92, y: 0.15 },
-          { x: 0.06, y: 0.32 }, { x: 0.18, y: 0.38 }, { x: 0.82, y: 0.30 }, { x: 0.94, y: 0.36 },
-          { x: 0.05, y: 0.58 }, { x: 0.16, y: 0.65 }, { x: 0.84, y: 0.56 }, { x: 0.95, y: 0.62 },
-          { x: 0.32, y: 0.42 }, { x: 0.68, y: 0.45 },
-          { x: 0.10, y: 0.85 }, { x: 0.25, y: 0.88 }, { x: 0.40, y: 0.82 },
-          { x: 0.52, y: 0.90 }, { x: 0.66, y: 0.84 }, { x: 0.80, y: 0.88 }, { x: 0.92, y: 0.82 }
+        // 2. Full-Screen Distributed Bloom (6 on mobile, 12 on desktop)
+        const screenPoints = isMobile ? [
+          { x: 0.15, y: 0.18 }, { x: 0.85, y: 0.16 },
+          { x: 0.12, y: 0.75 }, { x: 0.88, y: 0.72 },
+          { x: 0.50, y: 0.10 }, { x: 0.50, y: 0.88 }
+        ] : [
+          { x: 0.10, y: 0.12 }, { x: 0.35, y: 0.10 }, { x: 0.65, y: 0.10 }, { x: 0.90, y: 0.14 },
+          { x: 0.08, y: 0.45 }, { x: 0.92, y: 0.42 },
+          { x: 0.12, y: 0.82 }, { x: 0.38, y: 0.85 }, { x: 0.62, y: 0.84 }, { x: 0.88, y: 0.80 },
+          { x: 0.25, y: 0.32 }, { x: 0.75, y: 0.34 }
         ];
 
         screenPoints.forEach((pt) => {
-          const jitterX = (Math.random() - 0.5) * 0.08;
-          const jitterY = (Math.random() - 0.5) * 0.08;
-          const x = Math.max(30, Math.min(winW - 30, (pt.x + jitterX) * winW));
-          const y = Math.max(30, Math.min(winH - 30, (pt.y + jitterY) * winH));
-          const size = Math.floor(38 + Math.random() * 34);
-          const delay = Math.floor(80 + Math.random() * 450);
-          createBloomFlower(overlay, x, y, size, delay);
+          const jitterX = (Math.random() - 0.5) * 0.05;
+          const jitterY = (Math.random() - 0.5) * 0.05;
+          const x = Math.max(20, Math.min(winW - 20, (pt.x + jitterX) * winW));
+          const y = Math.max(20, Math.min(winH - 20, (pt.y + jitterY) * winH));
+          const size = Math.floor(isMobile ? 28 + Math.random() * 20 : 36 + Math.random() * 26);
+          const delay = Math.floor(60 + Math.random() * 280);
+          fragment.appendChild(createBloomFlower(x, y, size, delay));
         });
 
-        // 3. Floating Petal Shower across the screen (22 fluttering petals)
-        const petalCount = 22;
+        // 3. Floating Petals (8 on mobile, 14 on desktop)
+        const petalCount = isMobile ? 8 : 14;
         for (let i = 0; i < petalCount; i++) {
           const x = Math.random() * winW;
-          const y = Math.random() * (winH * 0.85);
-          const size = Math.floor(18 + Math.random() * 18);
-          const delay = Math.floor(Math.random() * 400);
-          createBloomPetal(overlay, x, y, size, delay);
+          const y = Math.random() * (winH * 0.8);
+          const size = Math.floor(isMobile ? 14 + Math.random() * 10 : 16 + Math.random() * 16);
+          const delay = Math.floor(Math.random() * 250);
+          fragment.appendChild(createBloomPetal(x, y, size, delay));
         }
+
+        // Single batch append to prevent layout thrashing
+        overlay.appendChild(fragment);
       };
 
       window.bloomBouquet = function(event) {
+        // Debounce rapid multiple taps
+        if (isBloomingNow) return;
+        isBloomingNow = true;
+        setTimeout(() => { isBloomingNow = false; }, 900);
+
         const bouquetContainer = document.getElementById('bouquet-svg-container');
         const messageCard = document.getElementById('bouquet-message');
         const bloomBtn = document.getElementById('bloom-btn');
 
         if (bouquetContainer) {
-          bouquetContainer.classList.add('scale-110');
+          bouquetContainer.classList.add('scale-105');
           setTimeout(() => {
-            bouquetContainer.classList.remove('scale-110');
-          }, 600);
+            bouquetContainer.classList.remove('scale-105');
+          }, 350);
         }
 
         if (messageCard) {
@@ -2337,37 +2344,28 @@
         let originX = null;
         let originY = null;
         if (event) {
-          if (typeof event.clientX === 'number' && typeof event.clientY === 'number' && (event.clientX !== 0 || event.clientY !== 0)) {
-            originX = event.clientX;
-            originY = event.clientY;
-          } else if (event.touches && event.touches[0]) {
+          if (event.touches && event.touches[0]) {
             originX = event.touches[0].clientX;
             originY = event.touches[0].clientY;
+          } else if (typeof event.clientX === 'number' && typeof event.clientY === 'number' && (event.clientX !== 0 || event.clientY !== 0)) {
+            originX = event.clientX;
+            originY = event.clientY;
           }
         }
 
         // TRIGGER FULL-SCREEN BLOOMING FLOWERS!
         window.triggerFullScreenFlowerBloom(originX, originY);
 
-        // Celebratory melodic chimes
-        initWebAudio();
-        if (audioCtx) {
-          [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, i) => {
-            setTimeout(() => {
-              playMusicBoxBell(freq, 0.6);
-            }, i * 95);
-          });
-        }
-
-        // Flower petal confetti burst matching hand-drawn bouquet
+        // Flower petal confetti burst (lightweight on mobile)
         if (typeof confetti === 'function') {
+          const isMobile = window.innerWidth < 768;
           confetti({
-            particleCount: 80,
-            spread: 100,
+            particleCount: isMobile ? 35 : 60,
+            spread: isMobile ? 65 : 85,
             origin: { y: 0.72 },
-            colors: ['#FACC15', '#FDE047', '#F472B6', '#FB7185', '#C084FC', '#A855F7', '#86EFAC', '#18181B', '#FFFFFF'],
-            shapes: ['circle', 'star'],
-            scalar: 1.2
+            colors: ['#FACC15', '#FDE047', '#F472B6', '#FB7185', '#C084FC', '#86EFAC', '#FFFFFF'],
+            scalar: isMobile ? 0.9 : 1.1,
+            disableForReducedMotion: true
           });
         }
       };
