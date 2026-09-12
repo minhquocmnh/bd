@@ -193,6 +193,32 @@
       pointer-events: auto;
     }
   
+  
+    /* Typewriter Keycaps */
+    .type-key {
+      width: 1.65rem;
+      height: 1.65rem;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #f4f4f5 70%, #d4d4d8 100%);
+      border: 1.5px solid #a1a1aa;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.65rem;
+      color: #3f3f46;
+      user-select: none;
+    }
+    @media (min-width: 640px) {
+      .type-key {
+        width: 2.1rem;
+        height: 2.1rem;
+        font-size: 0.8rem;
+      }
+    }
+  
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative selection:bg-zinc-700 selection:text-amber-100">
@@ -327,150 +353,139 @@
     </div>
 
     <!-- ======================== REVEALED TREASURES CONTAINER ======================== -->
-    <div id="revealed-treasures" class="hidden space-y-12 transition-all duration-700 opacity-0 translate-y-8">
+        <!-- ======================== REVEALED TREASURES CONTAINER ======================== -->
+    <div id="revealed-treasures" class="hidden transition-all duration-700 opacity-0 translate-y-8 max-w-3xl mx-auto">
       
-            <!-- ======================== 100 REASONS WHY I LOVE YOU (TIKTOK STYLE) ======================== -->
-      <div id="reasons-love-card" class="rounded-[2.5rem] p-4 sm:p-8 bg-gradient-to-b from-rose-200/60 via-pink-100/50 to-amber-100/40 border border-rose-300/50 shadow-2xl relative overflow-hidden">
+      <!-- ======================== 100 REASONS WHY I LOVE YOU (CANVA / TIKTOK TYPEWRITER STYLE) ======================== -->
+      <div id="reasons-love-card" class="rounded-[2.5rem] p-4 sm:p-8 bg-gradient-to-b from-[#fce7f3]/70 via-[#fff1f2]/80 to-[#fdf2f8]/60 border border-rose-200 shadow-2xl relative overflow-hidden">
         
-        <!-- Subtle background glow -->
-        <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-rose-300/30 blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-12 -left-12 w-64 h-64 rounded-full bg-pink-200/30 blur-3xl pointer-events-none"></div>
+        <!-- ======================== TOP-RIGHT YELLOW STARBURST ======================== -->
+        <div class="absolute -top-10 -right-10 sm:-top-14 sm:-right-14 z-0 pointer-events-none select-none">
+          <svg viewBox="-100 -100 200 200" class="w-48 h-48 sm:w-64 sm:h-64 drop-shadow-sm rotate-12">
+            <polygon points="0,-95 12,-54 41,-86 34,-43 74,-59 50,-24 93,-21 55,0 93,21 50,24 74,59 34,43 41,86 12,54 0,95 -12,54 -41,86 -34,43 -74,59 -50,24 -93,21 -55,0 -93,-21 -50,-24 -74,-59 -34,-43 -41,-86 -12,-54" fill="#fef08a" opacity="0.9" />
+          </svg>
+        </div>
 
-        <!-- Section Header (Matching Screenshot) -->
-        <div class="relative text-center max-w-xl mx-auto mb-6 sm:mb-8 pt-2">
+        <!-- ======================== PLUMERIA SVG DEFINITION TEMPLATE ======================== -->
+        <svg class="hidden">
+          <defs>
+            <linearGradient id="plumGradMain" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#f59e0b" />
+              <stop offset="25%" stop-color="#fef08a" />
+              <stop offset="60%" stop-color="#ffffff" />
+              <stop offset="85%" stop-color="#fbcfe8" />
+              <stop offset="100%" stop-color="#f472b6" />
+            </linearGradient>
+            <radialGradient id="plumCoreMain">
+              <stop offset="0%" stop-color="#d97706" />
+              <stop offset="45%" stop-color="#fbbf24" />
+              <stop offset="100%" stop-color="#fef08a" stop-opacity="0" />
+            </radialGradient>
+            <g id="plumeria-symbol">
+              <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradMain)" />
+              <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(72)" fill="url(#plumGradMain)" />
+              <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(144)" fill="url(#plumGradMain)" />
+              <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(216)" fill="url(#plumGradMain)" />
+              <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(288)" fill="url(#plumGradMain)" />
+              <circle cx="0" cy="0" r="14" fill="url(#plumCoreMain)" />
+            </g>
+          </defs>
+        </svg>
+
+        <!-- ======================== PLUMERIA 1: TOP-RIGHT OVER STARBURST ======================== -->
+        <div class="absolute -top-3 -right-2 sm:-top-5 sm:-right-4 z-20 pointer-events-none drop-shadow-xl rotate-12">
+          <svg viewBox="-60 -60 120 120" class="w-24 h-24 sm:w-32 sm:h-32">
+            <use href="#plumeria-symbol" />
+          </svg>
+        </div>
+
+        <!-- ======================== TOP BANNER & MUSIC BUTTON ======================== -->
+        <div class="relative z-10 text-center pt-2 pb-4 max-w-xl mx-auto">
           
-          <!-- Stylized Title -->
-          <div class="font-serif uppercase text-rose-500 font-extrabold tracking-[0.25em] text-sm sm:text-xl drop-shadow-sm select-none">
+          <!-- Music Play/Pause Quick Circle Button & Text -->
+          <div class="flex items-center justify-center gap-2.5 mb-2">
+            <button id="music-circle-btn" onclick="togglePlayMusic()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-600/90 hover:bg-rose-500 text-white shadow-lg flex items-center justify-center transition active:scale-90 border-2 border-white/80 cursor-pointer" title="Phát / Tạm dừng nhạc">
+              <span id="music-circle-icon" class="text-xs sm:text-sm font-bold ml-0.5">▶</span>
+            </button>
+            <span class="text-[11px] sm:text-xs font-cute font-extrabold tracking-widest uppercase text-rose-500 select-none">
+              TAP THE BUTTON TO PLAY THE MUSIC
+            </span>
+          </div>
+
+          <!-- Stylized Title 100 REASONS -->
+          <div class="font-serif uppercase text-rose-500 font-extrabold tracking-[0.28em] text-base sm:text-2xl drop-shadow-sm select-none">
             100 REASONS
           </div>
 
-          <!-- Cursive Calligraphy 'Why' -->
-          <div class="font-vibes text-7xl sm:text-9xl text-white font-normal -my-5 sm:-my-8 drop-shadow-[0_4px_16px_rgba(244,63,94,0.45)] select-none">
+          <!-- Calligraphy Cursive 'Why' -->
+          <div class="font-vibes text-7xl sm:text-9xl text-white font-normal -my-5 sm:-my-8 drop-shadow-[0_4px_16px_rgba(244,63,94,0.4)] select-none">
             Why
           </div>
 
-          <h2 class="font-serif italic text-2xl sm:text-4xl font-bold text-zinc-800 tracking-tight select-none">
-            I Love You 💕
-          </h2>
-
-          <!-- Recipient Badge -->
-          <div class="pt-2">
-            <div class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-white/90 border border-rose-200 text-rose-700 text-xs font-cute font-bold shadow-sm">
-              <span>🌸</span> Dành riêng cho <strong class="card-recipient-name">Nhật Hạ</strong> <span>🌸</span>
-            </div>
-          </div>
-
-          <!-- Tap To Play Music Prompt -->
-          <div class="pt-3">
-            <button id="music-badge-btn" onclick="togglePlayMusic()" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-cute font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer">
-              <span id="music-badge-icon" class="w-4 h-4 rounded-full bg-white text-rose-600 flex items-center justify-center text-[10px]">▶</span>
-              <span id="music-badge-text">TAP THE BUTTON TO PLAY THE MUSIC ♫</span>
-            </button>
+          <!-- Dedication Pill -->
+          <div class="inline-flex items-center gap-1.5 px-3.5 py-0.5 rounded-full bg-white/90 border border-rose-200 text-rose-600 text-xs font-cute font-bold shadow-sm select-none mt-1">
+            <span>🌸</span> Dành riêng cho <strong class="card-recipient-name">Nhật Hạ</strong> <span>🌸</span>
           </div>
 
         </div>
 
-        <!-- ======================== WHITE PAPER DOCUMENT SHEET ======================== -->
-        <div class="relative max-w-2xl mx-auto my-2">
+        <!-- ======================== THE WHITE PAPER DOCUMENT SHEET ======================== -->
+        <div class="relative max-w-xl mx-auto z-10">
           
-          <!-- PLUMERIA FLOWER 1: Top Right Corner -->
-          <div class="absolute -top-7 -right-5 sm:-top-10 sm:-right-8 z-30 pointer-events-none drop-shadow-xl rotate-12">
-            <svg viewBox="-60 -60 120 120" class="w-20 h-20 sm:w-28 sm:h-28">
-              <defs>
-                <linearGradient id="plumGradA" x1="0%" y1="100%" x2="0%" y2="0%">
-                  <stop offset="0%" stop-color="#f59e0b" />
-                  <stop offset="25%" stop-color="#fef08a" />
-                  <stop offset="60%" stop-color="#ffffff" />
-                  <stop offset="85%" stop-color="#fbcfe8" />
-                  <stop offset="100%" stop-color="#f472b6" />
-                </linearGradient>
-                <radialGradient id="plumCoreA">
-                  <stop offset="0%" stop-color="#d97706" />
-                  <stop offset="45%" stop-color="#fbbf24" />
-                  <stop offset="100%" stop-color="#fef08a" stop-opacity="0" />
-                </radialGradient>
-              </defs>
-              <g>
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(72)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(144)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(216)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(288)" fill="url(#plumGradA)" />
-                <circle cx="0" cy="0" r="14" fill="url(#plumCoreA)" />
-              </g>
+          <!-- PLUMERIA 2: Left Edge of Paper -->
+          <div class="absolute top-1/4 -left-6 sm:-left-9 z-30 pointer-events-none drop-shadow-lg -rotate-12">
+            <svg viewBox="-60 -60 120 120" class="w-18 h-18 sm:w-24 sm:h-24">
+              <use href="#plumeria-symbol" />
             </svg>
           </div>
 
-          <!-- PLUMERIA FLOWER 2: Mid-Left Edge -->
-          <div class="absolute top-1/4 -left-5 sm:-left-8 z-30 pointer-events-none drop-shadow-lg -rotate-12">
-            <svg viewBox="-60 -60 120 120" class="w-16 h-16 sm:w-24 sm:h-24">
-              <g>
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(72)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(144)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(216)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(288)" fill="url(#plumGradA)" />
-                <circle cx="0" cy="0" r="14" fill="url(#plumCoreA)" />
-              </g>
+          <!-- PLUMERIA 3: Right Edge of Paper -->
+          <div class="absolute top-2/3 -right-6 sm:-right-9 z-30 pointer-events-none drop-shadow-lg rotate-45">
+            <svg viewBox="-60 -60 120 120" class="w-20 h-20 sm:w-26 sm:h-26">
+              <use href="#plumeria-symbol" />
             </svg>
           </div>
 
-          <!-- PLUMERIA FLOWER 3: Bottom-Right Edge -->
-          <div class="absolute -bottom-6 -right-5 sm:-bottom-8 sm:-right-7 z-30 pointer-events-none drop-shadow-xl rotate-45">
-            <svg viewBox="-60 -60 120 120" class="w-20 h-20 sm:w-28 sm:h-28">
-              <g>
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(72)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(144)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(216)" fill="url(#plumGradA)" />
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(288)" fill="url(#plumGradA)" />
-                <circle cx="0" cy="0" r="14" fill="url(#plumCoreA)" />
-              </g>
-            </svg>
-          </div>
-
-          <!-- FLOATING PETAL: Lower Left -->
-          <div class="absolute bottom-1/4 -left-3 sm:-left-4 z-30 pointer-events-none opacity-85 rotate-30 drop-shadow-sm">
-            <svg viewBox="-30 -30 60 60" class="w-8 h-8 sm:w-10 sm:h-10">
-              <g>
-                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradA)" />
-                <circle cx="0" cy="0" r="8" fill="url(#plumCoreA)" />
-              </g>
-            </svg>
-          </div>
-
-          <!-- THE WHITE PAPER BODY -->
-          <div class="bg-white rounded-3xl border border-rose-100/90 shadow-[0_25px_60px_-15px_rgba(244,63,94,0.18)] p-5 sm:p-9 relative z-10 overflow-hidden">
+          <!-- PAPER SHEET CONTAINER -->
+          <div class="bg-white rounded-t-3xl border-t border-x border-rose-100 shadow-xl p-5 sm:p-8 relative overflow-hidden">
             
-            <!-- Subtle Watermark -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.03] select-none font-vibes text-9xl text-rose-600 whitespace-nowrap">
-              Nhật Hạ
-            </div>
-
-            <!-- Controls & Progress Toolbar -->
-            <div class="border-b border-rose-100 pb-4 mb-4">
-              <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-cute">
+            <!-- Controls Toolbar (Status, Speed, Language, Actions) -->
+            <div class="border-b border-rose-100 pb-3 mb-3">
+              <div class="flex flex-wrap items-center justify-between gap-2.5 text-xs font-cute">
                 
-                <!-- Status indicator -->
+                <!-- Status & Count -->
                 <div class="flex items-center gap-2">
                   <span id="reveal-pulse-dot" class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
-                  <span class="text-zinc-600">Đang xuất hiện: <strong id="reveal-count-display" class="text-rose-600 text-sm font-extrabold">0</strong>/100 lý do 💕</span>
+                  <span class="text-zinc-600 text-[11px] sm:text-xs">Đang mở: <strong id="reveal-count-display" class="text-rose-600 text-sm font-extrabold">0</strong>/100 lý do 💕</span>
                 </div>
-                
-                <!-- Controls -->
-                <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                  <button id="btn-toggle-reveal" onclick="togglePauseResumeReveal()" class="px-3 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Tạm dừng / Tiếp tục xuất hiện">
+
+                <!-- Control Buttons -->
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <!-- Language Toggle (EN / VI) -->
+                  <button id="btn-lang-toggle" onclick="toggleReasonLanguage()" class="px-2.5 py-1 rounded-full bg-rose-100/80 hover:bg-rose-200 text-rose-700 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Chuyển đổi ngôn ngữ Tiếng Anh / Tiếng Việt">
+                    <span id="lang-flag">🇻🇳</span>
+                    <span id="lang-label">Tiếng Việt</span>
+                  </button>
+
+                  <!-- Pause / Resume -->
+                  <button id="btn-toggle-reveal" onclick="togglePauseResumeReveal()" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Tạm dừng / Tiếp tục">
                     <span id="btn-toggle-reveal-icon">⏸️</span>
                     <span id="btn-toggle-reveal-text">Tạm dừng</span>
                   </button>
-                  <button onclick="cycleRevealSpeed()" class="px-3 py-1 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Thay đổi tốc độ">
+
+                  <!-- Speed Cycle -->
+                  <button onclick="cycleRevealSpeed()" class="px-2.5 py-1 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Thay đổi tốc độ">
                     <span>⚡</span>
                     <span id="speed-label">Nhanh (1x)</span>
                   </button>
-                  <button onclick="revealAllReasonsInstantly()" class="px-3 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 border border-zinc-200 font-bold transition active:scale-95 shadow-sm cursor-pointer" title="Xem trọn vẹn 100 lý do ngay lập tức">
-                    Hiện tất cả
+
+                  <!-- Show All -->
+                  <button onclick="revealAllReasonsInstantly()" class="px-2.5 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 border border-zinc-200 font-bold transition active:scale-95 shadow-sm cursor-pointer" title="Xem trọn vẹn 100 lý do ngay lập tức">
+                    Hiện hết
                   </button>
-                  <button onclick="restartSequentialReveal()" class="px-2.5 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 border border-zinc-200 font-bold transition active:scale-95 cursor-pointer" title="Phát lại từ đầu">
+
+                  <!-- Replay -->
+                  <button onclick="restartSequentialReveal()" class="px-2 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 border border-zinc-200 font-bold transition active:scale-95 cursor-pointer" title="Phát lại từ đầu">
                     🔄
                   </button>
                 </div>
@@ -478,135 +493,125 @@
               </div>
 
               <!-- Progress bar track -->
-              <div class="w-full bg-rose-100/70 h-1.5 rounded-full overflow-hidden mt-3">
-                <div id="reveal-progress-bar" class="bg-gradient-to-r from-rose-400 via-pink-500 to-rose-600 h-full rounded-full transition-all duration-300" style="width: 0%;"></div>
+              <div class="w-full bg-rose-100/70 h-1.5 rounded-full overflow-hidden mt-2.5">
+                <div id="reveal-progress-bar" class="bg-gradient-to-r from-rose-400 via-pink-500 to-rose-600 h-full rounded-full transition-all duration-200" style="width: 0%;"></div>
               </div>
             </div>
 
-            <!-- Search Filter Bar -->
-            <div class="mb-4">
-              <div class="relative">
-                <input type="text" id="reasons-filter-input" oninput="onFilterReasonsInput(event)" placeholder="🔍 Tìm kiếm nhanh trong 100 lý do (ví dụ: cười, ôm, trà sữa, usagi...)"
-                  class="w-full px-3.5 py-2 pl-9 rounded-xl bg-rose-50/40 border border-rose-200 focus:border-rose-400 focus:bg-white text-xs font-cute text-zinc-800 outline-none transition placeholder:text-zinc-400">
-                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs">🔍</span>
-                <button id="clear-filter-btn" onclick="clearReasonsFilter()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 text-xs font-bold cursor-pointer">✕</button>
-              </div>
+            <!-- Scrollable Flow Container (Where 100 Reasons stream out!) -->
+            <div id="reasons-paper-flow" class="max-h-[520px] overflow-y-auto custom-scrollbar pr-1 sm:pr-2 space-y-2.5 scroll-smooth">
+              <!-- Dynamically populated line-by-line via JS -->
             </div>
 
-            <!-- Reasons Paper Flow (Where 100 reasons appear sequentially!) -->
-            <div id="reasons-paper-flow" class="max-h-[580px] overflow-y-auto custom-scrollbar pr-1 sm:pr-2 space-y-3 scroll-smooth">
-              <!-- Dynamically populated one by one via JS -->
-            </div>
-
-            <!-- Completed Banner -->
-            <div id="reasons-completed-banner" class="hidden mt-6 p-5 rounded-2xl bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border-2 border-rose-200 text-center space-y-2">
+            <!-- Completed Celebration Banner -->
+            <div id="reasons-completed-banner" class="hidden mt-6 p-4 rounded-2xl bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border-2 border-rose-200 text-center space-y-2">
               <div class="text-3xl animate-bounce">💖 🎂 🎉</div>
               <h3 class="font-cute font-extrabold text-base sm:text-lg text-zinc-800">
-                Đã mở trọn vẹn 100 lý do anh yêu Nhật Hạ! 💕
+                100 Reasons Why I Love Nhật Hạ! 💕
               </h3>
               <p class="text-xs sm:text-sm text-zinc-600 font-cute leading-relaxed">
-                "Mỗi ngày trôi qua, anh lại tìm thấy thêm một lý do mới để yêu em nhiều hơn hôm qua. Chúc em tuổi mới luôn rực rỡ, bình an và hạnh phúc bên anh nhé!"
+                "And there are millions more reasons I want to spend my whole life loving you..."
               </p>
               <button onclick="triggerGiftConfetti()" class="mt-2 px-4 py-1.5 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-cute font-bold shadow-md transition hover:scale-105 active:scale-95 cursor-pointer">
                 🎉 Thả pháo hoa chúc mừng
               </button>
             </div>
 
-            <!-- Reopen Gift Box -->
-            <div class="mt-6 pt-4 border-t border-rose-100 flex items-center justify-between text-xs font-cute text-zinc-500">
-              <span>Trọn vẹn 100 lý do gửi trọn yêu thương 💌</span>
-              <button onclick="resetGiftBox()" class="text-rose-500 font-bold hover:underline flex items-center gap-1 transition cursor-pointer">
-                <span>🎁</span>
-                <span>Mở lại chiếc hộp bí mật</span>
-              </button>
-            </div>
-
           </div>
 
-        </div>
-
-      </div>
-
-
-      <!-- 1. CERTIFICATE OF BIRTHDAY PRIVILEGE (VIP Card) -->
-      <div class="glass-card p-6 sm:p-8 rounded-3xl border-2 border-amber-300/80 shadow-2xl relative overflow-hidden bg-gradient-to-br from-white/95 via-[#fffbf0]/95 to-amber-50/90">
-        
-        <!-- Decorative golden corner ornaments -->
-        <div class="absolute top-3 left-3 text-amber-500 opacity-50 text-xl font-serif">✧</div>
-        <div class="absolute top-3 right-3 text-amber-500 opacity-50 text-xl font-serif">✧</div>
-        <div class="absolute bottom-3 left-3 text-amber-500 opacity-50 text-xl font-serif">✧</div>
-        <div class="absolute bottom-3 right-3 text-amber-500 opacity-50 text-xl font-serif">✧</div>
-
-        <div class="max-w-lg mx-auto text-center space-y-4">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-bold font-cute uppercase tracking-wider">
-            ★ VIP Official Certificate ★
-          </div>
-
-          <h2 class="font-cute text-2xl sm:text-3xl font-extrabold text-zinc-800">
-            Thẻ Đặc Quyền Sinh Nhật
-          </h2>
-
-          <p class="text-xs text-zinc-500 font-cute">
-            Chứng nhận người sở hữu: <strong id="card-recipient-name" class="text-rose-600 text-base font-extrabold underline underline-offset-4 decoration-amber-300">Nhật Hạ</strong>
-          </p>
-
-          <!-- 3 Privilege Rules -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-left font-cute">
+          <!-- ======================== VINTAGE TYPEWRITER AT BOTTOM ======================== -->
+          <div class="relative w-full select-none">
             
-            <div class="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200 shadow-sm flex flex-col justify-between">
-              <div>
-                <div class="text-2xl mb-1">😊</div>
-                <div class="font-bold text-xs text-zinc-800 mb-1">Quyền Vui Vẻ</div>
-                <p class="text-[11px] text-zinc-600 leading-snug">Được cười thả ga, hạnh phúc không giới hạn và nhận trọn vẹn yêu thương hôm nay.</p>
-              </div>
+            <!-- PLUMERIA 4: Resting on Left Side of Typewriter -->
+            <div class="absolute -top-10 -left-6 sm:-top-14 sm:-left-8 z-30 pointer-events-none drop-shadow-xl rotate-[-15deg]">
+              <svg viewBox="-60 -60 120 120" class="w-20 h-20 sm:w-28 sm:h-28">
+                <use href="#plumeria-symbol" />
+              </svg>
             </div>
 
-            <div class="p-3.5 rounded-2xl bg-rose-50/80 border border-rose-200 shadow-sm flex flex-col justify-between">
-              <div>
-                <div class="text-2xl mb-1">🛡️</div>
-                <div class="font-bold text-xs text-zinc-800 mb-1">Miễn Trừ Lo Âu</div>
-                <p class="text-[11px] text-zinc-600 leading-snug">Tạm gác mọi áp lực, muộn phiền hay âu lo ngoài cánh cửa để đón nhận bình an.</p>
+            <!-- Roller / Carriage (Where paper feeds in) -->
+            <div class="relative bg-gradient-to-r from-zinc-700 via-zinc-800 to-zinc-700 h-9 sm:h-11 rounded-t-xl border-x-4 border-t-4 border-zinc-600 shadow-md flex items-center justify-between px-3">
+              <!-- Left Platen Knob -->
+              <div class="w-4 h-9 sm:w-5 sm:h-11 bg-gradient-to-b from-zinc-300 via-zinc-100 to-zinc-400 rounded-l border border-zinc-500 -ml-5 shadow-md"></div>
+              
+              <!-- Paper Bail Bar with Tick Marks -->
+              <div class="w-full flex items-center justify-center relative">
+                <div class="w-11/12 h-1.5 bg-gradient-to-r from-zinc-400 via-zinc-200 to-zinc-400 rounded-full border border-zinc-500 shadow-sm"></div>
+                <div class="absolute inset-x-0 -bottom-2 flex justify-around opacity-30 text-[7px] font-mono text-white">
+                  <span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
+                </div>
               </div>
+
+              <!-- Right Platen Knob -->
+              <div class="w-4 h-9 sm:w-5 sm:h-11 bg-gradient-to-b from-zinc-300 via-zinc-100 to-zinc-400 rounded-r border border-zinc-500 -mr-5 shadow-md"></div>
             </div>
 
-            <div class="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200 shadow-sm flex flex-col justify-between">
-              <div>
-                <div class="text-2xl mb-1">🍀</div>
-                <div class="font-bold text-xs text-zinc-800 mb-1">Tuổi Mới May Mắn</div>
-                <p class="text-[11px] text-zinc-600 leading-snug">Vạn sự hanh thông, ước gì được nấy và luôn có quý nhân đồng hành mọi chặng đường.</p>
+            <!-- Typewriter Main Casing -->
+            <div class="bg-gradient-to-b from-[#fbf9f4] via-[#f4efe5] to-[#e7e1d3] border-2 border-[#ded7c7] rounded-b-[2.5rem] p-4 sm:p-6 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] relative overflow-hidden">
+              
+              <!-- Typebar Segment / Hammer Fan (SVG arc) -->
+              <div class="w-48 sm:w-64 h-11 sm:h-13 mx-auto relative flex items-center justify-center">
+                <svg viewBox="0 0 200 60" class="w-full h-full opacity-60">
+                  <g stroke="#71717a" stroke-width="1.8" stroke-linecap="round">
+                    <line x1="100" y1="58" x2="30" y2="10" />
+                    <line x1="100" y1="58" x2="45" y2="8" />
+                    <line x1="100" y1="58" x2="62" y2="6" />
+                    <line x1="100" y1="58" x2="80" y2="5" />
+                    <line x1="100" y1="58" x2="100" y2="4" />
+                    <line x1="100" y1="58" x2="120" y2="5" />
+                    <line x1="100" y1="58" x2="138" y2="6" />
+                    <line x1="100" y1="58" x2="155" y2="8" />
+                    <line x1="100" y1="58" x2="170" y2="10" />
+                  </g>
+                  <polygon points="94,15 106,15 102,3 98,3" fill="#52525b" />
+                </svg>
               </div>
+
+              <!-- Brand Name: OMONT -->
+              <div class="text-center my-1.5 sm:my-2">
+                <span class="font-serif font-extrabold tracking-[0.35em] text-zinc-400 text-xs sm:text-sm uppercase drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
+                  OMONT
+                </span>
+              </div>
+
+              <!-- Typewriter Round Keys Rows -->
+              <div class="space-y-1.5 sm:space-y-2 pt-1 max-w-md mx-auto">
+                <div class="flex justify-center gap-1 sm:gap-1.5">
+                  <span class="type-key">Q</span><span class="type-key">W</span><span class="type-key">E</span><span class="type-key">R</span><span class="type-key">T</span>
+                  <span class="type-key">Y</span><span class="type-key">U</span><span class="type-key">I</span><span class="type-key">O</span><span class="type-key">P</span>
+                </div>
+                <div class="flex justify-center gap-1 sm:gap-1.5">
+                  <span class="type-key">A</span><span class="type-key">S</span><span class="type-key">D</span><span class="type-key">F</span><span class="type-key">G</span>
+                  <span class="type-key">H</span><span class="type-key">J</span><span class="type-key">K</span><span class="type-key">L</span>
+                </div>
+                <div class="flex justify-center gap-1 sm:gap-1.5">
+                  <span class="type-key">Z</span><span class="type-key">X</span><span class="type-key">C</span><span class="type-key">V</span><span class="type-key">B</span>
+                  <span class="type-key">N</span><span class="type-key">M</span>
+                </div>
+                <div class="flex justify-center pt-1">
+                  <div class="w-36 sm:w-48 h-3.5 sm:h-4 bg-gradient-to-b from-white via-zinc-100 to-zinc-200 border border-stone-300 rounded-full shadow-inner"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Canva-style Footer below Typewriter -->
+            <div class="text-center pt-3 pb-1 text-[10px] sm:text-xs font-cute text-zinc-500 flex items-center justify-center gap-3">
+              <span>Terms & Support</span>
+              <span>•</span>
+              <span>Privacy Policy</span>
+              <span>•</span>
+              <span class="font-bold text-zinc-700">Designed with Love for Nhật Hạ 💕</span>
             </div>
 
           </div>
 
-          <div class="pt-2 text-[10px] font-mono text-zinc-400">
-            SERIAL: BD-2026-SPECIAL-EDITION • VALIDITY: FOREVER & EVER
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 4. CUTE GIFT VOUCHER TICKET -->
-      <div class="glass-card max-w-xl mx-auto p-6 sm:p-7 rounded-3xl border-2 border-dashed border-amber-400 bg-white/95 shadow-xl relative overflow-hidden">
-        
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left font-cute">
-          
-          <div class="space-y-1.5">
-            <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-wider">
-              🎁 Phiếu Quà Tặng Độc Quyền
-            </div>
-            <h4 class="text-xl font-bold text-zinc-800">
-              Voucher 1 Bữa Ăn Ngon / Trà Sữa Tự Chọn ☕🍕
-            </h4>
-            <p class="text-xs text-zinc-500 leading-relaxed">
-              Áp dụng bất kỳ khi nào bạn muốn. Chỉ cần gửi ảnh này cho người tặng trang web!
-            </p>
-          </div>
-
-          <div class="shrink-0 p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-center">
-            <div class="text-[10px] uppercase font-bold text-zinc-400 font-mono">CODE</div>
-            <div class="text-base font-extrabold text-amber-900 font-mono tracking-wider">HAPPY-BDAY-2026</div>
-            <div class="text-[9px] text-emerald-600 font-bold mt-0.5">✓ Vô hạn thời gian</div>
+          <!-- Reopen Gift Box Button at very bottom -->
+          <div class="mt-4 text-center">
+            <button onclick="resetGiftBox()" class="text-rose-500 hover:text-rose-700 font-bold text-xs font-cute hover:underline inline-flex items-center gap-1 transition cursor-pointer">
+              <span>🎁</span>
+              <span>Mở lại chiếc hộp bí mật</span>
+            </button>
           </div>
 
         </div>
@@ -614,6 +619,7 @@
       </div>
 
     </div>
+
 
   </main>
 
@@ -640,9 +646,9 @@
 
   <!-- ======================== JAVASCRIPT ======================== -->
   <script>
-
     let isBoxOpened = false;
     let audioCtx = null;
+    let currentLang = 'en'; // Default English matching the Canva / TikTok template!
 
     // Load recipient name with fallback to 'Nhật Hạ'
     function loadRecipientName() {
@@ -651,12 +657,10 @@
 
       const navEl = document.getElementById('nav-recipient-name');
       const titleEl = document.getElementById('title-recipient-name');
-      const cardEl = document.getElementById('card-recipient-name');
       const allRecipientEls = document.querySelectorAll('.card-recipient-name');
 
       if (navEl) navEl.textContent = name;
       if (titleEl) titleEl.textContent = name;
-      if (cardEl) cardEl.textContent = name;
       allRecipientEls.forEach(el => el.textContent = name);
     }
 
@@ -690,17 +694,17 @@
     }
 
     function playFanfareChime() {
-      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      const notes = [523.25, 659.25, 783.99, 1046.50];
       notes.forEach((f, idx) => {
         setTimeout(() => playChime(f, 0.45, 0.15), idx * 110);
       });
     }
 
-    // Pentatonic scale for sequential reason chime
+    // Pentatonic scale for reason chime
     const pentatonicNotes = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
     function playMelodicChime(id) {
       const freq = pentatonicNotes[id % pentatonicNotes.length];
-      playChime(freq, 0.22, 0.05);
+      playChime(freq, 0.2, 0.04);
     }
 
     // ========================================================
@@ -841,8 +845,7 @@
       const track = tracks[currentTrackIdx];
       const playIcon = document.getElementById('station-play-icon');
       const pauseIcon = document.getElementById('station-pause-icon');
-      const badgeIcon = document.getElementById('music-badge-icon');
-      const badgeText = document.getElementById('music-badge-text');
+      const circleIcon = document.getElementById('music-circle-icon');
       const drawerDisk = document.getElementById('drawer-toggle-disk');
       const toggleIndicator = document.getElementById('drawer-toggle-indicator');
       const spotifyTitle = document.getElementById('spotify-track-title');
@@ -859,8 +862,7 @@
       if (isMusicPlaying) {
         if (playIcon) playIcon.classList.add('hidden');
         if (pauseIcon) pauseIcon.classList.remove('hidden');
-        if (badgeIcon) badgeIcon.textContent = '⏸';
-        if (badgeText) badgeText.textContent = 'TẠM DỪNG NHẠC ♫';
+        if (circleIcon) circleIcon.textContent = '⏸';
         if (drawerDisk) {
           drawerDisk.classList.remove('drawer-disk-paused');
           drawerDisk.classList.add('drawer-disk-spin');
@@ -872,8 +874,7 @@
       } else {
         if (playIcon) playIcon.classList.remove('hidden');
         if (pauseIcon) pauseIcon.classList.add('hidden');
-        if (badgeIcon) badgeIcon.textContent = '▶';
-        if (badgeText) badgeText.textContent = 'TAP THE BUTTON TO PLAY THE MUSIC ♫';
+        if (circleIcon) circleIcon.textContent = '▶';
         if (drawerDisk) drawerDisk.classList.add('drawer-disk-paused');
         if (toggleIndicator) {
           toggleIndicator.classList.replace('bg-rose-500', 'bg-zinc-500');
@@ -911,110 +912,110 @@
       };
     }
 
-const reasonsLove = [
-      { id: 1, cat: 'cute', text: 'Vì nụ cười của em luôn làm cả ngày của anh bừng sáng rực rỡ.' },
-      { id: 2, cat: 'cute', text: 'Vì đôi mắt em lấp lánh như chứa cả bầu trời sao mỗi khi nhìn anh.' },
-      { id: 3, cat: 'cute', text: 'Vì giọng nói ngọt ngào, ấm áp của em luôn mang lại cho anh sự bình yên.' },
-      { id: 4, cat: 'cute', text: 'Vì em hay dỗi vu vơ nhưng lúc dỗi nhìn đáng yêu vô cùng.' },
-      { id: 5, cat: 'cute', text: 'Vì cái cách em cười tít mắt mỗi khi được ăn món em thích.' },
-      { id: 6, cat: 'cute', text: 'Vì mùi hương dịu dàng, quen thuộc trên mái tóc của em.' },
-      { id: 7, cat: 'cute', text: 'Vì bàn tay nhỏ nhắn của em đan chặt vào tay anh ấm áp lạ kỳ.' },
-      { id: 8, cat: 'cute', text: 'Vì cái nhăn mũi dễ thương của em mỗi khi chọc ghẹo anh.' },
-      { id: 9, cat: 'cute', text: 'Vì đôi má ửng hồng mỗi khi em ngại ngùng trước những lời khen của anh.' },
-      { id: 10, cat: 'cute', text: 'Vì cách em chớp mắt ngơ ngác khi đang tập trung suy nghĩ điều gì đó.' },
-      { id: 11, cat: 'cute', text: 'Vì em thích những chú thỏ Usagi dễ thương giống y hệt sự đáng yêu của em vậy.' },
-      { id: 12, cat: 'cute', text: 'Vì giọng cười giòn tan, vô tư của em là giai điệu êm tai nhất thế gian.' },
-      { id: 13, cat: 'cute', text: 'Vì cách em chu môi giận hờn chỉ để chờ anh chạy lại dỗ dành.' },
-      { id: 14, cat: 'cute', text: 'Vì em rất thích được anh xoa đầu và ôm vào lòng cưng chiều.' },
-      { id: 15, cat: 'cute', text: 'Vì vẻ đẹp mộc mạc, tự nhiên của em ngay cả khi không cần son phấn.' },
-      { id: 16, cat: 'cute', text: 'Vì khi em ngủ say trông ngoan ngoãn và bình yên như một thiên thần nhỏ.' },
-      { id: 17, cat: 'cute', text: 'Vì những biểu cảm ngộ nghĩnh, hài hước của em mà chỉ riêng anh mới được thấy.' },
-      { id: 18, cat: 'cute', text: 'Vì em thích uống trà sữa và đôi mắt sáng rực lên mỗi khi được dẫn đi ăn ngon.' },
-      { id: 19, cat: 'cute', text: 'Vì dáng vẻ lóng ngóng, vụng về nhưng cực kỳ nghiêm túc của em lúc thử làm điều mới.' },
-      { id: 20, cat: 'cute', text: 'Vì vẻ ngây thơ, trong sáng và hồn nhiên không bao giờ mất đi ở em.' },
-      { id: 21, cat: 'cute', text: 'Vì em thích được anh nắm tay đút vào túi áo khoác mỗi khi trời lạnh.' },
-      { id: 22, cat: 'cute', text: 'Vì những cái xoa má nhẹ nhàng đầy tình cảm của em.' },
-      { id: 23, cat: 'cute', text: 'Vì cách em bước đi lon ton bên cạnh anh làm anh chỉ muốn che chở mãi.' },
-      { id: 24, cat: 'cute', text: 'Vì em thích những điều giản dị, dễ thương quanh cuộc sống.' },
-      { id: 25, cat: 'cute', text: 'Vì em luôn là cô gái đáng yêu nhất trong mắt anh, không ai có thể thay thế.' },
-
-      { id: 26, cat: 'moments', text: 'Vì em luôn kiên nhẫn lắng nghe anh tâm sự, dù là những chuyện linh tinh nhất.' },
-      { id: 27, cat: 'moments', text: 'Vì em luôn lo lắng, dặn dò anh ăn uống đầy đủ mỗi khi anh làm việc khuya.' },
-      { id: 28, cat: 'moments', text: 'Vì em là người đầu tiên anh muốn nhắn tin chia sẻ mỗi khi có niềm vui mới.' },
-      { id: 29, cat: 'moments', text: 'Vì em cũng là người đầu tiên anh tìm đến khi lòng gặp nhiều muộn phiền.' },
-      { id: 30, cat: 'moments', text: 'Vì những tin nhắn chúc buổi sáng tốt lành và chúc ngủ ngon ấm áp của em.' },
-      { id: 31, cat: 'moments', text: 'Vì cách em ôm anh thật chặt từ phía sau mỗi khi hai đứa cùng đi xe.' },
-      { id: 32, cat: 'moments', text: 'Vì những câu chuyện vu vơ của em kể hoài từ ngày này qua tháng khác không thấy chán.' },
-      { id: 33, cat: 'moments', text: 'Vì em luôn nhớ chính xác những ngày kỷ niệm và sở thích nhỏ bé của anh.' },
-      { id: 34, cat: 'moments', text: 'Vì những cái ôm bất ngờ, ấm sưởi tan đi cái lạnh của mùa đông.' },
-      { id: 35, cat: 'moments', text: 'Vì mỗi bản tình ca hay anh nghe được, người đầu tiên anh nghĩ đến luôn là em.' },
-      { id: 36, cat: 'moments', text: 'Vì ánh nhìn dịu dàng, ấm áp em dành cho anh giữa chốn đông người.' },
-      { id: 37, cat: 'moments', text: 'Vì mỗi bức ảnh chụp em trong điện thoại anh đều là một kho báu vô giá.' },
-      { id: 38, cat: 'moments', text: 'Vì cách em hào hứng kể cho anh nghe từng chi tiết nhỏ về một ngày của em.' },
-      { id: 39, cat: 'moments', text: 'Vì những nụ hôn nhẹ nhàng, bất ngờ em dành tặng anh.' },
-      { id: 40, cat: 'moments', text: 'Vì những lần hai đứa mình nhìn vào mắt nhau rồi bỗng nhiên cùng bật cười vô cớ.' },
-      { id: 41, cat: 'moments', text: 'Vì dáng vẻ chăm chỉ, tập trung của em lúc học tập và làm việc cực kỳ cuốn hút.' },
-      { id: 42, cat: 'moments', text: 'Vì cách em tựa nhẹ đầu vào vai anh mỗi khi thấy mệt mỏi.' },
-      { id: 43, cat: 'moments', text: 'Vì em đã cùng anh biến những con phố bình thường thành nơi ngập tràn kỷ niệm đẹp.' },
-      { id: 44, cat: 'moments', text: 'Vì thời gian ở bên cạnh em luôn trôi qua nhanh đến mức anh chỉ muốn níu lại.' },
-      { id: 45, cat: 'moments', text: 'Vì những lần em bất ngờ chuẩn bị những món quà nhỏ làm anh xúc động.' },
-      { id: 46, cat: 'moments', text: 'Vì em luôn dành cho anh những cái nắm tay thật chặt giữa phố đông.' },
-      { id: 47, cat: 'moments', text: 'Vì những tối hai đứa cùng chuyện trò thâu đêm suốt sáng mà không biết chán.' },
-      { id: 48, cat: 'moments', text: 'Vì cách em tự hào mỉm cười mỗi khi kể về anh với bạn bè.' },
-      { id: 49, cat: 'moments', text: 'Vì những buổi chiều bình yên được cùng em đón hoàng hôn lãng mạn.' },
-      { id: 50, cat: 'moments', text: 'Vì từng giây phút trôi qua bên em đều là những ký ức đẹp đẽ nhất thanh xuân của anh.' },
-
-      { id: 51, cat: 'heart', text: 'Vì em có một trái tim vô cùng nhân hậu, ấm áp và biết yêu thương mọi người.' },
-      { id: 52, cat: 'heart', text: 'Vì sự dịu dàng của em luôn xua tan mọi mệt mỏi, áp lực của cuộc sống ngoài kia.' },
-      { id: 53, cat: 'heart', text: 'Vì em luôn ủng hộ và đặt niềm tin tuyệt đối vào mọi ước mơ, quyết định của anh.' },
-      { id: 54, cat: 'heart', text: 'Vì em thấu hiểu và bao dung cho những khuyết điểm, vụng về của anh.' },
-      { id: 55, cat: 'heart', text: 'Vì khi ở bên cạnh em, anh được là chính bản thân mình một cách tự nhiên nhất.' },
-      { id: 56, cat: 'heart', text: 'Vì em không bao giờ phán xét những điều ngốc nghếch hay kỳ lạ của anh.' },
-      { id: 57, cat: 'heart', text: 'Vì em luôn kiên nhẫn với tính khí đôi khi bướng bỉnh và khó chiều của anh.' },
-      { id: 58, cat: 'heart', text: 'Vì em là nơi chốn bình yên nhất mà trái tim anh luôn khao khát được trở về.' },
-      { id: 59, cat: 'heart', text: 'Vì em truyền cho anh nguồn năng lượng tích cực và động lực để nỗ lực mỗi ngày.' },
-      { id: 60, cat: 'heart', text: 'Vì em không ngần ngại mở lòng, chia sẻ những tâm tư sâu kín nhất cùng anh.' },
-      { id: 61, cat: 'heart', text: 'Vì sự chân thành, thủy chung và một lòng một dạ của em.' },
-      { id: 62, cat: 'heart', text: 'Vì em luôn biết cách làm dịu đi những cơn nóng giận, bốc đồng của anh.' },
-      { id: 63, cat: 'heart', text: 'Vì em dạy cho anh hiểu thế nào là yêu một người bằng cả tấm lòng.' },
-      { id: 64, cat: 'heart', text: 'Vì em đã đồng hành cùng anh vượt qua những giai đoạn chênh vênh, khó khăn nhất.' },
-      { id: 65, cat: 'heart', text: 'Vì em cho anh cảm giác an toàn, tin tưởng tuyệt đối mà không ai khác mang lại được.' },
-      { id: 66, cat: 'heart', text: 'Vì em chân thật, thẳng thắn và không bao giờ giả tạo với cảm xúc của mình.' },
-      { id: 67, cat: 'heart', text: 'Vì em luôn biết trân trọng và ghi nhận những điều nhỏ bé anh làm cho em.' },
-      { id: 68, cat: 'heart', text: 'Vì sự độc lập, mạnh mẽ và bản lĩnh đáng khâm phục bên trong vẻ ngoài nhỏ nhắn.' },
-      { id: 69, cat: 'heart', text: 'Vì em luôn tha thứ cho những lúc anh vô tâm hay làm em buồn.' },
-      { id: 70, cat: 'heart', text: 'Vì em yêu anh bằng chính con người thật của anh, không đòi hỏi anh phải là ai khác.' },
-      { id: 71, cat: 'heart', text: 'Vì mỗi lần nghĩ đến em, lồng ngực anh lại dâng trào cảm giác ấm áp và biết ơn.' },
-      { id: 72, cat: 'heart', text: 'Vì lòng bao dung và sự ấm áp của em luôn sưởi ấm tâm hồn anh.' },
-      { id: 73, cat: 'heart', text: 'Vì em là người bạn tri kỷ tuyệt vời nhất mà cuộc đời đã mang tới cho anh.' },
-      { id: 74, cat: 'heart', text: 'Vì ngay cả khi hai đứa chỉ im lặng ngồi cạnh nhau, anh vẫn cảm nhận trọn vẹn tình yêu.' },
-      { id: 75, cat: 'heart', text: 'Vì em khiến anh tin rằng trên đời này thực sự có một tình yêu chân thành và bền chặt.' },
-
-      { id: 76, cat: 'future', text: 'Vì em làm cho tương lai của anh trở nên rạng rỡ và tràn đầy hy vọng.' },
-      { id: 77, cat: 'future', text: 'Vì anh muốn là người chăm sóc, bảo vệ em suốt cả cuộc đời này.' },
-      { id: 78, cat: 'future', text: 'Vì em làm cho anh khao khát trở thành một người đàn ông tốt hơn, vững vàng hơn.' },
-      { id: 79, cat: 'future', text: 'Vì em cùng anh chia sẻ những ước mơ về ngôi nhà nhỏ ấm cúng trong tương lai.' },
-      { id: 80, cat: 'future', text: 'Vì anh muốn được thức dậy mỗi sáng và nhìn thấy khuôn mặt em đầu tiên.' },
-      { id: 81, cat: 'future', text: 'Vì anh muốn cùng em đi du lịch, khám phá mọi miền đất tươi đẹp trên thế giới.' },
-      { id: 82, cat: 'future', text: 'Vì anh muốn cùng em già đi, ngắm nhìn những vết chân chim mà vẫn yêu em tha thiết.' },
-      { id: 83, cat: 'future', text: 'Vì anh muốn là bờ vai vững chắc nhất để em tựa vào mỗi khi gặp bão giông.' },
-      { id: 84, cat: 'future', text: 'Vì anh muốn cùng em sẻ chia mọi vui buồn, cay đắng ngọt bùi của cuộc đời.' },
-      { id: 85, cat: 'future', text: 'Vì anh muốn nấu cho em những bữa ăn ngon sau những ngày em làm việc mệt nhoài.' },
-      { id: 86, cat: 'future', text: 'Vì anh muốn dắt tay em đi qua mọi mùa xuân, hạ, thu, đông của năm tháng.' },
-      { id: 87, cat: 'future', text: 'Vì em là nguồn cảm hứng bất tận để anh cố gắng không ngừng nghỉ.' },
-      { id: 88, cat: 'future', text: 'Vì anh muốn cùng em nuôi dưỡng những ước mơ chung của hai đứa.' },
-      { id: 89, cat: 'future', text: 'Vì anh muốn là người lau khô những giọt nước mắt mỗi khi em khóc.' },
-      { id: 90, cat: 'future', text: 'Vì anh muốn là người đầu tiên chúc mừng sinh nhật em trong tất cả những năm tháng sau này.' },
-      { id: 91, cat: 'future', text: 'Vì anh muốn cùng em trang trí cây thông Noel và đón giao thừa mỗi năm.' },
-      { id: 92, cat: 'future', text: 'Vì anh muốn được nắm chặt tay em bước vào lễ đường thiêng liêng.' },
-      { id: 93, cat: 'future', text: 'Vì bất cứ khi nào em quay đầu lại, anh đều luôn ở đó chờ em.' },
-      { id: 94, cat: 'future', text: 'Vì anh tin chắc rằng không một ai trên thế gian này có thể yêu em nhiều hơn anh.' },
-      { id: 95, cat: 'future', text: 'Vì em là món quà sinh nhật kỳ diệu và quý giá nhất mà tạo hóa đã gửi đến bên anh.' },
-      { id: 96, cat: 'future', text: 'Vì em là khởi đầu, là hiện tại và là cả tương lai trọn vẹn của anh.' },
-      { id: 97, cat: 'future', text: 'Vì tình yêu anh dành cho em mỗi ngày chỉ có nhiều hơn, chưa từng một lần vơi bớt.' },
-      { id: 98, cat: 'future', text: 'Vì em là người con gái duy nhất chiếm trọn vẹn trái tim và tâm trí anh.' },
-      { id: 99, cat: 'future', text: 'Vì em là Nhật Hạ độc nhất vô nhị, là bầu trời bình yên và rực rỡ của riêng anh.' },
-      { id: 100, cat: 'future', text: 'Vì đơn giản: Em chính là em — yêu tất cả những gì thuộc về em, mãi mãi không đổi thay! ❤️' }
+    // ========================================================
+    // 100 REASONS WHY I LOVE YOU DATABASE (EXACT CANVA LIST)
+    // ========================================================
+    const reasons100 = [
+      { id: 1, en: "I love you because you make me genuinely happy.", vi: "Anh yêu em vì em luôn làm cho anh cảm thấy thực sự hạnh phúc." },
+      { id: 2, en: "I love the way you smile.", vi: "Anh yêu em vì nụ cười rạng rỡ của em luôn sưởi ấm lòng anh." },
+      { id: 3, en: "I love how your presence makes everything feel better.", vi: "Anh yêu em vì sự hiện diện của em khiến mọi thứ xung quanh trở nên tốt đẹp hơn." },
+      { id: 4, en: "I love how comfortable I am whenever I'm with you.", vi: "Anh yêu em vì anh cảm thấy vô cùng thoải mái và bình yên khi ở bên em." },
+      { id: 5, en: "I love the way you care about me.", vi: "Anh yêu em vì cái cách em luôn quan tâm, lo lắng cho anh từng chút một." },
+      { id: 6, en: "I love how you always make me feel loved.", vi: "Anh yêu em vì em luôn khiến anh cảm nhận trọn vẹn tình yêu thương." },
+      { id: 7, en: "I love your little habits, even the ones you don't notice.", vi: "Anh yêu em vì những thói quen nhỏ xíu đáng yêu của em, ngay cả khi em không để ý." },
+      { id: 8, en: "I love listening to you talk about random things.", vi: "Anh yêu em vì anh thích lắng nghe em kể huyên thuyên về đủ thứ chuyện trên đời." },
+      { id: 9, en: "I love your laugh.", vi: "Anh yêu em vì tiếng cười trong trẻo, giòn tan của em." },
+      { id: 10, en: "I love how you can make me smile without even trying.", vi: "Anh yêu em vì em có thể làm anh mỉm cười một cách tự nhiên mà chẳng cần cố gắng." },
+      { id: 11, en: "I love how you understand me.", vi: "Anh yêu em vì em luôn thấu hiểu những suy nghĩ và cảm xúc của anh." },
+      { id: 12, en: "I love how patient you are with me.", vi: "Anh yêu em vì sự kiên nhẫn và dịu dàng em luôn dành cho anh." },
+      { id: 13, en: "I love how you remember the little things about me.", vi: "Anh yêu em vì em luôn ghi nhớ từng chi tiết nhỏ nhặt nhất về anh." },
+      { id: 14, en: "I love how you support me.", vi: "Anh yêu em vì em luôn là hậu phương vững chắc và ủng hộ anh hết mình." },
+      { id: 15, en: "I love how you believe in me.", vi: "Anh yêu em vì em luôn đặt niềm tin tuyệt đối vào anh." },
+      { id: 16, en: "I love how you make ordinary days feel special.", vi: "Anh yêu em vì em biến những ngày bình thường nhất thành những ngày thật đặc biệt." },
+      { id: 17, en: "I love how I can be myself around you.", vi: "Anh yêu em vì ở bên em, anh được là chính bản thân mình một cách tự nhiên nhất." },
+      { id: 18, en: "I love how safe I feel when I'm with you.", vi: "Anh yêu em vì em mang lại cho anh cảm giác an toàn và được che chở." },
+      { id: 19, en: "I love your beautiful heart.", vi: "Anh yêu em vì trái tim nhân hậu, ấm áp và giàu lòng trắc ẩn của em." },
+      { id: 20, en: "I love how you always have a special place in my thoughts.", vi: "Anh yêu em vì em luôn chiếm một vị trí vô cùng đặc biệt trong tâm trí anh." },
+      { id: 21, en: "I love your voice.", vi: "Anh yêu em vì giọng nói ngọt ngào, êm dịu của em." },
+      { id: 22, en: "I love seeing your name on my notifications.", vi: "Anh yêu em vì cảm giác hạnh phúc ngập tràn mỗi khi thấy thông báo tin nhắn từ em." },
+      { id: 23, en: "I love every conversation we have.", vi: "Anh yêu em vì mỗi cuộc trò chuyện cùng em đều là những phút giây quý giá." },
+      { id: 24, en: "I love our random jokes.", vi: "Anh yêu em vì những câu đùa ngốc nghếch mà chỉ hai đứa mình hiểu." },
+      { id: 25, en: "I love our late-night talks.", vi: "Anh yêu em vì những buổi tối hai đứa tâm sự thâu đêm suốt sáng." },
+      { id: 26, en: "I love our little arguments that somehow end with us laughing.", vi: "Anh yêu em vì những lần giận dỗi vu vơ nhưng rồi kết thúc bằng nụ cười hạnh phúc." },
+      { id: 27, en: "I love making memories with you.", vi: "Anh yêu em vì anh thích cùng em tạo nên thật nhiều kỷ niệm đẹp." },
+      { id: 28, en: "I love taking pictures with you.", vi: "Anh yêu em vì anh thích lưu giữ lại từng khoảnh khắc ngọt ngào bên em." },
+      { id: 29, en: "I love looking back at our old memories.", vi: "Anh yêu em vì mỗi khi ngắm lại những kỷ niệm cũ, lòng anh lại dâng tràn biết ơn." },
+      { id: 30, en: "I love how far we've come together.", vi: "Anh yêu em vì chặng đường đẹp đẽ mà hai đứa mình đã cùng nhau đi qua." },
+      { id: 31, en: "I love how you make me want to become a better person.", vi: "Anh yêu em vì em là nguồn động lực thôi thúc anh trở thành một người đàn ông tốt hơn." },
+      { id: 32, en: "I love how you motivate me without even realizing it.", vi: "Anh yêu em vì em truyền cảm hứng cho anh một cách vô thức và tự nhiên." },
+      { id: 33, en: "I love how you're always there when I need someone.", vi: "Anh yêu em vì em luôn ở bên cạnh mỗi khi anh cần một điểm tựa." },
+      { id: 34, en: "I love how you listen to me.", vi: "Anh yêu em vì em luôn kiên nhẫn lắng nghe anh giãi bày tâm sự." },
+      { id: 35, en: "I love how you make my problems feel a little lighter.", vi: "Anh yêu em vì có em, mọi gánh nặng và áp lực cuộc sống đều tan biến nhẹ bẫng." },
+      { id: 36, en: "I love how you celebrate my small victories.", vi: "Anh yêu em vì em luôn chia vui và tự hào về từng thành công nhỏ của anh." },
+      { id: 37, en: "I love how you care about my dreams.", vi: "Anh yêu em vì em luôn trân trọng và đồng hành cùng những ước mơ của anh." },
+      { id: 38, en: "I love how you let me dream about our future together.", vi: "Anh yêu em vì em cho anh niềm tin để cùng vẽ nên tương lai của hai đứa." },
+      { id: 39, en: "I love how you make me excited for tomorrow.", vi: "Anh yêu em vì có em, anh luôn háo hức đón chờ ngày mai tươi sáng." },
+      { id: 40, en: "I love knowing that I have you by my side.", vi: "Anh yêu em vì cảm giác an tâm tuyệt đối khi biết rằng anh luôn có em bên cạnh." },
+      { id: 41, en: "I love your kindness.", vi: "Anh yêu em vì sự tốt bụng và dịu dàng chân thành của em." },
+      { id: 42, en: "I love your softness.", vi: "Anh yêu em vì nét mềm mại, nhẹ nhàng và nữ tính của em." },
+      { id: 43, en: "I love your personality.", vi: "Anh yêu em vì tính cách đáng yêu, chân thật và cuốn hút của em." },
+      { id: 44, en: "I love your little reactions.", vi: "Anh yêu em vì những phản ứng nhỏ xíu bất ngờ cực kỳ dễ thương của em." },
+      { id: 45, en: "I love how you get excited about something.", vi: "Anh yêu em vì ánh mắt lấp lánh rạng rỡ của em mỗi khi hào hứng với điều gì đó." },
+      { id: 46, en: "I love when you're being silly.", vi: "Anh yêu em vì những lúc em làm trò ngốc nghếch khiến anh bật cười." },
+      { id: 47, en: "I love when you're being clingy.", vi: "Anh yêu em vì những lúc em mè nheo, quấn quýt bên anh không rời." },
+      { id: 48, en: "I love how you randomly check on me.", vi: "Anh yêu em vì những tin nhắn hỏi han bất ngờ ấm áp của em giữa ngày bận rộn." },
+      { id: 49, en: "I love when you tell me you miss me.", vi: "Anh yêu em vì cảm giác xao xuyến mỗi khi em nói rằng em nhớ anh." },
+      { id: 50, en: "I love your version of you.", vi: "Anh yêu em vì anh yêu chính con người thật của em, trọn vẹn và duy nhất." },
+      { id: 51, en: "I love that you never have to pretend around me.", vi: "Anh yêu em vì em không bao giờ phải giả vờ hay che giấu cảm xúc trước mặt anh." },
+      { id: 52, en: "I love how honest you are with me.", vi: "Anh yêu em vì sự thẳng thắn, chân thành và tin tưởng tuyệt đối của em." },
+      { id: 53, en: "I love that we can talk about almost anything.", vi: "Anh yêu em vì hai đứa mình có thể cởi mở chia sẻ mọi điều trong cuộc sống." },
+      { id: 54, en: "I love that you're not just my girlfriend, but also my best friend.", vi: "Anh yêu em vì em không chỉ là người yêu, mà còn là người bạn tri kỷ tuyệt vời nhất của anh." },
+      { id: 55, en: "I love having someone like you to share my life with.", vi: "Anh yêu em vì anh may mắn có một người tuyệt vời như em để đồng hành suốt cuộc đời." },
+      { id: 56, en: "I love how you make me feel appreciated.", vi: "Anh yêu em vì em luôn biết ơn và trân trọng từng điều nhỏ bé anh làm." },
+      { id: 57, en: "I love how you make me feel important.", vi: "Anh yêu em vì em luôn khiến anh cảm thấy mình là người quan trọng đối với em." },
+      { id: 58, en: "I love how you remind me that I'm not alone.", vi: "Anh yêu em vì em luôn nhắc anh nhớ rằng trên đời này anh không bao giờ đơn độc." },
+      { id: 59, en: "I love how you always give me something to look forward to.", vi: "Anh yêu em vì em luôn cho anh những điều ngọt ngào để mong ngóng mỗi ngày." },
+      { id: 60, en: "I love how you make love feel simple.", vi: "Anh yêu em vì tình yêu bên em thật bình yên, nhẹ nhàng và giản dị." },
+      { id: 61, en: "I love every hug from you.", vi: "Anh yêu em vì từng cái ôm ấm áp của em luôn xua tan mọi mệt mỏi." },
+      { id: 62, en: "I love holding your hand.", vi: "Anh yêu em vì cảm giác bình yên khi bàn tay nhỏ nhắn của em đan chặt vào tay anh." },
+      { id: 63, en: "I love being close to you.", vi: "Anh yêu em vì anh chỉ muốn được ở thật gần bên em mãi thôi." },
+      { id: 64, en: "I love seeing you happy.", vi: "Anh yêu em vì nhìn thấy em hạnh phúc là niềm vui lớn nhất của đời anh." },
+      { id: 65, en: "I love making you laugh.", vi: "Anh yêu em vì anh thích là lý do mang lại tiếng cười cho em." },
+      { id: 66, en: "I love surprising you.", vi: "Anh yêu em vì anh thích nhìn thấy biểu cảm bất ngờ, ngạc nhiên đáng yêu của em." },
+      { id: 67, en: "I love doing little things for you.", vi: "Anh yêu em vì anh muốn chăm sóc cho em từ những điều nhỏ nhặt nhất." },
+      { id: 68, en: "I love how thoughtful you are.", vi: "Anh yêu em vì sự chu đáo, tinh tế và biết quan tâm đến người khác của em." },
+      { id: 69, en: "I love the warmth of your embrace.", vi: "Anh yêu em vì hơi ấm ngọt ngào trong vòng tay em." },
+      { id: 70, en: "I love being one of the reasons you smile.", vi: "Anh yêu em vì anh hạnh phúc khi là một trong những lý do khiến em mỉm cười." },
+      { id: 71, en: "I love the way you look at me.", vi: "Anh yêu em vì ánh nhìn dịu dàng, ấm áp đầy tình cảm em dành cho anh." },
+      { id: 72, en: "I love your beautiful eyes.", vi: "Anh yêu em vì đôi mắt long lanh như chứa cả bầu trời sao của em." },
+      { id: 73, en: "I love your smile even more when you're genuinely happy.", vi: "Anh yêu em vì nụ cười của em lúc thật lòng hạnh phúc là điều đẹp đẽ nhất trần đời." },
+      { id: 74, en: "I love how beautiful you are, inside and out.", vi: "Anh yêu em vì vẻ đẹp rạng ngời cả về tâm hồn lẫn diện mạo của em." },
+      { id: 75, en: "I love every little detail about you.", vi: "Anh yêu em vì anh yêu từng chi tiết nhỏ bé nhất thuộc về em." },
+      { id: 76, en: "I love you even on your bad days.", vi: "Anh yêu em vì ngay cả những ngày tồi tệ nhất, anh vẫn yêu em tha thiết." },
+      { id: 77, en: "I love you when you're happy.", vi: "Anh yêu em vì anh yêu em khi em ngập tràn niềm vui." },
+      { id: 78, en: "I love you when you're sad.", vi: "Anh yêu em vì anh muốn ở bên dỗ dành mỗi khi em buồn." },
+      { id: 79, en: "I love you when you're being stubborn.", vi: "Anh yêu em vì cả những lúc em bướng bỉnh, khó chiều anh vẫn thương em vô cùng." },
+      { id: 80, en: "I love you exactly as you are.", vi: "Anh yêu em vì anh yêu em trọn vẹn bằng chính con người thật của em." },
+      { id: 81, en: "I love the memories we've already made.", vi: "Anh yêu em vì anh trân quý những kỷ niệm đẹp đẽ hai đứa mình đã cùng tạo nên." },
+      { id: 82, en: "I love the memories we haven't made yet.", vi: "Anh yêu em vì anh mong chờ những kỷ niệm tuyệt vời phía trước ta sẽ cùng trải nghiệm." },
+      { id: 83, en: "I love imagining all the places we'll go together.", vi: "Anh yêu em vì anh thích tưởng tượng về tất cả những vùng đất hai đứa sẽ cùng đặt chân tới." },
+      { id: 84, en: "I love dreaming about all the things we'll experience together.", vi: "Anh yêu em vì anh muốn cùng em khám phá mọi điều tươi đẹp của thế giới này." },
+      { id: 85, en: "I love knowing that we still have so much time to grow together.", vi: "Anh yêu em vì anh biết ta còn cả một chặng đường dài phía trước để cùng nhau trưởng thành." },
+      { id: 86, en: "I love that our story is still being written.", vi: "Anh yêu em vì câu chuyện tình yêu của hai đứa mình vẫn đang tiếp diễn từng ngày." },
+      { id: 87, en: "I love choosing you every single day.", vi: "Anh yêu em vì mỗi sớm mai thức dậy, anh đều chọn yêu em nhiều hơn." },
+      { id: 88, en: "I love getting to call you mine.", vi: "Anh yêu em vì anh tự hào và hạnh phúc khi được gọi em là của riêng anh." },
+      { id: 89, en: "I love being loved by you.", vi: "Anh yêu em vì anh biết ơn khi được một cô gái tuyệt vời như em yêu thương." },
+      { id: 90, en: "I love loving you.", vi: "Anh yêu em vì yêu em là điều tuyệt vời nhất từng xảy đến trong đời anh." },
+      { id: 91, en: "I love the person I become when I'm with you.", vi: "Anh yêu em vì anh yêu phiên bản tốt đẹp hơn của chính mình mỗi khi ở bên em." },
+      { id: 92, en: "I love how you bring out the softer side of me.", vi: "Anh yêu em vì em luôn khơi dậy phần dịu dàng và ấm áp nhất trong con người anh." },
+      { id: 93, en: "I love how you make my world feel a little brighter.", vi: "Anh yêu em vì em thắp sáng thế giới của anh bằng tất cả sự rực rỡ." },
+      { id: 94, en: "I love how you turned so many ordinary moments into memories.", vi: "Anh yêu em vì em biến những điều bình dị thành những ký ức không thể nào quên." },
+      { id: 95, en: "I love how grateful I feel to have you in my life.", vi: "Anh yêu em vì anh luôn cảm thấy vô cùng may mắn và biết ơn khi có em trong đời." },
+      { id: 96, en: "I love how you inspire me every single day.", vi: "Anh yêu em vì em là nguồn cảm hứng bất tận để anh cố gắng không ngừng nghỉ." },
+      { id: 97, en: "I love how our love keeps growing stronger.", vi: "Anh yêu em vì tình cảm của hai đứa mình ngày càng bền chặt và sâu sắc qua năm tháng." },
+      { id: 98, en: "I love that my heart chose you.", vi: "Anh yêu em vì trái tim anh đã lựa chọn em — lựa chọn đúng đắn nhất đời anh." },
+      { id: 99, en: "I love you more than words could ever explain.", vi: "Anh yêu em vì không ngôn từ nào có thể diễn tả hết tình yêu anh dành cho em." },
+      { id: 100, en: "I love you, unconditionally, endlessly, and forever. ❤️", vi: "Anh yêu em, vô điều kiện, bất tận và mãi mãi về sau. ❤️" }
     ];
 
     // ========================================================
@@ -1023,7 +1024,7 @@ const reasonsLove = [
     let currentRevealIdx = 0; // 0 to 100
     let isRevealPlaying = false;
     let revealTimer = null;
-    let revealSpeedMs = 120; // default interval ms (xuất hiện nhanh, mượt mà)
+    let revealSpeedMs = 120; // default fast interval ms
     const speedOptions = [
       { label: 'Nhanh (1x)', ms: 120 },
       { label: 'Cực nhanh (2x)', ms: 60 },
@@ -1031,7 +1032,6 @@ const reasonsLove = [
     ];
     let currentSpeedIdx = 0;
     let heartedReasonsSet = new Set();
-    let isFilterActive = false;
 
     try {
       const savedHearts = localStorage.getItem('luxury_birthday_hearted_reasons');
@@ -1040,7 +1040,7 @@ const reasonsLove = [
 
     function startSequentialReveal() {
       if (isRevealPlaying) return;
-      if (currentRevealIdx >= reasonsLove.length) {
+      if (currentRevealIdx >= reasons100.length) {
         restartSequentialReveal();
         return;
       }
@@ -1053,7 +1053,7 @@ const reasonsLove = [
       if (!isRevealPlaying) return;
       revealTimer = setTimeout(() => {
         if (!isRevealPlaying) return;
-        if (currentRevealIdx < reasonsLove.length) {
+        if (currentRevealIdx < reasons100.length) {
           revealSingleReason(currentRevealIdx);
           currentRevealIdx++;
           updateRevealProgressUI();
@@ -1077,7 +1077,7 @@ const reasonsLove = [
       if (isRevealPlaying) {
         pauseSequentialReveal();
       } else {
-        if (currentRevealIdx >= reasonsLove.length) {
+        if (currentRevealIdx >= reasons100.length) {
           restartSequentialReveal();
         } else {
           startSequentialReveal();
@@ -1092,10 +1092,36 @@ const reasonsLove = [
       if (speedLabel) speedLabel.textContent = speedOptions[currentSpeedIdx].label;
     }
 
+    function toggleReasonLanguage() {
+      currentLang = currentLang === 'en' ? 'vi' : 'en';
+      const flagEl = document.getElementById('lang-flag');
+      const labelEl = document.getElementById('lang-label');
+      if (flagEl && labelEl) {
+        if (currentLang === 'en') {
+          flagEl.textContent = '🇻🇳';
+          labelEl.textContent = 'Tiếng Việt';
+        } else {
+          flagEl.textContent = '🇺🇸';
+          labelEl.textContent = 'English';
+        }
+      }
+
+      // Re-render visible reasons in the container with new language
+      const container = document.getElementById('reasons-paper-flow');
+      if (!container) return;
+      const count = container.children.length;
+      container.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        if (reasons100[i]) {
+          container.appendChild(createReasonRowElement(reasons100[i], false));
+        }
+      }
+    }
+
     function revealSingleReason(index, animate = true) {
       const container = document.getElementById('reasons-paper-flow');
       if (!container) return;
-      const r = reasonsLove[index];
+      const r = reasons100[index];
       if (!r) return;
 
       if (document.getElementById('reason-row-' + r.id)) return;
@@ -1107,8 +1133,8 @@ const reasonsLove = [
         if (r.id % 3 === 0 || r.id === 1 || r.id === 100) {
           playMelodicChime(r.id);
         }
-        const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 300;
-        if (isNearBottom || container.children.length <= 4) {
+        const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 320;
+        if (isNearBottom || container.children.length <= 5) {
           container.scrollTop = container.scrollHeight;
         }
       }
@@ -1117,21 +1143,18 @@ const reasonsLove = [
     function createReasonRowElement(r, animate = false) {
       const div = document.createElement('div');
       div.id = 'reason-row-' + r.id;
-      div.className = 'reason-row flex items-start gap-2.5 sm:gap-3 py-2 px-2.5 rounded-xl transition-all duration-300 hover:bg-rose-50/70 cursor-pointer select-none group ' + (animate ? 'reason-entering' : '');
+      div.className = 'reason-row flex items-start gap-2 py-1.5 px-2 rounded-xl transition-all duration-200 hover:bg-rose-50/70 cursor-pointer select-none group ' + (animate ? 'reason-entering' : '');
       div.onclick = () => onReasonRowClick(r.id);
 
-      let cleanText = r.text.trim();
-      if (cleanText.startsWith('Vì ')) {
-        cleanText = cleanText.substring(3).trim();
-      }
+      const textToShow = currentLang === 'en' ? r.en : r.vi;
       const isHearted = heartedReasonsSet.has(r.id);
 
       div.innerHTML = (
         '<span class="reason-num font-bold text-zinc-900 text-sm sm:text-base shrink-0 font-serif w-6 sm:w-7 text-right select-none">' + r.id + '.</span>' +
         '<p class="reason-text font-cute text-sm sm:text-[15px] text-zinc-700 leading-relaxed group-hover:text-zinc-900 flex-1">' +
-          'Anh yêu em vì ' + cleanText +
+          textToShow +
         '</p>' +
-        '<button onclick="event.stopPropagation(); toggleHeartReason(' + r.id + ')" class="p-1 shrink-0 text-xs sm:text-sm text-rose-400 hover:text-rose-600 transition-transform active:scale-125" title="Thả tim lý do này">' +
+        '<button onclick="event.stopPropagation(); toggleHeartReason(' + r.id + ')" class="p-1 shrink-0 text-xs sm:text-sm text-rose-400 hover:text-rose-600 transition-transform active:scale-125" title="Thả tim">' +
           '<span id="heart-icon-' + r.id + '">' + (isHearted ? '💖' : '🤍') + '</span>' +
         '</button>'
       );
@@ -1143,10 +1166,10 @@ const reasonsLove = [
       const container = document.getElementById('reasons-paper-flow');
       if (!container) return;
       container.innerHTML = '';
-      for (let i = 0; i < reasonsLove.length; i++) {
-        container.appendChild(createReasonRowElement(reasonsLove[i], false));
+      for (let i = 0; i < reasons100.length; i++) {
+        container.appendChild(createReasonRowElement(reasons100[i], false));
       }
-      currentRevealIdx = reasonsLove.length;
+      currentRevealIdx = reasons100.length;
       updateRevealProgressUI();
       updateRevealControlsUI();
       onAllReasonsFinished();
@@ -1166,7 +1189,7 @@ const reasonsLove = [
     function updateRevealProgressUI() {
       const countEl = document.getElementById('reveal-count-display');
       const barEl = document.getElementById('reveal-progress-bar');
-      const pct = Math.min(100, Math.round((currentRevealIdx / reasonsLove.length) * 100));
+      const pct = Math.min(100, Math.round((currentRevealIdx / reasons100.length) * 100));
       if (countEl) countEl.textContent = currentRevealIdx;
       if (barEl) barEl.style.width = pct + '%';
     }
@@ -1182,7 +1205,7 @@ const reasonsLove = [
           if (pulseDot) pulseDot.classList.add('animate-ping');
         } else {
           btnIcon.textContent = '▶️';
-          btnText.textContent = currentRevealIdx >= reasonsLove.length ? 'Phát lại' : 'Tiếp tục';
+          btnText.textContent = currentRevealIdx >= reasons100.length ? 'Phát lại' : 'Tiếp tục';
           if (pulseDot) pulseDot.classList.remove('animate-ping');
         }
       }
@@ -1236,51 +1259,6 @@ const reasonsLove = [
         heart.style.opacity = '0';
       }, 20);
       setTimeout(() => heart.remove(), 850);
-    }
-
-    // Search filter input
-    function onFilterReasonsInput(e) {
-      const kw = e.target.value.trim().toLowerCase();
-      const clearBtn = document.getElementById('clear-filter-btn');
-      if (clearBtn) {
-        if (kw) clearBtn.classList.remove('hidden');
-        else clearBtn.classList.add('hidden');
-      }
-      const container = document.getElementById('reasons-paper-flow');
-      if (!container) return;
-
-      if (!kw) {
-        container.innerHTML = '';
-        const limit = Math.max(currentRevealIdx, 1);
-        for (let i = 0; i < limit; i++) {
-          if (reasonsLove[i]) container.appendChild(createReasonRowElement(reasonsLove[i], false));
-        }
-        return;
-      }
-
-      pauseSequentialReveal();
-      container.innerHTML = '';
-      const matched = reasonsLove.filter(r => r.text.toLowerCase().includes(kw));
-      if (matched.length === 0) {
-        container.innerHTML = (
-          '<div class="text-center py-10 font-cute text-zinc-500">' +
-            '<div class="text-2xl mb-1">🔍</div>' +
-            '<p class="text-xs">Không tìm thấy lý do nào khớp với từ khóa "' + kw + '"</p>' +
-          '</div>'
-        );
-      } else {
-        matched.forEach(r => {
-          container.appendChild(createReasonRowElement(r, false));
-        });
-      }
-    }
-
-    function clearReasonsFilter() {
-      const input = document.getElementById('reasons-filter-input');
-      if (input) input.value = '';
-      const clearBtn = document.getElementById('clear-filter-btn');
-      if (clearBtn) clearBtn.classList.add('hidden');
-      onFilterReasonsInput({ target: { value: '' } });
     }
 
     // Interactive Box Opening with Vanishing Animation & Sequential Reveal Trigger
@@ -1403,6 +1381,5 @@ const reasonsLove = [
       setTimeout(triggerGiftConfetti, 500);
     });
   </script>
-
 </body>
 </html>
