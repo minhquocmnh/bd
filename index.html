@@ -1226,10 +1226,9 @@
     </div>
   </div>
 
-  <!-- AUDIO ELEMENT (Primary Royalty-Free Track) -->
-  <audio id="bg-audio" loop preload="auto">
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-    <source src="https://actions.google.com/sounds/v1/weather/light_rain.ogg" type="audio/ogg">
+  <!-- AUDIO ELEMENT (Primary Music Player) -->
+  <audio id="bg-audio" preload="auto">
+    <source src="assets/tu-ngay-em-den.mp3" type="audio/mpeg">
   </audio>
 
   <!-- ======================== JAVASCRIPT LOGIC ======================== -->
@@ -1475,7 +1474,7 @@
           durationStr: '04:30',
           ytId: 'AmvA-XJF0j8',
           type: 'audio',
-          audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
+          audioUrl: 'assets/tu-ngay-em-den.mp3'
         },
         {
           id: 1,
@@ -1487,7 +1486,7 @@
           durationStr: '03:21',
           ytId: 'T7ksmtaVeOk',
           type: 'audio',
-          audioUrl: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=piano-moment-9835.mp3'
+          audioUrl: 'assets/in-love.mp3'
         },
         {
           id: 2,
@@ -1499,7 +1498,7 @@
           durationStr: '03:21',
           ytId: 'SDNEti5YyJU',
           type: 'audio',
-          audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
+          audioUrl: 'assets/the-gioi-da-mat-di-mot-nguoi-co-don.mp3'
         }
       ];
 
@@ -1637,10 +1636,14 @@
         stationProgressInterval = setInterval(() => {
           if (!isPlaying) return;
           const track = stationTracks[currentTrackIndex];
-          stationPlaybackSec++;
+          if (audioElement && !isNaN(audioElement.currentTime) && audioElement.currentTime > 0) {
+            stationPlaybackSec = Math.floor(audioElement.currentTime);
+          } else {
+            stationPlaybackSec++;
+          }
           if (stationPlaybackSec > track.durationSec) {
             stationPlaybackSec = 0;
-            window.selectStationTrack((currentTrackIndex + 1) % stationTracks.length);
+            window.selectStationTrack((currentTrackIndex + 1) % stationTracks.length, true);
           } else {
             updateStationProgressUI();
           }
@@ -1660,10 +1663,13 @@
         const pct = Math.max(0, Math.min(1, clickX / rect.width));
         const track = stationTracks[currentTrackIndex];
         stationPlaybackSec = Math.floor(pct * track.durationSec);
+        if (audioElement && !isNaN(audioElement.duration) && audioElement.duration > 0) {
+          audioElement.currentTime = pct * audioElement.duration;
+        }
         updateStationProgressUI();
       };
 
-      window.selectStationTrack = function(index) {
+      window.selectStationTrack = function(index, autoPlay = true) {
         currentTrackIndex = (index + stationTracks.length) % stationTracks.length;
         const track = stationTracks[currentTrackIndex];
 
@@ -1710,7 +1716,7 @@
         // 4. Update YouTube Iframe Video
         const ytIframe = document.getElementById('station-yt-iframe');
         if (ytIframe && track.ytId) {
-          ytIframe.src = 'https://www.youtube-nocookie.com/embed/' + track.ytId + '?enablejsapi=1' + (isPlaying ? '&autoplay=1' : '');
+          ytIframe.src = 'https://www.youtube-nocookie.com/embed/' + track.ytId + '?enablejsapi=1' + (autoPlay || isPlaying ? '&autoplay=1' : '');
         }
 
         // 5. Update Floating Player Title
@@ -1718,10 +1724,16 @@
 
         // 6. Play Audio
         stopMusicBox();
-        audioElement.pause();
+        if (audioElement) {
+          audioElement.src = track.audioUrl;
+          audioElement.currentTime = 0;
+        }
 
-        if (isPlaying) {
+        if (autoPlay || isPlaying) {
+          isPlaying = true;
           playCurrentTrack();
+        } else {
+          setPlayingState(false);
         }
       };
 
@@ -1738,24 +1750,34 @@
         const track = stationTracks[currentTrackIndex];
 
         stopMusicBox();
-        if (track.type === 'synth-birthday') {
-          audioElement.pause();
-          startMusicBox();
-          setPlayingState(true);
-        } else if (track.audioUrl) {
-          audioElement.src = track.audioUrl;
-          audioElement.volume = drawerVolumeSlider ? drawerVolumeSlider.value : 0.7;
+        if (audioElement) {
+          if (!audioElement.src.endsWith(track.audioUrl)) {
+            audioElement.src = track.audioUrl;
+          }
+          if (stationPlaybackSec > 0 && Math.abs(audioElement.currentTime - stationPlaybackSec) > 2) {
+            audioElement.currentTime = stationPlaybackSec;
+          }
+          audioElement.volume = drawerVolumeSlider ? parseFloat(drawerVolumeSlider.value) : 0.7;
           audioElement.play().then(() => {
             setPlayingState(true);
           }).catch(e => {
-            console.warn('External audio play notice:', e);
-            startMusicBox();
-            setPlayingState(true);
+            console.warn('Audio play error:', e);
+            setPlayingState(false);
           });
-        } else {
-          startMusicBox();
-          setPlayingState(true);
         }
+      }
+
+      if (audioElement) {
+        audioElement.ontimeupdate = function() {
+          if (!isPlaying) return;
+          if (audioElement.currentTime) {
+            stationPlaybackSec = Math.floor(audioElement.currentTime);
+            updateStationProgressUI();
+          }
+        };
+        audioElement.onended = function() {
+          window.selectStationTrack((currentTrackIndex + 1) % stationTracks.length, true);
+        };
       }
 
       window.startAudio = function() {
@@ -1767,7 +1789,7 @@
       function pauseAudio() {
         isPlaying = false;
         stopMusicBox();
-        audioElement.pause();
+        if (audioElement) audioElement.pause();
         const ytIframe = document.getElementById('station-yt-iframe');
         if (ytIframe && ytIframe.contentWindow) {
           try {
