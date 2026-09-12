@@ -216,7 +216,7 @@
         <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
-        <span>Về trang sinh nhật</span>
+        <span>Về trang chủ</span>
       </a>
 
       <!-- Recipient Badge -->
@@ -240,10 +240,10 @@
     <div class="text-center mb-10">
 
       <h1 class="font-cute text-3xl sm:text-5xl font-extrabold text-zinc-800 tracking-tight mb-3">
-        Chiếc Hộp Bí Mật & <span class="bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 bg-clip-text text-transparent">Điều Bất Ngờ!</span>
+        Chiếc Hộp Bí Mật <span class="bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 bg-clip-text text-transparent"></span>
       </h1>
       <p class="font-cute text-zinc-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-        Gửi đến Nhật Hạ tất cả những điều tốt đẹp, may mắn và yêu thương trong tuổi mới.
+        Gửi đến Nhật Hạ tất cả những điều tốt đẹp, may mắn và yêu thương trong tuổi mới (mq xin phép được xưng anh/em lúc này nhaaa)
       </p>
     </div>
 
@@ -384,7 +384,7 @@
                 <span id="music-circle-icon" class="text-xs font-bold ml-0.5">▶</span>
               </span>
               <span id="music-status-text" class="text-[11px] sm:text-xs font-cute font-extrabold tracking-wider uppercase text-rose-600 group-hover:text-rose-700">
-                CHẠM ĐỂ BẬT NHẠC • ĐỂ DÀNH CHO EM
+                CHẠM ĐỂ BẬT NHẠC
               </span>
               <span id="music-pulse-indicator" class="hidden text-xs">🎵</span>
             </button>
@@ -432,33 +432,6 @@
               <!-- Dynamically populated line-by-line via JS -->
             </div>
 
-            <!-- Completed Celebration Banner -->
-            <div id="reasons-completed-banner" class="hidden mt-8 p-5 rounded-2xl bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border-2 border-rose-200 text-center space-y-2.5">
-              <div class="text-3xl animate-bounce">💖 🎂 🎉</div>
-              <h3 class="font-cute font-extrabold text-base sm:text-lg text-zinc-800">
-                100 Lý Do Anh Yêu <span class="card-recipient-name">Nhật Hạ</span>! 💕
-              </h3>
-              <p class="text-xs sm:text-sm text-zinc-600 font-cute leading-relaxed">
-                "Và còn hàng triệu lý do nữa để anh muốn dành trọn cả cuộc đời này yêu em..."
-              </p>
-              <button onclick="triggerGiftConfetti()" class="mt-2 px-5 py-2 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-cute font-bold shadow-md transition hover:scale-105 active:scale-95 cursor-pointer">
-                🎉 Thả pháo hoa chúc mừng
-              </button>
-            </div>
-
-            <!-- Footer note inside card bottom -->
-            <div class="text-center pt-6 pb-2 text-[11px] sm:text-xs font-cute text-zinc-400 border-t border-rose-100/70 mt-6 select-none">
-              <span>Thiết kế với tất cả tình yêu dành cho <strong class="card-recipient-name text-rose-500">Nhật Hạ</strong> 💕</span>
-            </div>
-
-          </div>
-
-          <!-- Reopen Gift Box Button at very bottom -->
-          <div class="mt-6 text-center">
-            <button onclick="resetGiftBox()" class="px-4 py-2 rounded-full bg-white/80 hover:bg-white text-rose-500 hover:text-rose-700 font-bold text-xs font-cute shadow-sm border border-rose-200/60 inline-flex items-center gap-1.5 transition hover:scale-105 active:scale-95 cursor-pointer">
-              <span>🎁</span>
-              <span>Mở lại chiếc hộp bí mật</span>
-            </button>
           </div>
 
         </div>
@@ -796,10 +769,10 @@
     // ========================================================
     const reasons100 = [
       { id: 1, en: "I love you because you make me genuinely happy.", vi: "Anh yêu em vì em luôn làm cho anh cảm thấy thực sự hạnh phúc." },
-      { id: 2, en: "I love the way you smile.", vi: "Anh yêu em vì nụ cười rạng rỡ của em luôn sưởi ấm lòng anh." },
+      { id: 2, en: "I love the way you smile.", vi: "Anh yêu em vì cách em cười." },
       { id: 3, en: "I love how your presence makes everything feel better.", vi: "Anh yêu em vì sự hiện diện của em khiến mọi thứ xung quanh trở nên tốt đẹp hơn." },
       { id: 4, en: "I love how comfortable I am whenever I'm with you.", vi: "Anh yêu em vì anh cảm thấy vô cùng thoải mái và bình yên khi ở bên em." },
-      { id: 5, en: "I love the way you care about me.", vi: "Anh yêu em vì cái cách em luôn quan tâm, lo lắng cho anh từng chút một." },
+      { id: 5, en: "I love the way you care about me.", vi: "Anh yêu em vì cái cách em luôn quan tâm cho anh" },
       { id: 6, en: "I love how you always make me feel loved.", vi: "Anh yêu em vì em luôn khiến anh cảm nhận trọn vẹn tình yêu thương." },
       { id: 7, en: "I love your little habits, even the ones you don't notice.", vi: "Anh yêu em vì những thói quen nhỏ xíu đáng yêu của em, ngay cả khi em không để ý." },
       { id: 8, en: "I love listening to you talk about random things.", vi: "Anh yêu em vì anh thích lắng nghe em kể huyên thuyên về đủ thứ chuyện trên đời." },
@@ -808,19 +781,19 @@
       { id: 11, en: "I love how you understand me.", vi: "Anh yêu em vì em luôn thấu hiểu những suy nghĩ và cảm xúc của anh." },
       { id: 12, en: "I love how patient you are with me.", vi: "Anh yêu em vì sự kiên nhẫn và dịu dàng em luôn dành cho anh." },
       { id: 13, en: "I love how you remember the little things about me.", vi: "Anh yêu em vì em luôn ghi nhớ từng chi tiết nhỏ nhặt nhất về anh." },
-      { id: 14, en: "I love how you support me.", vi: "Anh yêu em vì em luôn là hậu phương vững chắc và ủng hộ anh hết mình." },
+      { id: 14, en: "I love how you support me.", vi: "Anh yêu em vì em luôn ủng hộ anh hết mình." },
       { id: 15, en: "I love how you believe in me.", vi: "Anh yêu em vì em luôn đặt niềm tin tuyệt đối vào anh." },
       { id: 16, en: "I love how you make ordinary days feel special.", vi: "Anh yêu em vì em biến những ngày bình thường nhất thành những ngày thật đặc biệt." },
       { id: 17, en: "I love how I can be myself around you.", vi: "Anh yêu em vì ở bên em, anh được là chính bản thân mình một cách tự nhiên nhất." },
-      { id: 18, en: "I love how safe I feel when I'm with you.", vi: "Anh yêu em vì em mang lại cho anh cảm giác an toàn và được che chở." },
-      { id: 19, en: "I love your beautiful heart.", vi: "Anh yêu em vì trái tim nhân hậu, ấm áp và giàu lòng trắc ẩn của em." },
+      { id: 18, en: "I love how safe I feel when I'm with you.", vi: "Anh yêu em vì em mang lại cho anh cảm giác an toàn" },
+      { id: 19, en: "I love your beautiful heart.", vi: "Anh yêu em vì trái tim nhân hậu, ấm áp của em." },
       { id: 20, en: "I love how you always have a special place in my thoughts.", vi: "Anh yêu em vì em luôn chiếm một vị trí vô cùng đặc biệt trong tâm trí anh." },
       { id: 21, en: "I love your voice.", vi: "Anh yêu em vì giọng nói ngọt ngào, êm dịu của em." },
       { id: 22, en: "I love seeing your name on my notifications.", vi: "Anh yêu em vì cảm giác hạnh phúc ngập tràn mỗi khi thấy thông báo tin nhắn từ em." },
       { id: 23, en: "I love every conversation we have.", vi: "Anh yêu em vì mỗi cuộc trò chuyện cùng em đều là những phút giây quý giá." },
-      { id: 24, en: "I love our random jokes.", vi: "Anh yêu em vì những câu đùa ngốc nghếch mà chỉ hai đứa mình hiểu." },
+      { id: 24, en: "I love our random jokes.", vi: "Anh yêu em vì những câu đùa ngốc nghếch." },
       { id: 25, en: "I love our late-night talks.", vi: "Anh yêu em vì những buổi tối hai đứa tâm sự thâu đêm suốt sáng." },
-      { id: 26, en: "I love our little arguments that somehow end with us laughing.", vi: "Anh yêu em vì những lần giận dỗi vu vơ nhưng rồi kết thúc bằng nụ cười hạnh phúc." },
+      { id: 26, en: "I love our little arguments that somehow end with us laughing.", vi: "Anh yêu em vì những lần giận dỗi vu vơ nhưng rồi kết thúc bằng tiếng cười." },
       { id: 27, en: "I love making memories with you.", vi: "Anh yêu em vì anh thích cùng em tạo nên thật nhiều kỷ niệm đẹp." },
       { id: 28, en: "I love taking pictures with you.", vi: "Anh yêu em vì anh thích lưu giữ lại từng khoảnh khắc ngọt ngào bên em." },
       { id: 29, en: "I love looking back at our old memories.", vi: "Anh yêu em vì mỗi khi ngắm lại những kỷ niệm cũ, lòng anh lại dâng tràn biết ơn." },
@@ -839,7 +812,7 @@
       { id: 42, en: "I love your softness.", vi: "Anh yêu em vì nét mềm mại, nhẹ nhàng và nữ tính của em." },
       { id: 43, en: "I love your personality.", vi: "Anh yêu em vì tính cách đáng yêu, chân thật và cuốn hút của em." },
       { id: 44, en: "I love your little reactions.", vi: "Anh yêu em vì những phản ứng nhỏ xíu bất ngờ cực kỳ dễ thương của em." },
-      { id: 45, en: "I love how you get excited about something.", vi: "Anh yêu em vì ánh mắt lấp lánh rạng rỡ của em mỗi khi hào hứng với điều gì đó." },
+      { id: 45, en: "I love how you get excited about something.", vi: "Anh yêu em vì sự đáng yêu của em mỗi khi hào hứng với điều gì đó." },
       { id: 46, en: "I love when you're being silly.", vi: "Anh yêu em vì những lúc em làm trò ngốc nghếch khiến anh bật cười." },
       { id: 47, en: "I love when you're being clingy.", vi: "Anh yêu em vì những lúc em mè nheo, quấn quýt bên anh không rời." },
       { id: 48, en: "I love how you randomly check on me.", vi: "Anh yêu em vì những tin nhắn hỏi han bất ngờ ấm áp của em giữa ngày bận rộn." },
@@ -855,8 +828,8 @@
       { id: 58, en: "I love how you remind me that I'm not alone.", vi: "Anh yêu em vì em luôn nhắc anh nhớ rằng trên đời này anh không bao giờ đơn độc." },
       { id: 59, en: "I love how you always give me something to look forward to.", vi: "Anh yêu em vì em luôn cho anh những điều ngọt ngào để mong ngóng mỗi ngày." },
       { id: 60, en: "I love how you make love feel simple.", vi: "Anh yêu em vì tình yêu bên em thật bình yên, nhẹ nhàng và giản dị." },
-      { id: 61, en: "I love every hug from you.", vi: "Anh yêu em vì từng cái ôm ấm áp của em luôn xua tan mọi mệt mỏi." },
-      { id: 62, en: "I love holding your hand.", vi: "Anh yêu em vì cảm giác bình yên khi bàn tay nhỏ nhắn của em đan chặt vào tay anh." },
+      { id: 61, en: "I love every hug from you.", vi: "Anh yêu em vì mỗi lần quan tâm của em luôn xua tan mọi mệt mỏi." },
+      { id: 62, en: "I love holding your hand.", vi: "Anh yêu em vì cảm giác bình yên khi được ở bên cạnh em" },
       { id: 63, en: "I love being close to you.", vi: "Anh yêu em vì anh chỉ muốn được ở thật gần bên em mãi thôi." },
       { id: 64, en: "I love seeing you happy.", vi: "Anh yêu em vì nhìn thấy em hạnh phúc là niềm vui lớn nhất của đời anh." },
       { id: 65, en: "I love making you laugh.", vi: "Anh yêu em vì anh thích là lý do mang lại tiếng cười cho em." },
@@ -894,7 +867,7 @@
       { id: 97, en: "I love how our love keeps growing stronger.", vi: "Anh yêu em vì tình cảm của hai đứa mình ngày càng bền chặt và sâu sắc qua năm tháng." },
       { id: 98, en: "I love that my heart chose you.", vi: "Anh yêu em vì trái tim anh đã lựa chọn em — lựa chọn đúng đắn nhất đời anh." },
       { id: 99, en: "I love you more than words could ever explain.", vi: "Anh yêu em vì không ngôn từ nào có thể diễn tả hết tình yêu anh dành cho em." },
-      { id: 100, en: "I love you, unconditionally, endlessly, and forever. ❤️", vi: "Anh yêu em, vô điều kiện, bất tận và mãi mãi về sau. ❤️" }
+      { id: 100, en: "I love you, unconditionally, endlessly, and forever. ❤️", vi: "Anh yêu em, đơn giản, vì em là chính em, Nhật Hạ. ❤️" }
     ];
 
     // ========================================================
@@ -1148,7 +1121,7 @@
       const unboxingContainer = document.getElementById('unboxing-container');
       if (box) box.classList.add('gift-opened');
       if (hint) {
-        hint.innerHTML = '✨ Đang mở 100 lý do ngọt ngào... 💖';
+        hint.innerHTML = ' Đang mở...  💖';
         hint.classList.replace('bg-zinc-800', 'bg-rose-600');
       }
 
