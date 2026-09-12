@@ -114,6 +114,36 @@
       background: #d6caa7;
       border-radius: 6px;
     }
+
+    /* Reason cards styling */
+    .reason-card {
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reason-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px -4px rgba(244, 63, 94, 0.16);
+      border-color: rgba(244, 63, 94, 0.4);
+    }
+    .reason-card.is-read {
+      background: rgba(255, 241, 242, 0.85);
+      border-color: rgba(254, 205, 211, 0.9);
+    }
+    .reason-highlight {
+      animation: highlightPulse 2s cubic-bezier(0.16, 1, 0.3, 1);
+      border-color: #f43f5e !important;
+      background: #fff1f2 !important;
+    }
+    @keyframes highlightPulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.6); }
+      35% { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(244, 63, 94, 0.3); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+    }
+    .category-btn.active-cat {
+      background: #f43f5e !important;
+      color: #ffffff !important;
+      border-color: #f43f5e !important;
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative selection:bg-zinc-700 selection:text-amber-100">
@@ -250,6 +280,100 @@
     <!-- ======================== REVEALED TREASURES CONTAINER ======================== -->
     <div id="revealed-treasures" class="hidden space-y-12 transition-all duration-700 opacity-0 translate-y-8">
       
+      <!-- ======================== 100 REASONS WHY I LOVE YOU ======================== -->
+      <div id="reasons-love-card" class="glass-card p-5 sm:p-8 rounded-[2.5rem] border-2 border-rose-300/80 shadow-2xl relative overflow-hidden bg-gradient-to-br from-white/95 via-[#fffbf2]/95 to-rose-50/90">
+        
+        <!-- Subtle background floating glow -->
+        <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-rose-200/40 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-amber-200/40 blur-3xl pointer-events-none"></div>
+
+        <!-- Section Header -->
+        <div class="relative text-center space-y-3 max-w-xl mx-auto mb-7">
+          <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 border border-rose-300/80 text-[11px] font-bold font-cute uppercase tracking-wider shadow-sm">
+            <span>💖</span>
+            <span>Kho Báu Tình Yêu • Dành Riêng Cho <strong class="card-recipient-name">Nhật Hạ</strong></span>
+            <span>💖</span>
+          </div>
+
+          <h2 class="font-cute text-2xl sm:text-4xl font-extrabold text-zinc-800 tracking-tight">
+            100 Lý Do Anh Yêu Em 🎀
+          </h2>
+
+          <p class="text-xs sm:text-sm text-zinc-600 font-cute leading-relaxed">
+            "Từ những nét tính cách đáng yêu, ánh mắt nụ cười cho đến những ước mơ sau này... tất cả đều là lý do anh chọn yêu em mỗi ngày."
+          </p>
+
+          <!-- Interactive Bar: Read Counter & Random Reason Picker -->
+          <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+            <div class="glass-pill px-4 py-1.5 rounded-full text-xs font-cute font-bold text-zinc-700 flex items-center gap-2 border border-rose-200 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+              <span>Đã khám phá: <strong id="reasons-read-count" class="text-rose-600 text-sm font-extrabold">0</strong>/100 lý do 💕</span>
+            </div>
+
+            <button onclick="pickRandomReason()" class="px-4 py-1.5 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white text-xs font-cute font-bold shadow-md hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer">
+              <span>🎲</span>
+              <span>Rút ngẫu nhiên 1 lý do</span>
+            </button>
+          </div>
+
+          <!-- Category Filter Tabs & Search Bar -->
+          <div class="pt-3 space-y-3">
+            <!-- Search Input -->
+            <div class="relative max-w-md mx-auto">
+              <input type="text" id="reasons-search-input" oninput="onSearchReasons(event)" placeholder="🔍 Tìm kiếm lý do (ví dụ: cười, ôm, usagi, trà sữa...)"
+                class="w-full px-4 py-2.5 pl-9 rounded-2xl bg-white/95 border border-stone-300/80 focus:border-rose-400 focus:ring-2 focus:ring-rose-200 text-xs font-cute text-zinc-800 outline-none transition shadow-sm placeholder:text-zinc-400">
+              <svg class="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <button id="clear-search-btn" onclick="clearReasonsSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 text-xs font-bold">✕</button>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 font-cute text-xs">
+              <button onclick="filterReasonsCategory('all')" id="cat-btn-all" class="category-btn active-cat px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
+                Tất cả (100)
+              </button>
+              <button onclick="filterReasonsCategory('cute')" id="cat-btn-cute" class="category-btn px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
+                Đáng yêu 🌸 (25)
+              </button>
+              <button onclick="filterReasonsCategory('moments')" id="cat-btn-moments" class="category-btn px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
+                Khoảnh khắc 📸 (25)
+              </button>
+              <button onclick="filterReasonsCategory('heart')" id="cat-btn-heart" class="category-btn px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
+                Chân thành 💕 (25)
+              </button>
+              <button onclick="filterReasonsCategory('future')" id="cat-btn-future" class="category-btn px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
+                Tương lai 💍 (25)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 100 Reasons Dynamic Grid Container -->
+        <div id="reasons-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 max-h-[600px] overflow-y-auto p-1.5 sm:p-2 rounded-2xl custom-scrollbar">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Empty search state -->
+        <div id="reasons-empty-search" class="hidden text-center py-12 font-cute">
+          <div class="text-3xl mb-2">🔍</div>
+          <p class="text-sm font-bold text-zinc-600">Không tìm thấy lý do nào khớp với từ khóa!</p>
+          <button onclick="clearReasonsSearch()" class="mt-2 text-xs text-rose-500 font-bold underline">Xem tất cả 100 lý do</button>
+        </div>
+
+        <!-- Footnote / Reopen Box -->
+        <div class="mt-6 pt-4 border-t border-rose-200/60 text-center font-cute flex items-center justify-between flex-wrap gap-3">
+          <span class="text-[11px] text-zinc-500">
+            Trọn vẹn 100 lý do yêu thương gửi đến em 💌
+          </span>
+          <button onclick="resetGiftBox()" class="text-xs font-bold text-rose-500 hover:text-rose-700 hover:underline flex items-center gap-1 transition">
+            <span>🎁</span>
+            <span>Mở lại chiếc hộp bí mật</span>
+          </button>
+        </div>
+
+      </div>
+
       <!-- 1. CERTIFICATE OF BIRTHDAY PRIVILEGE (VIP Card) -->
       <div class="glass-card p-6 sm:p-8 rounded-3xl border-2 border-amber-300/80 shadow-2xl relative overflow-hidden bg-gradient-to-br from-white/95 via-[#fffbf0]/95 to-amber-50/90">
         
@@ -344,17 +468,17 @@
     <div class="max-w-xl mx-auto space-y-4">
       
       <p class="text-sm font-bold text-zinc-700">
-        Wishing You A Lifetime Of Happiness & Wonder! ✨
+        
       </p>
 
       <div class="flex items-center justify-center gap-4 text-xs font-bold text-zinc-600">
-        <a href="index.html" class="hover:text-zinc-900 underline underline-offset-4">← Quay lại trang sinh nhật</a>
+        <a href="index.html" class="hover:text-zinc-900 underline underline-offset-4"></a>
         <span>•</span>
-        <button onclick="triggerGiftConfetti()" class="hover:text-zinc-900">Bắn pháo hoa 🎉</button>
+        <button onclick="triggerGiftConfetti()" class="hover:text-zinc-900"></button>
       </div>
 
       <div class="text-[10px] text-zinc-400 font-sans">
-        © 2026 Special Birthday Edition • Made with all warmth & care
+      
       </div>
 
     </div>
@@ -415,7 +539,270 @@
       });
     }
 
-    // Interactive Box Opening
+    // ========================================================
+    // 100 REASONS WHY I LOVE YOU DATABASE
+    // ========================================================
+    const reasonsLove = [
+      { id: 1, cat: 'cute', text: 'Vì nụ cười của em luôn làm cả ngày của anh bừng sáng rực rỡ.' },
+      { id: 2, cat: 'cute', text: 'Vì đôi mắt em lấp lánh như chứa cả bầu trời sao mỗi khi nhìn anh.' },
+      { id: 3, cat: 'cute', text: 'Vì giọng nói ngọt ngào, ấm áp của em luôn mang lại cho anh sự bình yên.' },
+      { id: 4, cat: 'cute', text: 'Vì em hay dỗi vu vơ nhưng lúc dỗi nhìn đáng yêu vô cùng.' },
+      { id: 5, cat: 'cute', text: 'Vì cái cách em cười tít mắt mỗi khi được ăn món em thích.' },
+      { id: 6, cat: 'cute', text: 'Vì mùi hương dịu dàng, quen thuộc trên mái tóc của em.' },
+      { id: 7, cat: 'cute', text: 'Vì bàn tay nhỏ nhắn của em đan chặt vào tay anh ấm áp lạ kỳ.' },
+      { id: 8, cat: 'cute', text: 'Vì cái nhăn mũi dễ thương của em mỗi khi chọc ghẹo anh.' },
+      { id: 9, cat: 'cute', text: 'Vì đôi má ửng hồng mỗi khi em ngại ngùng trước những lời khen của anh.' },
+      { id: 10, cat: 'cute', text: 'Vì cách em chớp mắt ngơ ngác khi đang tập trung suy nghĩ điều gì đó.' },
+      { id: 11, cat: 'cute', text: 'Vì em thích những chú thỏ Usagi dễ thương giống y hệt sự đáng yêu của em vậy.' },
+      { id: 12, cat: 'cute', text: 'Vì giọng cười giòn tan, vô tư của em là giai điệu êm tai nhất thế gian.' },
+      { id: 13, cat: 'cute', text: 'Vì cách em chu môi giận hờn chỉ để chờ anh chạy lại dỗ dành.' },
+      { id: 14, cat: 'cute', text: 'Vì em rất thích được anh xoa đầu và ôm vào lòng cưng chiều.' },
+      { id: 15, cat: 'cute', text: 'Vì vẻ đẹp mộc mạc, tự nhiên của em ngay cả khi không cần son phấn.' },
+      { id: 16, cat: 'cute', text: 'Vì khi em ngủ say trông ngoan ngoãn và bình yên như một thiên thần nhỏ.' },
+      { id: 17, cat: 'cute', text: 'Vì những biểu cảm ngộ nghĩnh, hài hước của em mà chỉ riêng anh mới được thấy.' },
+      { id: 18, cat: 'cute', text: 'Vì em thích uống trà sữa và đôi mắt sáng rực lên mỗi khi được dẫn đi ăn ngon.' },
+      { id: 19, cat: 'cute', text: 'Vì dáng vẻ lóng ngóng, vụng về nhưng cực kỳ nghiêm túc của em lúc thử làm điều mới.' },
+      { id: 20, cat: 'cute', text: 'Vì vẻ ngây thơ, trong sáng và hồn nhiên không bao giờ mất đi ở em.' },
+      { id: 21, cat: 'cute', text: 'Vì em thích được anh nắm tay đút vào túi áo khoác mỗi khi trời lạnh.' },
+      { id: 22, cat: 'cute', text: 'Vì những cái xoa má nhẹ nhàng đầy tình cảm của em.' },
+      { id: 23, cat: 'cute', text: 'Vì cách em bước đi lon ton bên cạnh anh làm anh chỉ muốn che chở mãi.' },
+      { id: 24, cat: 'cute', text: 'Vì em thích những điều giản dị, dễ thương quanh cuộc sống.' },
+      { id: 25, cat: 'cute', text: 'Vì em luôn là cô gái đáng yêu nhất trong mắt anh, không ai có thể thay thế.' },
+
+      { id: 26, cat: 'moments', text: 'Vì em luôn kiên nhẫn lắng nghe anh tâm sự, dù là những chuyện linh tinh nhất.' },
+      { id: 27, cat: 'moments', text: 'Vì em luôn lo lắng, dặn dò anh ăn uống đầy đủ mỗi khi anh làm việc khuya.' },
+      { id: 28, cat: 'moments', text: 'Vì em là người đầu tiên anh muốn nhắn tin chia sẻ mỗi khi có niềm vui mới.' },
+      { id: 29, cat: 'moments', text: 'Vì em cũng là người đầu tiên anh tìm đến khi lòng gặp nhiều muộn phiền.' },
+      { id: 30, cat: 'moments', text: 'Vì những tin nhắn chúc buổi sáng tốt lành và chúc ngủ ngon ấm áp của em.' },
+      { id: 31, cat: 'moments', text: 'Vì cách em ôm anh thật chặt từ phía sau mỗi khi hai đứa cùng đi xe.' },
+      { id: 32, cat: 'moments', text: 'Vì những câu chuyện vu vơ của em kể hoài từ ngày này qua tháng khác không thấy chán.' },
+      { id: 33, cat: 'moments', text: 'Vì em luôn nhớ chính xác những ngày kỷ niệm và sở thích nhỏ bé của anh.' },
+      { id: 34, cat: 'moments', text: 'Vì những cái ôm bất ngờ, ấm sưởi tan đi cái lạnh của mùa đông.' },
+      { id: 35, cat: 'moments', text: 'Vì mỗi bản tình ca hay anh nghe được, người đầu tiên anh nghĩ đến luôn là em.' },
+      { id: 36, cat: 'moments', text: 'Vì ánh nhìn dịu dàng, ấm áp em dành cho anh giữa chốn đông người.' },
+      { id: 37, cat: 'moments', text: 'Vì mỗi bức ảnh chụp em trong điện thoại anh đều là một kho báu vô giá.' },
+      { id: 38, cat: 'moments', text: 'Vì cách em hào hứng kể cho anh nghe từng chi tiết nhỏ về một ngày của em.' },
+      { id: 39, cat: 'moments', text: 'Vì những nụ hôn nhẹ nhàng, bất ngờ em dành tặng anh.' },
+      { id: 40, cat: 'moments', text: 'Vì những lần hai đứa mình nhìn vào mắt nhau rồi bỗng nhiên cùng bật cười vô cớ.' },
+      { id: 41, cat: 'moments', text: 'Vì dáng vẻ chăm chỉ, tập trung của em lúc học tập và làm việc cực kỳ cuốn hút.' },
+      { id: 42, cat: 'moments', text: 'Vì cách em tựa nhẹ đầu vào vai anh mỗi khi thấy mệt mỏi.' },
+      { id: 43, cat: 'moments', text: 'Vì em đã cùng anh biến những con phố bình thường thành nơi ngập tràn kỷ niệm đẹp.' },
+      { id: 44, cat: 'moments', text: 'Vì thời gian ở bên cạnh em luôn trôi qua nhanh đến mức anh chỉ muốn níu lại.' },
+      { id: 45, cat: 'moments', text: 'Vì những lần em bất ngờ chuẩn bị những món quà nhỏ làm anh xúc động.' },
+      { id: 46, cat: 'moments', text: 'Vì em luôn dành cho anh những cái nắm tay thật chặt giữa phố đông.' },
+      { id: 47, cat: 'moments', text: 'Vì những tối hai đứa cùng chuyện trò thâu đêm suốt sáng mà không biết chán.' },
+      { id: 48, cat: 'moments', text: 'Vì cách em tự hào mỉm cười mỗi khi kể về anh với bạn bè.' },
+      { id: 49, cat: 'moments', text: 'Vì những buổi chiều bình yên được cùng em đón hoàng hôn lãng mạn.' },
+      { id: 50, cat: 'moments', text: 'Vì từng giây phút trôi qua bên em đều là những ký ức đẹp đẽ nhất thanh xuân của anh.' },
+
+      { id: 51, cat: 'heart', text: 'Vì em có một trái tim vô cùng nhân hậu, ấm áp và biết yêu thương mọi người.' },
+      { id: 52, cat: 'heart', text: 'Vì sự dịu dàng của em luôn xua tan mọi mệt mỏi, áp lực của cuộc sống ngoài kia.' },
+      { id: 53, cat: 'heart', text: 'Vì em luôn ủng hộ và đặt niềm tin tuyệt đối vào mọi ước mơ, quyết định của anh.' },
+      { id: 54, cat: 'heart', text: 'Vì em thấu hiểu và bao dung cho những khuyết điểm, vụng về của anh.' },
+      { id: 55, cat: 'heart', text: 'Vì khi ở bên cạnh em, anh được là chính bản thân mình một cách tự nhiên nhất.' },
+      { id: 56, cat: 'heart', text: 'Vì em không bao giờ phán xét những điều ngốc nghếch hay kỳ lạ của anh.' },
+      { id: 57, cat: 'heart', text: 'Vì em luôn kiên nhẫn với tính khí đôi khi bướng bỉnh và khó chiều của anh.' },
+      { id: 58, cat: 'heart', text: 'Vì em là nơi chốn bình yên nhất mà trái tim anh luôn khao khát được trở về.' },
+      { id: 59, cat: 'heart', text: 'Vì em truyền cho anh nguồn năng lượng tích cực và động lực để nỗ lực mỗi ngày.' },
+      { id: 60, cat: 'heart', text: 'Vì em không ngần ngại mở lòng, chia sẻ những tâm tư sâu kín nhất cùng anh.' },
+      { id: 61, cat: 'heart', text: 'Vì sự chân thành, thủy chung và một lòng một dạ của em.' },
+      { id: 62, cat: 'heart', text: 'Vì em luôn biết cách làm dịu đi những cơn nóng giận, bốc đồng của anh.' },
+      { id: 63, cat: 'heart', text: 'Vì em dạy cho anh hiểu thế nào là yêu một người bằng cả tấm lòng.' },
+      { id: 64, cat: 'heart', text: 'Vì em đã đồng hành cùng anh vượt qua những giai đoạn chênh vênh, khó khăn nhất.' },
+      { id: 65, cat: 'heart', text: 'Vì em cho anh cảm giác an toàn, tin tưởng tuyệt đối mà không ai khác mang lại được.' },
+      { id: 66, cat: 'heart', text: 'Vì em chân thật, thẳng thắn và không bao giờ giả tạo với cảm xúc của mình.' },
+      { id: 67, cat: 'heart', text: 'Vì em luôn biết trân trọng và ghi nhận những điều nhỏ bé anh làm cho em.' },
+      { id: 68, cat: 'heart', text: 'Vì sự độc lập, mạnh mẽ và bản lĩnh đáng khâm phục bên trong vẻ ngoài nhỏ nhắn.' },
+      { id: 69, cat: 'heart', text: 'Vì em luôn tha thứ cho những lúc anh vô tâm hay làm em buồn.' },
+      { id: 70, cat: 'heart', text: 'Vì em yêu anh bằng chính con người thật của anh, không đòi hỏi anh phải là ai khác.' },
+      { id: 71, cat: 'heart', text: 'Vì mỗi lần nghĩ đến em, lồng ngực anh lại dâng trào cảm giác ấm áp và biết ơn.' },
+      { id: 72, cat: 'heart', text: 'Vì lòng bao dung và sự ấm áp của em luôn sưởi ấm tâm hồn anh.' },
+      { id: 73, cat: 'heart', text: 'Vì em là người bạn tri kỷ tuyệt vời nhất mà cuộc đời đã mang tới cho anh.' },
+      { id: 74, cat: 'heart', text: 'Vì ngay cả khi hai đứa chỉ im lặng ngồi cạnh nhau, anh vẫn cảm nhận trọn vẹn tình yêu.' },
+      { id: 75, cat: 'heart', text: 'Vì em khiến anh tin rằng trên đời này thực sự có một tình yêu chân thành và bền chặt.' },
+
+      { id: 76, cat: 'future', text: 'Vì em làm cho tương lai của anh trở nên rạng rỡ và tràn đầy hy vọng.' },
+      { id: 77, cat: 'future', text: 'Vì anh muốn là người chăm sóc, bảo vệ em suốt cả cuộc đời này.' },
+      { id: 78, cat: 'future', text: 'Vì em làm cho anh khao khát trở thành một người đàn ông tốt hơn, vững vàng hơn.' },
+      { id: 79, cat: 'future', text: 'Vì em cùng anh chia sẻ những ước mơ về ngôi nhà nhỏ ấm cúng trong tương lai.' },
+      { id: 80, cat: 'future', text: 'Vì anh muốn được thức dậy mỗi sáng và nhìn thấy khuôn mặt em đầu tiên.' },
+      { id: 81, cat: 'future', text: 'Vì anh muốn cùng em đi du lịch, khám phá mọi miền đất tươi đẹp trên thế giới.' },
+      { id: 82, cat: 'future', text: 'Vì anh muốn cùng em già đi, ngắm nhìn những vết chân chim mà vẫn yêu em tha thiết.' },
+      { id: 83, cat: 'future', text: 'Vì anh muốn là bờ vai vững chắc nhất để em tựa vào mỗi khi gặp bão giông.' },
+      { id: 84, cat: 'future', text: 'Vì anh muốn cùng em sẻ chia mọi vui buồn, cay đắng ngọt bùi của cuộc đời.' },
+      { id: 85, cat: 'future', text: 'Vì anh muốn nấu cho em những bữa ăn ngon sau những ngày em làm việc mệt nhoài.' },
+      { id: 86, cat: 'future', text: 'Vì anh muốn dắt tay em đi qua mọi mùa xuân, hạ, thu, đông của năm tháng.' },
+      { id: 87, cat: 'future', text: 'Vì em là nguồn cảm hứng bất tận để anh cố gắng không ngừng nghỉ.' },
+      { id: 88, cat: 'future', text: 'Vì anh muốn cùng em nuôi dưỡng những ước mơ chung của hai đứa.' },
+      { id: 89, cat: 'future', text: 'Vì anh muốn là người lau khô những giọt nước mắt mỗi khi em khóc.' },
+      { id: 90, cat: 'future', text: 'Vì anh muốn là người đầu tiên chúc mừng sinh nhật em trong tất cả những năm tháng sau này.' },
+      { id: 91, cat: 'future', text: 'Vì anh muốn cùng em trang trí cây thông Noel và đón giao thừa mỗi năm.' },
+      { id: 92, cat: 'future', text: 'Vì anh muốn được nắm chặt tay em bước vào lễ đường thiêng liêng.' },
+      { id: 93, cat: 'future', text: 'Vì bất cứ khi nào em quay đầu lại, anh đều luôn ở đó chờ em.' },
+      { id: 94, cat: 'future', text: 'Vì anh tin chắc rằng không một ai trên thế gian này có thể yêu em nhiều hơn anh.' },
+      { id: 95, cat: 'future', text: 'Vì em là món quà sinh nhật kỳ diệu và quý giá nhất mà tạo hóa đã gửi đến bên anh.' },
+      { id: 96, cat: 'future', text: 'Vì em là khởi đầu, là hiện tại và là cả tương lai trọn vẹn của anh.' },
+      { id: 97, cat: 'future', text: 'Vì tình yêu anh dành cho em mỗi ngày chỉ có nhiều hơn, chưa từng một lần vơi bớt.' },
+      { id: 98, cat: 'future', text: 'Vì em là người con gái duy nhất chiếm trọn vẹn trái tim và tâm trí anh.' },
+      { id: 99, cat: 'future', text: 'Vì em là Nhật Hạ độc nhất vô nhị, là bầu trời bình yên và rực rỡ của riêng anh.' },
+      { id: 100, cat: 'future', text: 'Vì đơn giản: Anh yêu em vì chính là em — yêu tất cả những gì thuộc về em, mãi mãi không đổi thay! ❤️' }
+    ];
+
+    let currentFilterCat = 'all';
+    let searchKeyword = '';
+    let readReasonsSet = new Set();
+
+    try {
+      const savedRead = localStorage.getItem('luxury_birthday_read_reasons');
+      if (savedRead) readReasonsSet = new Set(JSON.parse(savedRead));
+    } catch(e) {}
+
+    function renderReasons() {
+      const grid = document.getElementById('reasons-grid');
+      const emptyState = document.getElementById('reasons-empty-search');
+      const countEl = document.getElementById('reasons-read-count');
+      if (!grid) return;
+
+      const filtered = reasonsLove.filter(r => {
+        const matchCat = currentFilterCat === 'all' || r.cat === currentFilterCat;
+        const matchKw = !searchKeyword || r.text.toLowerCase().includes(searchKeyword);
+        return matchCat && matchKw;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        if (emptyState) emptyState.classList.remove('hidden');
+      } else {
+        if (emptyState) emptyState.classList.add('hidden');
+        grid.innerHTML = filtered.map(r => {
+          const isRead = readReasonsSet.has(r.id);
+          const numStr = r.id < 10 ? '0' + r.id : r.id;
+          return `
+            <div id="reason-card-${r.id}" onclick="toggleReadReason(${r.id})"
+              class="reason-card p-3.5 sm:p-4 rounded-2xl bg-white/95 border ${isRead ? 'is-read border-rose-300' : 'border-rose-100'} shadow-sm hover:shadow-md cursor-pointer relative group flex items-start gap-3 select-none">
+              <div class="w-8 h-8 rounded-xl ${isRead ? 'bg-rose-500 text-white' : 'bg-rose-50 text-rose-600'} border border-rose-200 flex items-center justify-center font-cute font-extrabold text-xs shrink-0 group-hover:bg-rose-500 group-hover:text-white transition-colors">
+                ${numStr}
+              </div>
+              <div class="flex-1 min-w-0 pt-0.5">
+                <p class="font-cute text-xs sm:text-sm text-zinc-700 leading-relaxed group-hover:text-zinc-900 transition-colors">
+                  ${r.text}
+                </p>
+              </div>
+              <button onclick="event.stopPropagation(); toggleReadReason(${r.id})" class="text-rose-400 hover:text-rose-600 p-1 shrink-0 transition-transform active:scale-125" title="Thả tim lý do này">
+                <span id="heart-icon-${r.id}" class="text-sm sm:text-base">${isRead ? '💖' : '🤍'}</span>
+              </button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (countEl) countEl.textContent = readReasonsSet.size;
+    }
+
+    function toggleReadReason(id) {
+      if (readReasonsSet.has(id)) {
+        readReasonsSet.delete(id);
+      } else {
+        readReasonsSet.add(id);
+        playChime(659.25, 0.3); // Note E5
+        spawnCardHeart(id);
+      }
+      try {
+        localStorage.setItem('luxury_birthday_read_reasons', JSON.stringify([...readReasonsSet]));
+      } catch(e) {}
+      renderReasons();
+    }
+
+    function spawnCardHeart(id) {
+      const card = document.getElementById('reason-card-' + id);
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const heart = document.createElement('div');
+      heart.textContent = '💖';
+      heart.style.position = 'fixed';
+      heart.style.left = (rect.right - 35) + 'px';
+      heart.style.top = (rect.top + 10) + 'px';
+      heart.style.fontSize = '18px';
+      heart.style.pointerEvents = 'none';
+      heart.style.zIndex = '99999';
+      heart.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.3, 1)';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.style.transform = 'translateY(-40px) scale(1.4)';
+        heart.style.opacity = '0';
+      }, 20);
+      setTimeout(() => heart.remove(), 850);
+    }
+
+    function pickRandomReason() {
+      // If currently filtered or empty, reset to all
+      if (currentFilterCat !== 'all' || searchKeyword) {
+        currentFilterCat = 'all';
+        searchKeyword = '';
+        const searchInput = document.getElementById('reasons-search-input');
+        if (searchInput) searchInput.value = '';
+        const clearBtn = document.getElementById('clear-search-btn');
+        if (clearBtn) clearBtn.classList.add('hidden');
+        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active-cat'));
+        const allBtn = document.getElementById('cat-btn-all');
+        if (allBtn) allBtn.classList.add('active-cat');
+        renderReasons();
+      }
+
+      const randomId = Math.floor(Math.random() * reasonsLove.length) + 1;
+      const card = document.getElementById('reason-card-' + randomId);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.remove('reason-highlight');
+        void card.offsetWidth; // trigger reflow
+        card.classList.add('reason-highlight');
+
+        if (!readReasonsSet.has(randomId)) {
+          readReasonsSet.add(randomId);
+          try {
+            localStorage.setItem('luxury_birthday_read_reasons', JSON.stringify([...readReasonsSet]));
+          } catch(e) {}
+          const countEl = document.getElementById('reasons-read-count');
+          if (countEl) countEl.textContent = readReasonsSet.size;
+          const heartIcon = document.getElementById('heart-icon-' + randomId);
+          if (heartIcon) heartIcon.textContent = '💖';
+          card.classList.add('is-read', 'border-rose-300');
+        }
+
+        playFanfareChime();
+        triggerGiftConfetti();
+      }
+    }
+
+    function filterReasonsCategory(cat) {
+      currentFilterCat = cat;
+      document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active-cat'));
+      const activeBtn = document.getElementById('cat-btn-' + cat);
+      if (activeBtn) activeBtn.classList.add('active-cat');
+      renderReasons();
+    }
+
+    function onSearchReasons(e) {
+      searchKeyword = e.target.value.trim().toLowerCase();
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (clearBtn) {
+        if (searchKeyword) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
+      renderReasons();
+    }
+
+    function clearReasonsSearch() {
+      const searchInput = document.getElementById('reasons-search-input');
+      if (searchInput) searchInput.value = '';
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      searchKeyword = '';
+      renderReasons();
+    }
+
+    // Interactive Box Opening with Vanishing Animation
     function openGiftBox() {
       if (isBoxOpened) {
         triggerGiftConfetti();
@@ -423,7 +810,7 @@
       }
       isBoxOpened = true;
 
-      // Play chime
+      // Play fanfare chime
       playFanfareChime();
 
       // Confetti burst
@@ -432,21 +819,69 @@
       // Lid animation
       const box = document.getElementById('gift-box-interactive');
       const hint = document.getElementById('gift-click-hint');
+      const unboxingContainer = document.getElementById('unboxing-container');
       if (box) box.classList.add('gift-opened');
       if (hint) {
-        hint.innerHTML = '✨ Đã mở hộp quà thành công! ✨';
+        hint.innerHTML = '✨ Đang mở 100 lý do ngọt ngào... 💖';
         hint.classList.replace('bg-zinc-800', 'bg-rose-600');
       }
 
-      // Reveal contents smoothly
+      // Render reasons list
+      renderReasons();
+
+      // Make gift box disappear smoothly after opening, revealing 100 reasons
+      setTimeout(() => {
+        if (unboxingContainer) {
+          unboxingContainer.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          unboxingContainer.style.opacity = '0';
+          unboxingContainer.style.transform = 'scale(0.8) translateY(-25px)';
+          unboxingContainer.style.pointerEvents = 'none';
+          setTimeout(() => {
+            unboxingContainer.style.display = 'none';
+          }, 600);
+        }
+
+        // Reveal contents smoothly
+        const treasures = document.getElementById('revealed-treasures');
+        if (treasures) {
+          treasures.classList.remove('hidden');
+          setTimeout(() => {
+            treasures.classList.remove('opacity-0', 'translate-y-8');
+            treasures.classList.add('opacity-100', 'translate-y-0');
+            treasures.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            triggerGiftConfetti();
+          }, 150);
+        }
+      }, 750);
+    }
+
+    function resetGiftBox() {
+      isBoxOpened = false;
+      const unboxingContainer = document.getElementById('unboxing-container');
+      const box = document.getElementById('gift-box-interactive');
+      const hint = document.getElementById('gift-click-hint');
       const treasures = document.getElementById('revealed-treasures');
+
       if (treasures) {
-        treasures.classList.remove('hidden');
+        treasures.classList.add('opacity-0', 'translate-y-8');
         setTimeout(() => {
-          treasures.classList.remove('opacity-0', 'translate-y-8');
-          treasures.classList.add('opacity-100', 'translate-y-0');
-          treasures.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 150);
+          treasures.classList.add('hidden');
+        }, 500);
+      }
+
+      if (unboxingContainer) {
+        unboxingContainer.style.display = 'block';
+        setTimeout(() => {
+          unboxingContainer.style.opacity = '1';
+          unboxingContainer.style.transform = 'scale(1) translateY(0)';
+          unboxingContainer.style.pointerEvents = 'auto';
+          if (box) box.classList.remove('gift-opened');
+          if (hint) {
+            hint.innerHTML = '<span class="animate-bounce">👉</span> Chạm vào hộp quà để mở nè! 🎀';
+            hint.classList.replace('bg-rose-600', 'bg-zinc-800');
+          }
+          unboxingContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
       }
     }
 
@@ -480,9 +915,10 @@
       }, 250);
     }
 
-    // Auto-fire celebratory confetti on entry
+    // Auto-fire celebratory confetti on entry & initialize reasons
     window.addEventListener('DOMContentLoaded', () => {
       loadRecipientName();
+      renderReasons();
       setTimeout(triggerGiftConfetti, 500);
     });
   </script>
