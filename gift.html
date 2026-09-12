@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Món Quà Bí Mật | Happy Birthday Special Gift</title>
+  <title>Món Quà Bí Mật | Chúc Mừng Sinh Nhật Nhật Hạ</title>
   <meta name="description" content="Trang quà tặng bí mật ngọt ngào dành tặng người đặc biệt.">
 
   <!-- Google Fonts: Baloo 2, Comfortaa, Nunito, Caveat -->
@@ -384,20 +384,20 @@
                 <span id="music-circle-icon" class="text-xs font-bold ml-0.5">▶</span>
               </span>
               <span id="music-status-text" class="text-[11px] sm:text-xs font-cute font-extrabold tracking-wider uppercase text-rose-600 group-hover:text-rose-700">
-                TAP THE BUTTON TO PLAY THE MUSIC
+                CHẠM ĐỂ BẬT NHẠC • ĐỂ DÀNH CHO EM
               </span>
               <span id="music-pulse-indicator" class="hidden text-xs">🎵</span>
             </button>
           </div>
 
-          <!-- Stylized Title 100 REASONS -->
-          <div class="font-serif uppercase text-rose-500 font-extrabold tracking-[0.28em] text-base sm:text-2xl drop-shadow-sm select-none">
-            100 REASONS
+          <!-- Stylized Title: 100 LÝ DO -->
+          <div class="font-serif uppercase text-rose-500 font-extrabold tracking-[0.25em] text-lg sm:text-2xl drop-shadow-sm select-none">
+            100 LÝ DO
           </div>
 
-          <!-- Calligraphy Cursive 'Why' -->
-          <div class="font-vibes text-7xl sm:text-9xl text-white font-normal -my-5 sm:-my-8 drop-shadow-[0_4px_16px_rgba(244,63,94,0.4)] select-none">
-            Why
+          <!-- Calligraphy Cursive 'Anh Yêu Em' -->
+          <div class="font-vibes text-6xl sm:text-8xl text-white font-normal -my-3 sm:-my-6 drop-shadow-[0_4px_16px_rgba(244,63,94,0.4)] select-none">
+            Anh Yêu Em
           </div>
 
           <!-- Dedication Pill -->
@@ -439,11 +439,7 @@
 
                 <!-- Control Buttons -->
                 <div class="flex items-center gap-1.5 flex-wrap">
-                  <!-- Language Toggle (EN / VI) -->
-                  <button id="btn-lang-toggle" onclick="toggleReasonLanguage()" class="px-2.5 py-1 rounded-full bg-rose-100/80 hover:bg-rose-200 text-rose-700 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Chuyển đổi ngôn ngữ Tiếng Anh / Tiếng Việt">
-                    <span id="lang-flag">🇻🇳</span>
-                    <span id="lang-label">Tiếng Việt</span>
-                  </button>
+                  
 
                   <!-- Pause / Resume -->
                   <button id="btn-toggle-reveal" onclick="togglePauseResumeReveal()" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Tạm dừng / Tiếp tục">
@@ -485,10 +481,10 @@
             <div id="reasons-completed-banner" class="hidden mt-8 p-5 rounded-2xl bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border-2 border-rose-200 text-center space-y-2.5">
               <div class="text-3xl animate-bounce">💖 🎂 🎉</div>
               <h3 class="font-cute font-extrabold text-base sm:text-lg text-zinc-800">
-                100 Reasons Why I Love <span class="card-recipient-name">Nhật Hạ</span>! 💕
+                100 Lý Do Anh Yêu <span class="card-recipient-name">Nhật Hạ</span>! 💕
               </h3>
               <p class="text-xs sm:text-sm text-zinc-600 font-cute leading-relaxed">
-                "And there are millions more reasons I want to spend my whole life loving you..."
+                "Và còn hàng triệu lý do nữa để anh muốn dành trọn cả cuộc đời này yêu em..."
               </p>
               <button onclick="triggerGiftConfetti()" class="mt-2 px-5 py-2 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-cute font-bold shadow-md transition hover:scale-105 active:scale-95 cursor-pointer">
                 🎉 Thả pháo hoa chúc mừng
@@ -497,7 +493,7 @@
 
             <!-- Footer note inside card bottom -->
             <div class="text-center pt-6 pb-2 text-[11px] sm:text-xs font-cute text-zinc-400 border-t border-rose-100/70 mt-6 select-none">
-              <span>Designed with Love for <strong class="card-recipient-name text-rose-500">Nhật Hạ</strong> 💕</span>
+              <span>Thiết kế với tất cả tình yêu dành cho <strong class="card-recipient-name text-rose-500">Nhật Hạ</strong> 💕</span>
             </div>
 
           </div>
@@ -518,7 +514,7 @@
 
 
     <!-- ======================== BACKGROUND MUSIC AUDIO ======================== -->
-  <audio id="bg-audio" preload="auto" loop>
+  <audio id="bg-audio" preload="auto" loop autoplay>
     <source src="assets/de-danh-cho-em.mp3" type="audio/mpeg">
   </audio>
 </main>
@@ -548,7 +544,7 @@
   <script>
     let isBoxOpened = false;
     let audioCtx = null;
-    let currentLang = 'en'; // Default English matching the Canva / TikTok template!
+    let currentLang = 'vi'; // Default English matching the Canva / TikTok template!
 
     // Load recipient name with fallback to 'Nhật Hạ'
     function loadRecipientName() {
@@ -766,7 +762,7 @@
           circleIcon.classList.remove('ml-0.5');
         }
         if (statusText) {
-          statusText.textContent = 'TAP TO PAUSE • ĐỂ DÀNH CHO EM';
+          statusText.textContent = 'CHẠM ĐỂ TẠM DỪNG • ĐỂ DÀNH CHO EM';
         }
         if (pulseIndicator) pulseIndicator.classList.remove('hidden');
         if (quickBtn) quickBtn.classList.add('ring-2', 'ring-rose-300', 'bg-rose-50/90');
@@ -776,10 +772,42 @@
           circleIcon.classList.add('ml-0.5');
         }
         if (statusText) {
-          statusText.textContent = 'TAP THE BUTTON TO PLAY THE MUSIC';
+          statusText.textContent = 'CHẠM ĐỂ BẬT NHẠC • ĐỂ DÀNH CHO EM';
         }
         if (pulseIndicator) pulseIndicator.classList.add('hidden');
         if (quickBtn) quickBtn.classList.remove('ring-2', 'ring-rose-300', 'bg-rose-50/90');
+      }
+    }
+
+    function tryPlayBackgroundMusic() {
+      if (!audioElement) {
+        audioElement = document.getElementById('bg-audio');
+      }
+      if (!audioElement) return;
+
+      audioElement.volume = 0.35;
+      const playPromise = audioElement.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isMusicPlaying = true;
+          updateMusicUI();
+        }).catch(err => {
+          console.log('Autoplay waiting for first user interaction gesture:', err);
+          const onFirstInteraction = () => {
+            if (audioElement && audioElement.paused) {
+              audioElement.play().then(() => {
+                isMusicPlaying = true;
+                updateMusicUI();
+              }).catch(() => {});
+            }
+            ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(e => {
+              document.removeEventListener(e, onFirstInteraction);
+            });
+          };
+          ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(e => {
+            document.addEventListener(e, onFirstInteraction, { once: true, passive: true });
+          });
+        });
       }
     }
 
@@ -1054,7 +1082,7 @@
       div.className = 'reason-row flex items-start gap-2 py-1.5 px-2 rounded-xl transition-all duration-200 hover:bg-rose-50/70 cursor-pointer select-none group ' + (animate ? 'reason-entering' : '');
       div.onclick = () => onReasonRowClick(r.id);
 
-      const textToShow = currentLang === 'en' ? r.en : r.vi;
+      const textToShow = r.vi;
       const isHearted = heartedReasonsSet.has(r.id);
 
       div.innerHTML = (
@@ -1297,7 +1325,11 @@
     window.addEventListener('DOMContentLoaded', () => {
       loadRecipientName();
       renderDrawerPlaylist();
+      tryPlayBackgroundMusic();
       setTimeout(triggerGiftConfetti, 500);
+    });
+    window.addEventListener('load', () => {
+      tryPlayBackgroundMusic();
     });
   </script>
 </body>
