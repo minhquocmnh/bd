@@ -544,13 +544,7 @@
       }
     }
 
-    function playFanfareChime() {
-      const notes = [523.25, 659.25, 783.99, 1046.50];
-      notes.forEach((f, idx) => {
-        setTimeout(() => playChime(f, 0.45, 0.15), idx * 110);
-      });
-    }
-
+    function playFanfareChime() {}
     function playMelodicChime(id) {}
 
     // ========================================================
@@ -1095,7 +1089,6 @@
         banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       triggerGiftConfetti();
-      playFanfareChime();
     }
 
     function onReasonRowClick(id) {
@@ -1145,9 +1138,6 @@
         return;
       }
       isBoxOpened = true;
-
-      // Play fanfare chime
-      playFanfareChime();
 
       // Confetti burst
       triggerGiftConfetti();
