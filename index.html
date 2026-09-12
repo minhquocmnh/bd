@@ -674,7 +674,7 @@
               </li>
             </ul>
             <p class="pt-3 font-hand text-2xl text-zinc-700 font-bold">
-              "Em không cần phải giống bất kỳ ai, vì một Nhật Hạ nguyên bản đã là món quà quý giá nhất rồi"
+              
             </p>
           </div>
 
@@ -953,15 +953,15 @@
         <div class="rounded-2xl bg-zinc-800/80 border border-zinc-700/60 p-3 shadow-inner">
           <div class="flex items-center justify-between gap-3 mb-2.5">
             <div class="flex items-center gap-3 overflow-hidden">
-              <div id="spotify-cover-box" class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">
-                ÷
+              <div id="spotify-cover-box" class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">
+                🌸
               </div>
               <div class="min-w-0">
                 <div id="spotify-track-title" class="text-sm font-bold text-zinc-100 truncate font-cute">
-                  Perfect
+                  Từ Ngày Em Đến
                 </div>
                 <div id="spotify-track-artist" class="text-xs text-zinc-400 truncate font-cute">
-                  Ed Sheeran
+                  Da LAB
                 </div>
               </div>
             </div>
@@ -977,11 +977,11 @@
           <!-- Progress Bar & Time -->
           <div class="space-y-1">
             <div class="relative w-full h-2 bg-zinc-700/80 rounded-full cursor-pointer overflow-hidden" onclick="seekStationTrack(event)">
-              <div id="station-progress-bar" class="h-full bg-gradient-to-r from-amber-400 to-rose-400 rounded-full transition-all duration-300" style="width: 32%;"></div>
+              <div id="station-progress-bar" class="h-full bg-gradient-to-r from-amber-400 to-rose-400 rounded-full transition-all duration-300" style="width: 0%;"></div>
             </div>
             <div class="flex items-center justify-between text-[10px] font-mono text-zinc-400">
-              <span id="station-time-cur">01:24</span>
-              <span id="station-time-total">04:23</span>
+              <span id="station-time-cur">00:00</span>
+              <span id="station-time-total">04:30</span>
             </div>
           </div>
 
@@ -1035,7 +1035,7 @@
           <div class="relative w-full aspect-video">
             <iframe id="station-yt-iframe"
               class="w-full h-full"
-              src="https://www.youtube-nocookie.com/embed/2Vv-BfVoq4g?enablejsapi=1"
+              src="https://www.youtube-nocookie.com/embed/AmvA-XJF0j8?enablejsapi=1"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1123,7 +1123,7 @@
             <!-- Label Footer -->
             <div class="text-center pt-1 z-10">
               <div id="cassette-label-title" class="font-cute font-extrabold text-xs text-zinc-800 tracking-wide truncate">
-                Perfect • Ed Sheeran
+                Từ Ngày Em Đến • Da LAB
               </div>
               <div class="text-[9px] text-zinc-500 font-cute">
                 Mixtape Sinh Nhật 2026
@@ -1140,8 +1140,8 @@
             <div class="flex items-center gap-2.5">
               <span class="text-xs font-bold text-zinc-400 font-mono">01</span>
               <div>
-                <div class="text-xs font-bold text-zinc-800">Perfect</div>
-                <div class="text-[10px] text-zinc-500 font-medium">Ed Sheeran</div>
+                <div class="text-xs font-bold text-zinc-800">Từ Ngày Em Đến</div>
+                <div class="text-[10px] text-zinc-500 font-medium">Da LAB</div>
               </div>
             </div>
             <div id="track-indicator-0" class="flex items-center gap-1">
@@ -1155,8 +1155,8 @@
             <div class="flex items-center gap-2.5">
               <span class="text-xs font-bold text-zinc-400 font-mono">02</span>
               <div>
-                <div class="text-xs font-bold text-zinc-800">All of Me</div>
-                <div class="text-[10px] text-zinc-500 font-medium">John Legend</div>
+                <div class="text-xs font-bold text-zinc-800">In Love</div>
+                <div class="text-[10px] text-zinc-500 font-medium">Low G x JustaTee</div>
               </div>
             </div>
             <div id="track-indicator-1" class="hidden flex items-center gap-1">
@@ -1170,8 +1170,8 @@
             <div class="flex items-center gap-2.5">
               <span class="text-xs font-bold text-zinc-400 font-mono">03</span>
               <div>
-                <div class="text-xs font-bold text-zinc-800">Happy Birthday</div>
-                <div class="text-[10px] text-zinc-500 font-medium">Lofi Celesta Music Box</div>
+                <div class="text-xs font-bold text-zinc-800">Thế Giới Đã Mất Đi Một Người Cô Đơn</div>
+                <div class="text-[10px] text-zinc-500 font-medium">marzuz x Onionn</div>
               </div>
             </div>
             <div id="track-indicator-2" class="hidden flex items-center gap-1">
@@ -1183,7 +1183,7 @@
           <!-- Status indicator -->
           <div class="pt-2 text-[11px] text-zinc-500 font-medium flex items-center gap-2 border-t border-stone-300/80">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Đang phát: <strong id="cassette-playing-label" class="text-zinc-800 font-bold">Perfect</strong></span>
+            <span>Đang phát: <strong id="cassette-playing-label" class="text-zinc-800 font-bold">Từ Ngày Em Đến</strong></span>
           </div>
 
         </div>
@@ -1461,44 +1461,45 @@
       let currentTrackIndex = 0;
       let musicBoxTimeouts = [];
       let musicBoxLoopTimeout = null;
-      let stationPlaybackSec = 84; // 01:24 start preview
+      let stationPlaybackSec = 0; // start at 0
       let stationProgressInterval = null;
 
       const stationTracks = [
         {
           id: 0,
-          title: 'Perfect',
-          artist: 'Ed Sheeran',
-          coverText: '÷',
-          coverBg: '#0096c7',
-          durationSec: 263, // 04:23
-          durationStr: '04:23',
-          ytId: '2Vv-BfVoq4g',
+          title: 'Từ Ngày Em Đến',
+          artist: 'Da LAB',
+          coverText: '🌸',
+          coverBg: '#e11d48',
+          durationSec: 270, // 04:30
+          durationStr: '04:30',
+          ytId: 'AmvA-XJF0j8',
           type: 'audio',
           audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
         },
         {
           id: 1,
-          title: 'All of Me',
-          artist: 'John Legend',
-          coverText: '🎹',
-          coverBg: '#374151',
-          durationSec: 307, // 05:07
-          durationStr: '05:07',
-          ytId: '450p7goxZqg',
+          title: 'In Love',
+          artist: 'Low G x JustaTee',
+          coverText: '⚡',
+          coverBg: '#6366f1',
+          durationSec: 201, // 03:21
+          durationStr: '03:21',
+          ytId: 'T7ksmtaVeOk',
           type: 'audio',
           audioUrl: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=piano-moment-9835.mp3'
         },
         {
           id: 2,
-          title: 'Happy Birthday',
-          artist: 'Lofi Celesta Music Box',
-          coverText: '🎂',
-          coverBg: '#ef6877',
-          durationSec: 150, // 02:30
-          durationStr: '02:30',
-          ytId: 'nl62hhiBMOM',
-          type: 'synth-birthday'
+          title: 'Thế Giới Đã Mất Đi Một Người Cô Đơn',
+          artist: 'marzuz x Onionn',
+          coverText: '✨',
+          coverBg: '#8b5cf6',
+          durationSec: 201, // 03:21
+          durationStr: '03:21',
+          ytId: 'SDNEti5YyJU',
+          type: 'audio',
+          audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
         }
       ];
 
@@ -1736,20 +1737,24 @@
         initWebAudio();
         const track = stationTracks[currentTrackIndex];
 
+        stopMusicBox();
         if (track.type === 'synth-birthday') {
           audioElement.pause();
           startMusicBox();
           setPlayingState(true);
-        } else {
-          stopMusicBox();
+        } else if (track.audioUrl) {
           audioElement.src = track.audioUrl;
           audioElement.volume = drawerVolumeSlider ? drawerVolumeSlider.value : 0.7;
           audioElement.play().then(() => {
             setPlayingState(true);
           }).catch(e => {
-            console.warn('External audio play blocked, falling back to Music Box', e);
-            window.selectStationTrack(2);
+            console.warn('External audio play notice:', e);
+            startMusicBox();
+            setPlayingState(true);
           });
+        } else {
+          startMusicBox();
+          setPlayingState(true);
         }
       }
 
@@ -1763,11 +1768,33 @@
         isPlaying = false;
         stopMusicBox();
         audioElement.pause();
+        const ytIframe = document.getElementById('station-yt-iframe');
+        if (ytIframe && ytIframe.contentWindow) {
+          try {
+            ytIframe.contentWindow.postMessage(JSON.stringify({
+              event: 'command',
+              func: 'pauseVideo',
+              args: ''
+            }), '*');
+          } catch(e) {}
+        }
         setPlayingState(false);
       }
 
       function setPlayingState(playing) {
         isPlaying = playing;
+
+        // Sync with YouTube iframe player
+        const ytIframe = document.getElementById('station-yt-iframe');
+        if (ytIframe && ytIframe.contentWindow) {
+          try {
+            ytIframe.contentWindow.postMessage(JSON.stringify({
+              event: 'command',
+              func: playing ? 'playVideo' : 'pauseVideo',
+              args: ''
+            }), '*');
+          } catch(e) {}
+        }
 
         // 1. Drawer toggle tab disk spinning & indicator dot
         const toggleDisk = document.getElementById('drawer-toggle-disk');
