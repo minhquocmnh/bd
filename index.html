@@ -1028,6 +1028,22 @@
           </div>
         </div>
 
+        <!-- Collapsible YouTube Preview Embed (Muted) -->
+        <div class="mt-3 rounded-xl overflow-hidden bg-black/50 border border-zinc-800">
+          <div class="relative w-full aspect-video">
+            <iframe id="station-yt-iframe"
+              class="w-full h-full"
+              src="https://www.youtube-nocookie.com/embed/AmvA-XJF0j8?enablejsapi=1&mute=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              onload="try{this.contentWindow.postMessage(JSON.stringify({event:'command',func:'mute',args:''}),'*');}catch(e){}"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
       </div>
 
       <!-- CARD 2: VINTAGE CASSETTE TAPE & TRACKLIST -->
@@ -1710,6 +1726,12 @@
         stationPlaybackSec = 0;
         updateStationProgressUI();
 
+        // 4. Update YouTube Iframe Video (always muted)
+        const ytIframe = document.getElementById('station-yt-iframe');
+        if (ytIframe && track.ytId) {
+          ytIframe.src = 'https://www.youtube-nocookie.com/embed/' + track.ytId + '?enablejsapi=1&mute=1' + (autoPlay || isPlaying ? '&autoplay=1' : '');
+        }
+
         // 5. Update Floating Player Title
         if (currentTrackTitle) currentTrackTitle.textContent = track.title + ' • ' + track.artist;
 
@@ -1781,11 +1803,38 @@
         isPlaying = false;
         stopMusicBox();
         if (audioElement) audioElement.pause();
+        const ytIframe = document.getElementById('station-yt-iframe');
+        if (ytIframe && ytIframe.contentWindow) {
+          try {
+            ytIframe.contentWindow.postMessage(JSON.stringify({
+              event: 'command',
+              func: 'pauseVideo',
+              args: ''
+            }), '*');
+          } catch(e) {}
+        }
         setPlayingState(false);
       }
 
       function setPlayingState(playing) {
         isPlaying = playing;
+
+        // Sync with YouTube iframe player (always keep muted)
+        const ytIframe = document.getElementById('station-yt-iframe');
+        if (ytIframe && ytIframe.contentWindow) {
+          try {
+            ytIframe.contentWindow.postMessage(JSON.stringify({
+              event: 'command',
+              func: 'mute',
+              args: ''
+            }), '*');
+            ytIframe.contentWindow.postMessage(JSON.stringify({
+              event: 'command',
+              func: playing ? 'playVideo' : 'pauseVideo',
+              args: ''
+            }), '*');
+          } catch(e) {}
+        }
 
         // 1. Drawer toggle tab disk spinning & indicator dot
         const toggleDisk = document.getElementById('drawer-toggle-disk');
