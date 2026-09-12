@@ -9,7 +9,7 @@
   <!-- Google Fonts: Baloo 2, Comfortaa, Nunito, Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@600;700&family=Comfortaa:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@600;700&family=Comfortaa:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -21,6 +21,8 @@
             sans: ['"Nunito"', '"Comfortaa"', 'sans-serif'],
             cute: ['"Baloo 2"', '"Comfortaa"', 'cursive', 'sans-serif'],
             hand: ['"Caveat"', 'cursive'],
+            vibes: ['"Great Vibes"', 'cursive'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
           }
         }
       }
@@ -144,6 +146,53 @@
       border-color: #f43f5e !important;
       box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);
     }
+  
+    /* Reason Appearance Animation */
+    @keyframes reasonSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+        background-color: rgba(254, 205, 211, 0.75);
+      }
+      40% {
+        opacity: 1;
+        transform: translateY(-2px);
+        background-color: rgba(254, 226, 226, 0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        background-color: transparent;
+      }
+    }
+    .reason-entering {
+      animation: reasonSlideIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Disk spin for music */
+    @keyframes diskSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .drawer-disk-spin {
+      animation: diskSpin 3.5s linear infinite;
+    }
+    .drawer-disk-paused {
+      animation-play-state: paused;
+    }
+
+    /* Left Music Drawer */
+    #music-drawer {
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #music-drawer.drawer-open {
+      transform: translateX(0);
+    }
+    #music-drawer-backdrop.backdrop-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative selection:bg-zinc-700 selection:text-amber-100">
@@ -280,99 +329,204 @@
     <!-- ======================== REVEALED TREASURES CONTAINER ======================== -->
     <div id="revealed-treasures" class="hidden space-y-12 transition-all duration-700 opacity-0 translate-y-8">
       
-      <!-- ======================== 100 REASONS WHY I LOVE YOU ======================== -->
-      <div id="reasons-love-card" class="glass-card p-5 sm:p-8 rounded-[2.5rem] border-2 border-rose-300/80 shadow-2xl relative overflow-hidden bg-gradient-to-br from-white/95 via-[#fffbf2]/95 to-rose-50/90">
+            <!-- ======================== 100 REASONS WHY I LOVE YOU (TIKTOK STYLE) ======================== -->
+      <div id="reasons-love-card" class="rounded-[2.5rem] p-4 sm:p-8 bg-gradient-to-b from-rose-200/60 via-pink-100/50 to-amber-100/40 border border-rose-300/50 shadow-2xl relative overflow-hidden">
         
-        <!-- Subtle background floating glow -->
-        <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-rose-200/40 blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-amber-200/40 blur-3xl pointer-events-none"></div>
+        <!-- Subtle background glow -->
+        <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-rose-300/30 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 -left-12 w-64 h-64 rounded-full bg-pink-200/30 blur-3xl pointer-events-none"></div>
 
-        <!-- Section Header -->
-        <div class="relative text-center space-y-3 max-w-xl mx-auto mb-7">
-          <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-700 border border-rose-300/80 text-[11px] font-bold font-cute uppercase tracking-wider shadow-sm">
-            <span>💖</span>
-            <span>Kho Báu Tình Yêu • Dành Riêng Cho <strong class="card-recipient-name">Nhật Hạ</strong></span>
-            <span>💖</span>
+        <!-- Section Header (Matching Screenshot) -->
+        <div class="relative text-center max-w-xl mx-auto mb-6 sm:mb-8 pt-2">
+          
+          <!-- Stylized Title -->
+          <div class="font-serif uppercase text-rose-500 font-extrabold tracking-[0.25em] text-sm sm:text-xl drop-shadow-sm select-none">
+            100 REASONS
           </div>
 
-          <h2 class="font-cute text-2xl sm:text-4xl font-extrabold text-zinc-800 tracking-tight">
-            100 Lý Do Anh Yêu Em 🎀
+          <!-- Cursive Calligraphy 'Why' -->
+          <div class="font-vibes text-7xl sm:text-9xl text-white font-normal -my-5 sm:-my-8 drop-shadow-[0_4px_16px_rgba(244,63,94,0.45)] select-none">
+            Why
+          </div>
+
+          <h2 class="font-serif italic text-2xl sm:text-4xl font-bold text-zinc-800 tracking-tight select-none">
+            I Love You 💕
           </h2>
 
-          <p class="text-xs sm:text-sm text-zinc-600 font-cute leading-relaxed">
-            "Từ những nét tính cách đáng yêu, ánh mắt nụ cười cho đến những ước mơ sau này... tất cả đều là lý do anh chọn yêu em mỗi ngày."
-          </p>
-
-          <!-- Interactive Bar: Read Counter & Random Reason Picker -->
-          <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
-            <div class="glass-pill px-4 py-1.5 rounded-full text-xs font-cute font-bold text-zinc-700 flex items-center gap-2 border border-rose-200 shadow-sm">
-              <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-              <span>Đã khám phá: <strong id="reasons-read-count" class="text-rose-600 text-sm font-extrabold">0</strong>/100 lý do 💕</span>
+          <!-- Recipient Badge -->
+          <div class="pt-2">
+            <div class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-white/90 border border-rose-200 text-rose-700 text-xs font-cute font-bold shadow-sm">
+              <span>🌸</span> Dành riêng cho <strong class="card-recipient-name">Nhật Hạ</strong> <span>🌸</span>
             </div>
+          </div>
 
-            <button onclick="pickRandomReason()" class="px-4 py-1.5 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white text-xs font-cute font-bold shadow-md hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer">
-              <span>🎲</span>
-              <span>Rút ngẫu nhiên 1 lý do</span>
+          <!-- Tap To Play Music Prompt -->
+          <div class="pt-3">
+            <button id="music-badge-btn" onclick="togglePlayMusic()" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-cute font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer">
+              <span id="music-badge-icon" class="w-4 h-4 rounded-full bg-white text-rose-600 flex items-center justify-center text-[10px]">▶</span>
+              <span id="music-badge-text">TAP THE BUTTON TO PLAY THE MUSIC ♫</span>
             </button>
           </div>
 
-          <!-- Category Filter Tabs & Search Bar -->
-          <div class="pt-3 space-y-3">
-            <!-- Search Input -->
-            <div class="relative max-w-md mx-auto">
-              <input type="text" id="reasons-search-input" oninput="onSearchReasons(event)" placeholder="🔍 Tìm kiếm lý do (ví dụ: cười, ôm, usagi, trà sữa...)"
-                class="w-full px-4 py-2.5 pl-9 rounded-2xl bg-white/95 border border-stone-300/80 focus:border-rose-400 focus:ring-2 focus:ring-rose-200 text-xs font-cute text-zinc-800 outline-none transition shadow-sm placeholder:text-zinc-400">
-              <svg class="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-              </svg>
-              <button id="clear-search-btn" onclick="clearReasonsSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 text-xs font-bold">✕</button>
-            </div>
+        </div>
 
-            <!-- Filter Categories -->
-            <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 font-cute text-xs">
-              <button onclick="filterReasonsCategory('all')" id="cat-btn-all" class="category-btn active-cat px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
-                Tất cả (100)
-              </button>
-              <button onclick="filterReasonsCategory('cute')" id="cat-btn-cute" class="category-btn px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
-                Đáng yêu 🌸 (25)
-              </button>
-              <button onclick="filterReasonsCategory('moments')" id="cat-btn-moments" class="category-btn px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
-                Khoảnh khắc 📸 (25)
-              </button>
-              <button onclick="filterReasonsCategory('heart')" id="cat-btn-heart" class="category-btn px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
-                Chân thành 💕 (25)
-              </button>
-              <button onclick="filterReasonsCategory('future')" id="cat-btn-future" class="category-btn px-3 py-1.5 rounded-full bg-white/90 border border-stone-300/80 text-zinc-700 hover:text-rose-600 font-bold transition-all shadow-sm">
-                Tương lai 💍 (25)
-              </button>
-            </div>
+        <!-- ======================== WHITE PAPER DOCUMENT SHEET ======================== -->
+        <div class="relative max-w-2xl mx-auto my-2">
+          
+          <!-- PLUMERIA FLOWER 1: Top Right Corner -->
+          <div class="absolute -top-7 -right-5 sm:-top-10 sm:-right-8 z-30 pointer-events-none drop-shadow-xl rotate-12">
+            <svg viewBox="-60 -60 120 120" class="w-20 h-20 sm:w-28 sm:h-28">
+              <defs>
+                <linearGradient id="plumGradA" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stop-color="#f59e0b" />
+                  <stop offset="25%" stop-color="#fef08a" />
+                  <stop offset="60%" stop-color="#ffffff" />
+                  <stop offset="85%" stop-color="#fbcfe8" />
+                  <stop offset="100%" stop-color="#f472b6" />
+                </linearGradient>
+                <radialGradient id="plumCoreA">
+                  <stop offset="0%" stop-color="#d97706" />
+                  <stop offset="45%" stop-color="#fbbf24" />
+                  <stop offset="100%" stop-color="#fef08a" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+              <g>
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(72)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(144)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(216)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(288)" fill="url(#plumGradA)" />
+                <circle cx="0" cy="0" r="14" fill="url(#plumCoreA)" />
+              </g>
+            </svg>
           </div>
-        </div>
 
-        <!-- 100 Reasons Dynamic Grid Container -->
-        <div id="reasons-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 max-h-[600px] overflow-y-auto p-1.5 sm:p-2 rounded-2xl custom-scrollbar">
-          <!-- Dynamically populated via JS -->
-        </div>
+          <!-- PLUMERIA FLOWER 2: Mid-Left Edge -->
+          <div class="absolute top-1/4 -left-5 sm:-left-8 z-30 pointer-events-none drop-shadow-lg -rotate-12">
+            <svg viewBox="-60 -60 120 120" class="w-16 h-16 sm:w-24 sm:h-24">
+              <g>
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(72)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(144)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(216)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(288)" fill="url(#plumGradA)" />
+                <circle cx="0" cy="0" r="14" fill="url(#plumCoreA)" />
+              </g>
+            </svg>
+          </div>
 
-        <!-- Empty search state -->
-        <div id="reasons-empty-search" class="hidden text-center py-12 font-cute">
-          <div class="text-3xl mb-2">🔍</div>
-          <p class="text-sm font-bold text-zinc-600">Không tìm thấy lý do nào khớp với từ khóa!</p>
-          <button onclick="clearReasonsSearch()" class="mt-2 text-xs text-rose-500 font-bold underline">Xem tất cả 100 lý do</button>
-        </div>
+          <!-- PLUMERIA FLOWER 3: Bottom-Right Edge -->
+          <div class="absolute -bottom-6 -right-5 sm:-bottom-8 sm:-right-7 z-30 pointer-events-none drop-shadow-xl rotate-45">
+            <svg viewBox="-60 -60 120 120" class="w-20 h-20 sm:w-28 sm:h-28">
+              <g>
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(72)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(144)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(216)" fill="url(#plumGradA)" />
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" transform="rotate(288)" fill="url(#plumGradA)" />
+                <circle cx="0" cy="0" r="14" fill="url(#plumCoreA)" />
+              </g>
+            </svg>
+          </div>
 
-        <!-- Footnote / Reopen Box -->
-        <div class="mt-6 pt-4 border-t border-rose-200/60 text-center font-cute flex items-center justify-between flex-wrap gap-3">
-          <span class="text-[11px] text-zinc-500">
-            Trọn vẹn 100 lý do yêu thương gửi đến em 💌
-          </span>
-          <button onclick="resetGiftBox()" class="text-xs font-bold text-rose-500 hover:text-rose-700 hover:underline flex items-center gap-1 transition">
-            <span>🎁</span>
-            <span>Mở lại chiếc hộp bí mật</span>
-          </button>
+          <!-- FLOATING PETAL: Lower Left -->
+          <div class="absolute bottom-1/4 -left-3 sm:-left-4 z-30 pointer-events-none opacity-85 rotate-30 drop-shadow-sm">
+            <svg viewBox="-30 -30 60 60" class="w-8 h-8 sm:w-10 sm:h-10">
+              <g>
+                <path d="M 0,0 C -15,-18 -22,-38 -6,-48 C 12,-52 24,-32 10,-12 Z" fill="url(#plumGradA)" />
+                <circle cx="0" cy="0" r="8" fill="url(#plumCoreA)" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- THE WHITE PAPER BODY -->
+          <div class="bg-white rounded-3xl border border-rose-100/90 shadow-[0_25px_60px_-15px_rgba(244,63,94,0.18)] p-5 sm:p-9 relative z-10 overflow-hidden">
+            
+            <!-- Subtle Watermark -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.03] select-none font-vibes text-9xl text-rose-600 whitespace-nowrap">
+              Nhật Hạ
+            </div>
+
+            <!-- Controls & Progress Toolbar -->
+            <div class="border-b border-rose-100 pb-4 mb-4">
+              <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-cute">
+                
+                <!-- Status indicator -->
+                <div class="flex items-center gap-2">
+                  <span id="reveal-pulse-dot" class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+                  <span class="text-zinc-600">Đang xuất hiện: <strong id="reveal-count-display" class="text-rose-600 text-sm font-extrabold">0</strong>/100 lý do 💕</span>
+                </div>
+                
+                <!-- Controls -->
+                <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                  <button id="btn-toggle-reveal" onclick="togglePauseResumeReveal()" class="px-3 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Tạm dừng / Tiếp tục xuất hiện">
+                    <span id="btn-toggle-reveal-icon">⏸️</span>
+                    <span id="btn-toggle-reveal-text">Tạm dừng</span>
+                  </button>
+                  <button onclick="cycleRevealSpeed()" class="px-3 py-1 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Thay đổi tốc độ">
+                    <span>⚡</span>
+                    <span id="speed-label">1x</span>
+                  </button>
+                  <button onclick="revealAllReasonsInstantly()" class="px-3 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 border border-zinc-200 font-bold transition active:scale-95 shadow-sm cursor-pointer" title="Xem trọn vẹn 100 lý do ngay lập tức">
+                    Hiện tất cả
+                  </button>
+                  <button onclick="restartSequentialReveal()" class="px-2.5 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 border border-zinc-200 font-bold transition active:scale-95 cursor-pointer" title="Phát lại từ đầu">
+                    🔄
+                  </button>
+                </div>
+
+              </div>
+
+              <!-- Progress bar track -->
+              <div class="w-full bg-rose-100/70 h-1.5 rounded-full overflow-hidden mt-3">
+                <div id="reveal-progress-bar" class="bg-gradient-to-r from-rose-400 via-pink-500 to-rose-600 h-full rounded-full transition-all duration-300" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Search Filter Bar -->
+            <div class="mb-4">
+              <div class="relative">
+                <input type="text" id="reasons-filter-input" oninput="onFilterReasonsInput(event)" placeholder="🔍 Tìm kiếm nhanh trong 100 lý do (ví dụ: cười, ôm, trà sữa, usagi...)"
+                  class="w-full px-3.5 py-2 pl-9 rounded-xl bg-rose-50/40 border border-rose-200 focus:border-rose-400 focus:bg-white text-xs font-cute text-zinc-800 outline-none transition placeholder:text-zinc-400">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs">🔍</span>
+                <button id="clear-filter-btn" onclick="clearReasonsFilter()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 text-xs font-bold cursor-pointer">✕</button>
+              </div>
+            </div>
+
+            <!-- Reasons Paper Flow (Where 100 reasons appear sequentially!) -->
+            <div id="reasons-paper-flow" class="max-h-[580px] overflow-y-auto custom-scrollbar pr-1 sm:pr-2 space-y-3 scroll-smooth">
+              <!-- Dynamically populated one by one via JS -->
+            </div>
+
+            <!-- Completed Banner -->
+            <div id="reasons-completed-banner" class="hidden mt-6 p-5 rounded-2xl bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border-2 border-rose-200 text-center space-y-2">
+              <div class="text-3xl animate-bounce">💖 🎂 🎉</div>
+              <h3 class="font-cute font-extrabold text-base sm:text-lg text-zinc-800">
+                Đã mở trọn vẹn 100 lý do anh yêu Nhật Hạ! 💕
+              </h3>
+              <p class="text-xs sm:text-sm text-zinc-600 font-cute leading-relaxed">
+                "Mỗi ngày trôi qua, anh lại tìm thấy thêm một lý do mới để yêu em nhiều hơn hôm qua. Chúc em tuổi mới luôn rực rỡ, bình an và hạnh phúc bên anh nhé!"
+              </p>
+              <button onclick="triggerGiftConfetti()" class="mt-2 px-4 py-1.5 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-cute font-bold shadow-md transition hover:scale-105 active:scale-95 cursor-pointer">
+                🎉 Thả pháo hoa chúc mừng
+              </button>
+            </div>
+
+            <!-- Reopen Gift Box -->
+            <div class="mt-6 pt-4 border-t border-rose-100 flex items-center justify-between text-xs font-cute text-zinc-500">
+              <span>Trọn vẹn 100 lý do gửi trọn yêu thương 💌</span>
+              <button onclick="resetGiftBox()" class="text-rose-500 font-bold hover:underline flex items-center gap-1 transition cursor-pointer">
+                <span>🎁</span>
+                <span>Mở lại chiếc hộp bí mật</span>
+              </button>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
+
 
       <!-- 1. CERTIFICATE OF BIRTHDAY PRIVILEGE (VIP Card) -->
       <div class="glass-card p-6 sm:p-8 rounded-3xl border-2 border-amber-300/80 shadow-2xl relative overflow-hidden bg-gradient-to-br from-white/95 via-[#fffbf0]/95 to-amber-50/90">
@@ -486,25 +640,28 @@
 
   <!-- ======================== JAVASCRIPT ======================== -->
   <script>
+
     let isBoxOpened = false;
     let audioCtx = null;
 
-    // Load recipient name from localStorage if set in index.html
+    // Load recipient name with fallback to 'Nhật Hạ'
     function loadRecipientName() {
       const saved = localStorage.getItem('luxury_birthday_recipient_name');
-      const name = saved && saved.trim() ? saved.trim() : 'Bạn';
+      const name = saved && saved.trim() ? saved.trim() : 'Nhật Hạ';
 
       const navEl = document.getElementById('nav-recipient-name');
       const titleEl = document.getElementById('title-recipient-name');
       const cardEl = document.getElementById('card-recipient-name');
+      const allRecipientEls = document.querySelectorAll('.card-recipient-name');
 
       if (navEl) navEl.textContent = name;
       if (titleEl) titleEl.textContent = name;
       if (cardEl) cardEl.textContent = name;
+      allRecipientEls.forEach(el => el.textContent = name);
     }
 
-    // Audio chime bell
-    function playChime(freq, duration = 0.4) {
+    // Audio chime bell using Web Audio API
+    function playChime(freq, duration = 0.35, vol = 0.12) {
       try {
         if (!audioCtx) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -520,13 +677,13 @@
 
         const now = audioCtx.currentTime;
         gain.gain.setValueAtTime(0.001, now);
-        gain.gain.exponentialRampToValueAtTime(0.18, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(vol, now + 0.02);
         gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start(now);
-        osc.stop(now + duration + 0.1);
+        osc.stop(now + duration + 0.05);
       } catch (e) {
         console.warn('Audio chime error:', e);
       }
@@ -535,14 +692,226 @@
     function playFanfareChime() {
       const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
       notes.forEach((f, idx) => {
-        setTimeout(() => playChime(f, 0.5), idx * 110);
+        setTimeout(() => playChime(f, 0.45, 0.15), idx * 110);
       });
     }
 
+    // Pentatonic scale for sequential reason chime
+    const pentatonicNotes = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
+    function playMelodicChime(id) {
+      const freq = pentatonicNotes[id % pentatonicNotes.length];
+      playChime(freq, 0.22, 0.05);
+    }
+
     // ========================================================
-    // 100 REASONS WHY I LOVE YOU DATABASE
+    // PLAYLIST & BACKGROUND MUSIC ENGINE
     // ========================================================
-    const reasonsLove = [
+    const tracks = [
+      {
+        id: 0,
+        title: 'Từ Ngày Em Đến',
+        artist: 'Da LAB',
+        coverText: '🌸',
+        coverBg: '#e11d48',
+        durationSec: 270,
+        durationStr: '04:30',
+        audioUrl: 'assets/tu-ngay-em-den.mp3'
+      },
+      {
+        id: 1,
+        title: 'In Love',
+        artist: 'Low G x JustaTee',
+        coverText: '⚡',
+        coverBg: '#6366f1',
+        durationSec: 201,
+        durationStr: '03:21',
+        audioUrl: 'assets/in-love.mp3'
+      },
+      {
+        id: 2,
+        title: 'Thế Giới Đã Mất Đi Một Người Cô Đơn',
+        artist: 'marzuz x Onionn',
+        coverText: '✨',
+        coverBg: '#8b5cf6',
+        durationSec: 201,
+        durationStr: '03:21',
+        audioUrl: 'assets/the-gioi-da-mat-di-mot-nguoi-co-don.mp3'
+      }
+    ];
+
+    let currentTrackIdx = 0;
+    let isMusicPlaying = false;
+    const audioElement = document.getElementById('bg-audio');
+
+    function renderDrawerPlaylist() {
+      const container = document.getElementById('drawer-tracklist');
+      if (!container) return;
+      container.innerHTML = tracks.map((t, idx) => {
+        const isActive = idx === currentTrackIdx;
+        return (
+          '<div onclick="selectDrawerTrack(' + idx + ')" ' +
+          'class="flex items-center justify-between p-2.5 rounded-2xl cursor-pointer transition-all duration-200 ' + (isActive ? 'bg-rose-950/70 border border-rose-500/50 text-white' : 'bg-zinc-800/40 hover:bg-zinc-800/80 text-zinc-300 border border-transparent') + '">' +
+            '<div class="flex items-center gap-2.5 overflow-hidden">' +
+              '<div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm shrink-0" style="background-color: ' + t.coverBg + '">' +
+                t.coverText +
+              '</div>' +
+              '<div class="min-w-0">' +
+                '<div class="text-xs font-bold truncate font-cute ' + (isActive ? 'text-rose-300' : 'text-zinc-200') + '">' + t.title + '</div>' +
+                '<div class="text-[10px] text-zinc-400 truncate font-cute">' + t.artist + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="text-[10px] font-mono text-zinc-400 shrink-0">' + t.durationStr + '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    function toggleMusicDrawer(force) {
+      const drawer = document.getElementById('music-drawer');
+      const backdrop = document.getElementById('music-drawer-backdrop');
+      if (!drawer || !backdrop) return;
+      const isOpen = drawer.classList.contains('drawer-open');
+      const shouldOpen = force !== undefined ? force : !isOpen;
+
+      if (shouldOpen) {
+        drawer.classList.add('drawer-open');
+        backdrop.classList.add('backdrop-open');
+      } else {
+        drawer.classList.remove('drawer-open');
+        backdrop.classList.remove('backdrop-open');
+      }
+    }
+
+    function selectDrawerTrack(idx) {
+      currentTrackIdx = idx;
+      const track = tracks[idx];
+      if (audioElement) {
+        audioElement.src = track.audioUrl;
+        audioElement.currentTime = 0;
+        audioElement.play().then(() => {
+          isMusicPlaying = true;
+          updateMusicUI();
+        }).catch(e => console.log('Audio play note:', e));
+      }
+      renderDrawerPlaylist();
+    }
+
+    function toggleStationPlay() {
+      if (!audioElement) return;
+      if (audioElement.paused) {
+        audioElement.play().then(() => {
+          isMusicPlaying = true;
+          updateMusicUI();
+        }).catch(e => console.log('Audio error:', e));
+      } else {
+        audioElement.pause();
+        isMusicPlaying = false;
+        updateMusicUI();
+      }
+    }
+
+    function togglePlayMusic() {
+      toggleStationPlay();
+    }
+
+    function nextStationTrack() {
+      currentTrackIdx = (currentTrackIdx + 1) % tracks.length;
+      selectDrawerTrack(currentTrackIdx);
+    }
+
+    function prevStationTrack() {
+      currentTrackIdx = (currentTrackIdx - 1 + tracks.length) % tracks.length;
+      selectDrawerTrack(currentTrackIdx);
+    }
+
+    function onDrawerVolumeChange(e) {
+      const vol = parseFloat(e.target.value);
+      if (audioElement) audioElement.volume = vol;
+    }
+
+    function seekStationTrack(e) {
+      if (!audioElement || isNaN(audioElement.duration)) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      audioElement.currentTime = pct * audioElement.duration;
+    }
+
+    function updateMusicUI() {
+      const track = tracks[currentTrackIdx];
+      const playIcon = document.getElementById('station-play-icon');
+      const pauseIcon = document.getElementById('station-pause-icon');
+      const badgeIcon = document.getElementById('music-badge-icon');
+      const badgeText = document.getElementById('music-badge-text');
+      const drawerDisk = document.getElementById('drawer-toggle-disk');
+      const toggleIndicator = document.getElementById('drawer-toggle-indicator');
+      const spotifyTitle = document.getElementById('spotify-track-title');
+      const spotifyArtist = document.getElementById('spotify-track-artist');
+      const spotifyCover = document.getElementById('spotify-cover-box');
+
+      if (spotifyTitle) spotifyTitle.textContent = track.title;
+      if (spotifyArtist) spotifyArtist.textContent = track.artist;
+      if (spotifyCover) {
+        spotifyCover.textContent = track.coverText;
+        spotifyCover.style.backgroundColor = track.coverBg;
+      }
+
+      if (isMusicPlaying) {
+        if (playIcon) playIcon.classList.add('hidden');
+        if (pauseIcon) pauseIcon.classList.remove('hidden');
+        if (badgeIcon) badgeIcon.textContent = '⏸';
+        if (badgeText) badgeText.textContent = 'TẠM DỪNG NHẠC ♫';
+        if (drawerDisk) {
+          drawerDisk.classList.remove('drawer-disk-paused');
+          drawerDisk.classList.add('drawer-disk-spin');
+        }
+        if (toggleIndicator) {
+          toggleIndicator.classList.replace('bg-zinc-500', 'bg-rose-500');
+          toggleIndicator.classList.add('animate-ping');
+        }
+      } else {
+        if (playIcon) playIcon.classList.remove('hidden');
+        if (pauseIcon) pauseIcon.classList.add('hidden');
+        if (badgeIcon) badgeIcon.textContent = '▶';
+        if (badgeText) badgeText.textContent = 'TAP THE BUTTON TO PLAY THE MUSIC ♫';
+        if (drawerDisk) drawerDisk.classList.add('drawer-disk-paused');
+        if (toggleIndicator) {
+          toggleIndicator.classList.replace('bg-rose-500', 'bg-zinc-500');
+          toggleIndicator.classList.remove('animate-ping');
+        }
+      }
+      renderDrawerPlaylist();
+    }
+
+    if (audioElement) {
+      audioElement.volume = 0.3;
+      audioElement.ontimeupdate = function() {
+        const curEl = document.getElementById('station-time-cur');
+        const totalEl = document.getElementById('station-time-total');
+        const barEl = document.getElementById('station-progress-bar');
+        if (!isNaN(audioElement.duration) && audioElement.duration > 0) {
+          const cur = audioElement.currentTime;
+          const total = audioElement.duration;
+          const pct = (cur / total) * 100;
+          if (barEl) barEl.style.width = pct + '%';
+          if (curEl) {
+            const m = Math.floor(cur / 60);
+            const s = Math.floor(cur % 60);
+            curEl.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+          }
+          if (totalEl) {
+            const tm = Math.floor(total / 60);
+            const ts = Math.floor(total % 60);
+            totalEl.textContent = (tm < 10 ? '0' : '') + tm + ':' + (ts < 10 ? '0' : '') + ts;
+          }
+        }
+      };
+      audioElement.onended = function() {
+        nextStationTrack();
+      };
+    }
+
+const reasonsLove = [
       { id: 1, cat: 'cute', text: 'Vì nụ cười của em luôn làm cả ngày của anh bừng sáng rực rỡ.' },
       { id: 2, cat: 'cute', text: 'Vì đôi mắt em lấp lánh như chứa cả bầu trời sao mỗi khi nhìn anh.' },
       { id: 3, cat: 'cute', text: 'Vì giọng nói ngọt ngào, ấm áp của em luôn mang lại cho anh sự bình yên.' },
@@ -645,164 +1014,274 @@
       { id: 97, cat: 'future', text: 'Vì tình yêu anh dành cho em mỗi ngày chỉ có nhiều hơn, chưa từng một lần vơi bớt.' },
       { id: 98, cat: 'future', text: 'Vì em là người con gái duy nhất chiếm trọn vẹn trái tim và tâm trí anh.' },
       { id: 99, cat: 'future', text: 'Vì em là Nhật Hạ độc nhất vô nhị, là bầu trời bình yên và rực rỡ của riêng anh.' },
-      { id: 100, cat: 'future', text: 'Vì đơn giản: Anh yêu em vì chính là em — yêu tất cả những gì thuộc về em, mãi mãi không đổi thay! ❤️' }
+      { id: 100, cat: 'future', text: 'Vì đơn giản: Em chính là em — yêu tất cả những gì thuộc về em, mãi mãi không đổi thay! ❤️' }
     ];
 
-    let currentFilterCat = 'all';
-    let searchKeyword = '';
-    let readReasonsSet = new Set();
+    // ========================================================
+    // SEQUENTIAL REVEAL ENGINE FOR 100 REASONS
+    // ========================================================
+    let currentRevealIdx = 0; // 0 to 100
+    let isRevealPlaying = false;
+    let revealTimer = null;
+    let revealSpeedMs = 550; // default interval ms
+    const speedOptions = [
+      { label: '1x', ms: 550 },
+      { label: '1.5x', ms: 350 },
+      { label: '2.5x', ms: 180 }
+    ];
+    let currentSpeedIdx = 0;
+    let heartedReasonsSet = new Set();
+    let isFilterActive = false;
 
     try {
-      const savedRead = localStorage.getItem('luxury_birthday_read_reasons');
-      if (savedRead) readReasonsSet = new Set(JSON.parse(savedRead));
+      const savedHearts = localStorage.getItem('luxury_birthday_hearted_reasons');
+      if (savedHearts) heartedReasonsSet = new Set(JSON.parse(savedHearts));
     } catch(e) {}
 
-    function renderReasons() {
-      const grid = document.getElementById('reasons-grid');
-      const emptyState = document.getElementById('reasons-empty-search');
-      const countEl = document.getElementById('reasons-read-count');
-      if (!grid) return;
-
-      const filtered = reasonsLove.filter(r => {
-        const matchCat = currentFilterCat === 'all' || r.cat === currentFilterCat;
-        const matchKw = !searchKeyword || r.text.toLowerCase().includes(searchKeyword);
-        return matchCat && matchKw;
-      });
-
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        if (emptyState) emptyState.classList.remove('hidden');
-      } else {
-        if (emptyState) emptyState.classList.add('hidden');
-        grid.innerHTML = filtered.map(r => {
-          const isRead = readReasonsSet.has(r.id);
-          const numStr = r.id < 10 ? '0' + r.id : r.id;
-          return `
-            <div id="reason-card-${r.id}" onclick="toggleReadReason(${r.id})"
-              class="reason-card p-3.5 sm:p-4 rounded-2xl bg-white/95 border ${isRead ? 'is-read border-rose-300' : 'border-rose-100'} shadow-sm hover:shadow-md cursor-pointer relative group flex items-start gap-3 select-none">
-              <div class="w-8 h-8 rounded-xl ${isRead ? 'bg-rose-500 text-white' : 'bg-rose-50 text-rose-600'} border border-rose-200 flex items-center justify-center font-cute font-extrabold text-xs shrink-0 group-hover:bg-rose-500 group-hover:text-white transition-colors">
-                ${numStr}
-              </div>
-              <div class="flex-1 min-w-0 pt-0.5">
-                <p class="font-cute text-xs sm:text-sm text-zinc-700 leading-relaxed group-hover:text-zinc-900 transition-colors">
-                  ${r.text}
-                </p>
-              </div>
-              <button onclick="event.stopPropagation(); toggleReadReason(${r.id})" class="text-rose-400 hover:text-rose-600 p-1 shrink-0 transition-transform active:scale-125" title="Thả tim lý do này">
-                <span id="heart-icon-${r.id}" class="text-sm sm:text-base">${isRead ? '💖' : '🤍'}</span>
-              </button>
-            </div>
-          `;
-        }).join('');
+    function startSequentialReveal() {
+      if (isRevealPlaying) return;
+      if (currentRevealIdx >= reasonsLove.length) {
+        restartSequentialReveal();
+        return;
       }
-
-      if (countEl) countEl.textContent = readReasonsSet.size;
+      isRevealPlaying = true;
+      updateRevealControlsUI();
+      scheduleNextReason();
     }
 
-    function toggleReadReason(id) {
-      if (readReasonsSet.has(id)) {
-        readReasonsSet.delete(id);
+    function scheduleNextReason() {
+      if (!isRevealPlaying) return;
+      revealTimer = setTimeout(() => {
+        if (!isRevealPlaying) return;
+        if (currentRevealIdx < reasonsLove.length) {
+          revealSingleReason(currentRevealIdx);
+          currentRevealIdx++;
+          updateRevealProgressUI();
+          scheduleNextReason();
+        } else {
+          isRevealPlaying = false;
+          updateRevealControlsUI();
+          onAllReasonsFinished();
+        }
+      }, revealSpeedMs);
+    }
+
+    function pauseSequentialReveal() {
+      isRevealPlaying = false;
+      if (revealTimer) clearTimeout(revealTimer);
+      revealTimer = null;
+      updateRevealControlsUI();
+    }
+
+    function togglePauseResumeReveal() {
+      if (isRevealPlaying) {
+        pauseSequentialReveal();
       } else {
-        readReasonsSet.add(id);
-        playChime(659.25, 0.3); // Note E5
-        spawnCardHeart(id);
+        if (currentRevealIdx >= reasonsLove.length) {
+          restartSequentialReveal();
+        } else {
+          startSequentialReveal();
+        }
+      }
+    }
+
+    function cycleRevealSpeed() {
+      currentSpeedIdx = (currentSpeedIdx + 1) % speedOptions.length;
+      revealSpeedMs = speedOptions[currentSpeedIdx].ms;
+      const speedLabel = document.getElementById('speed-label');
+      if (speedLabel) speedLabel.textContent = speedOptions[currentSpeedIdx].label;
+    }
+
+    function revealSingleReason(index, animate = true) {
+      const container = document.getElementById('reasons-paper-flow');
+      if (!container) return;
+      const r = reasonsLove[index];
+      if (!r) return;
+
+      if (document.getElementById('reason-row-' + r.id)) return;
+
+      const row = createReasonRowElement(r, animate);
+      container.appendChild(row);
+
+      if (animate) {
+        playMelodicChime(r.id);
+        const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 180;
+        if (isNearBottom || container.children.length <= 4) {
+          row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    }
+
+    function createReasonRowElement(r, animate = false) {
+      const div = document.createElement('div');
+      div.id = 'reason-row-' + r.id;
+      div.className = 'reason-row flex items-start gap-2.5 sm:gap-3 py-2 px-2.5 rounded-xl transition-all duration-300 hover:bg-rose-50/70 cursor-pointer select-none group ' + (animate ? 'reason-entering' : '');
+      div.onclick = () => onReasonRowClick(r.id);
+
+      let cleanText = r.text.trim();
+      if (cleanText.startsWith('Vì ')) {
+        cleanText = cleanText.substring(3).trim();
+      }
+      const isHearted = heartedReasonsSet.has(r.id);
+
+      div.innerHTML = (
+        '<span class="reason-num font-bold text-zinc-900 text-sm sm:text-base shrink-0 font-serif w-6 sm:w-7 text-right select-none">' + r.id + '.</span>' +
+        '<p class="reason-text font-cute text-sm sm:text-[15px] text-zinc-700 leading-relaxed group-hover:text-zinc-900 flex-1">' +
+          'Anh yêu em vì ' + cleanText +
+        '</p>' +
+        '<button onclick="event.stopPropagation(); toggleHeartReason(' + r.id + ')" class="p-1 shrink-0 text-xs sm:text-sm text-rose-400 hover:text-rose-600 transition-transform active:scale-125" title="Thả tim lý do này">' +
+          '<span id="heart-icon-' + r.id + '">' + (isHearted ? '💖' : '🤍') + '</span>' +
+        '</button>'
+      );
+      return div;
+    }
+
+    function revealAllReasonsInstantly() {
+      pauseSequentialReveal();
+      const container = document.getElementById('reasons-paper-flow');
+      if (!container) return;
+      container.innerHTML = '';
+      for (let i = 0; i < reasonsLove.length; i++) {
+        container.appendChild(createReasonRowElement(reasonsLove[i], false));
+      }
+      currentRevealIdx = reasonsLove.length;
+      updateRevealProgressUI();
+      updateRevealControlsUI();
+      onAllReasonsFinished();
+    }
+
+    function restartSequentialReveal() {
+      pauseSequentialReveal();
+      const container = document.getElementById('reasons-paper-flow');
+      const finishedBanner = document.getElementById('reasons-completed-banner');
+      if (container) container.innerHTML = '';
+      if (finishedBanner) finishedBanner.classList.add('hidden');
+      currentRevealIdx = 0;
+      updateRevealProgressUI();
+      startSequentialReveal();
+    }
+
+    function updateRevealProgressUI() {
+      const countEl = document.getElementById('reveal-count-display');
+      const barEl = document.getElementById('reveal-progress-bar');
+      const pct = Math.min(100, Math.round((currentRevealIdx / reasonsLove.length) * 100));
+      if (countEl) countEl.textContent = currentRevealIdx;
+      if (barEl) barEl.style.width = pct + '%';
+    }
+
+    function updateRevealControlsUI() {
+      const btnIcon = document.getElementById('btn-toggle-reveal-icon');
+      const btnText = document.getElementById('btn-toggle-reveal-text');
+      const pulseDot = document.getElementById('reveal-pulse-dot');
+      if (btnIcon && btnText) {
+        if (isRevealPlaying) {
+          btnIcon.textContent = '⏸️';
+          btnText.textContent = 'Tạm dừng';
+          if (pulseDot) pulseDot.classList.add('animate-ping');
+        } else {
+          btnIcon.textContent = '▶️';
+          btnText.textContent = currentRevealIdx >= reasonsLove.length ? 'Phát lại' : 'Tiếp tục';
+          if (pulseDot) pulseDot.classList.remove('animate-ping');
+        }
+      }
+    }
+
+    function onAllReasonsFinished() {
+      const banner = document.getElementById('reasons-completed-banner');
+      if (banner) {
+        banner.classList.remove('hidden');
+        banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      triggerGiftConfetti();
+      playFanfareChime();
+    }
+
+    function onReasonRowClick(id) {
+      toggleHeartReason(id);
+    }
+
+    function toggleHeartReason(id) {
+      if (heartedReasonsSet.has(id)) {
+        heartedReasonsSet.delete(id);
+      } else {
+        heartedReasonsSet.add(id);
+        playChime(659.25, 0.25, 0.15);
+        spawnFloatingHeart(id);
       }
       try {
-        localStorage.setItem('luxury_birthday_read_reasons', JSON.stringify([...readReasonsSet]));
+        localStorage.setItem('luxury_birthday_hearted_reasons', JSON.stringify([...heartedReasonsSet]));
       } catch(e) {}
-      renderReasons();
+      const icon = document.getElementById('heart-icon-' + id);
+      if (icon) icon.textContent = heartedReasonsSet.has(id) ? '💖' : '🤍';
     }
 
-    function spawnCardHeart(id) {
-      const card = document.getElementById('reason-card-' + id);
-      if (!card) return;
-      const rect = card.getBoundingClientRect();
+    function spawnFloatingHeart(id) {
+      const row = document.getElementById('reason-row-' + id);
+      if (!row) return;
+      const rect = row.getBoundingClientRect();
       const heart = document.createElement('div');
       heart.textContent = '💖';
       heart.style.position = 'fixed';
-      heart.style.left = (rect.right - 35) + 'px';
-      heart.style.top = (rect.top + 10) + 'px';
-      heart.style.fontSize = '18px';
+      heart.style.left = (rect.right - 40) + 'px';
+      heart.style.top = (rect.top + 8) + 'px';
+      heart.style.fontSize = '20px';
       heart.style.pointerEvents = 'none';
       heart.style.zIndex = '99999';
       heart.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.3, 1)';
       document.body.appendChild(heart);
-
       setTimeout(() => {
-        heart.style.transform = 'translateY(-40px) scale(1.4)';
+        heart.style.transform = 'translateY(-45px) scale(1.5)';
         heart.style.opacity = '0';
       }, 20);
       setTimeout(() => heart.remove(), 850);
     }
 
-    function pickRandomReason() {
-      // If currently filtered or empty, reset to all
-      if (currentFilterCat !== 'all' || searchKeyword) {
-        currentFilterCat = 'all';
-        searchKeyword = '';
-        const searchInput = document.getElementById('reasons-search-input');
-        if (searchInput) searchInput.value = '';
-        const clearBtn = document.getElementById('clear-search-btn');
-        if (clearBtn) clearBtn.classList.add('hidden');
-        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active-cat'));
-        const allBtn = document.getElementById('cat-btn-all');
-        if (allBtn) allBtn.classList.add('active-cat');
-        renderReasons();
-      }
-
-      const randomId = Math.floor(Math.random() * reasonsLove.length) + 1;
-      const card = document.getElementById('reason-card-' + randomId);
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        card.classList.remove('reason-highlight');
-        void card.offsetWidth; // trigger reflow
-        card.classList.add('reason-highlight');
-
-        if (!readReasonsSet.has(randomId)) {
-          readReasonsSet.add(randomId);
-          try {
-            localStorage.setItem('luxury_birthday_read_reasons', JSON.stringify([...readReasonsSet]));
-          } catch(e) {}
-          const countEl = document.getElementById('reasons-read-count');
-          if (countEl) countEl.textContent = readReasonsSet.size;
-          const heartIcon = document.getElementById('heart-icon-' + randomId);
-          if (heartIcon) heartIcon.textContent = '💖';
-          card.classList.add('is-read', 'border-rose-300');
-        }
-
-        playFanfareChime();
-        triggerGiftConfetti();
-      }
-    }
-
-    function filterReasonsCategory(cat) {
-      currentFilterCat = cat;
-      document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active-cat'));
-      const activeBtn = document.getElementById('cat-btn-' + cat);
-      if (activeBtn) activeBtn.classList.add('active-cat');
-      renderReasons();
-    }
-
-    function onSearchReasons(e) {
-      searchKeyword = e.target.value.trim().toLowerCase();
-      const clearBtn = document.getElementById('clear-search-btn');
+    // Search filter input
+    function onFilterReasonsInput(e) {
+      const kw = e.target.value.trim().toLowerCase();
+      const clearBtn = document.getElementById('clear-filter-btn');
       if (clearBtn) {
-        if (searchKeyword) clearBtn.classList.remove('hidden');
+        if (kw) clearBtn.classList.remove('hidden');
         else clearBtn.classList.add('hidden');
       }
-      renderReasons();
+      const container = document.getElementById('reasons-paper-flow');
+      if (!container) return;
+
+      if (!kw) {
+        container.innerHTML = '';
+        const limit = Math.max(currentRevealIdx, 1);
+        for (let i = 0; i < limit; i++) {
+          if (reasonsLove[i]) container.appendChild(createReasonRowElement(reasonsLove[i], false));
+        }
+        return;
+      }
+
+      pauseSequentialReveal();
+      container.innerHTML = '';
+      const matched = reasonsLove.filter(r => r.text.toLowerCase().includes(kw));
+      if (matched.length === 0) {
+        container.innerHTML = (
+          '<div class="text-center py-10 font-cute text-zinc-500">' +
+            '<div class="text-2xl mb-1">🔍</div>' +
+            '<p class="text-xs">Không tìm thấy lý do nào khớp với từ khóa "' + kw + '"</p>' +
+          '</div>'
+        );
+      } else {
+        matched.forEach(r => {
+          container.appendChild(createReasonRowElement(r, false));
+        });
+      }
     }
 
-    function clearReasonsSearch() {
-      const searchInput = document.getElementById('reasons-search-input');
-      if (searchInput) searchInput.value = '';
-      const clearBtn = document.getElementById('clear-search-btn');
+    function clearReasonsFilter() {
+      const input = document.getElementById('reasons-filter-input');
+      if (input) input.value = '';
+      const clearBtn = document.getElementById('clear-filter-btn');
       if (clearBtn) clearBtn.classList.add('hidden');
-      searchKeyword = '';
-      renderReasons();
+      onFilterReasonsInput({ target: { value: '' } });
     }
 
-    // Interactive Box Opening with Vanishing Animation
+    // Interactive Box Opening with Vanishing Animation & Sequential Reveal Trigger
     function openGiftBox() {
       if (isBoxOpened) {
         triggerGiftConfetti();
@@ -826,9 +1305,6 @@
         hint.classList.replace('bg-zinc-800', 'bg-rose-600');
       }
 
-      // Render reasons list
-      renderReasons();
-
       // Make gift box disappear smoothly after opening, revealing 100 reasons
       setTimeout(() => {
         if (unboxingContainer) {
@@ -841,7 +1317,7 @@
           }, 600);
         }
 
-        // Reveal contents smoothly
+        // Reveal contents smoothly and begin sequential reveal
         const treasures = document.getElementById('revealed-treasures');
         if (treasures) {
           treasures.classList.remove('hidden');
@@ -850,6 +1326,8 @@
             treasures.classList.add('opacity-100', 'translate-y-0');
             treasures.scrollIntoView({ behavior: 'smooth', block: 'start' });
             triggerGiftConfetti();
+            // START SEQUENTIAL REVEAL OF 100 REASONS
+            startSequentialReveal();
           }, 150);
         }
       }, 750);
@@ -857,6 +1335,7 @@
 
     function resetGiftBox() {
       isBoxOpened = false;
+      pauseSequentialReveal();
       const unboxingContainer = document.getElementById('unboxing-container');
       const box = document.getElementById('gift-box-interactive');
       const hint = document.getElementById('gift-click-hint');
@@ -915,10 +1394,10 @@
       }, 250);
     }
 
-    // Auto-fire celebratory confetti on entry & initialize reasons
+    // Auto-fire celebratory confetti on entry & initialize
     window.addEventListener('DOMContentLoaded', () => {
       loadRecipientName();
-      renderReasons();
+      renderDrawerPlaylist();
       setTimeout(triggerGiftConfetti, 500);
     });
   </script>
