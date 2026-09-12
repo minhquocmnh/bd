@@ -299,18 +299,6 @@
       animation-play-state: paused;
     }
 
-    @keyframes cuteArrowBounce {
-      0%, 100% {
-        transform: translate(0, -50%);
-      }
-      50% {
-        transform: translate(-8px, -50%);
-      }
-    }
-    .animate-cute-arrow {
-      animation: cuteArrowBounce 1.6s ease-in-out infinite;
-    }
-
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
@@ -887,22 +875,6 @@
     <!-- Little status indicator dot -->
     <span id="drawer-toggle-indicator" class="w-2 h-2 rounded-full bg-zinc-500"></span>
   </button>
-
-  <!-- Cute Arrow Hint: "Điều chỉnh nhạc ở đây nè <3" -->
-  <div id="music-hint-tooltip" onclick="toggleMusicDrawer(true)"
-    class="fixed left-[52px] sm:left-[62px] top-1/2 z-40 animate-cute-arrow cursor-pointer select-none transition-all duration-300 group"
-    title="Nhấn để mở bảng điều chỉnh nhạc">
-    <div class="relative flex items-center gap-1.5 sm:gap-2 bg-[#fffbf2]/95 hover:bg-white text-rose-600 font-cute font-extrabold text-xs sm:text-sm px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl shadow-xl border-2 border-rose-300/90 backdrop-blur-md">
-      <!-- Cute hand-drawn arrow pointing Left -->
-      <svg class="w-4 h-4 sm:w-5 sm:h-5 text-rose-500 shrink-0 transform -rotate-12 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19 12H5M11 18l-6-6 6-6" />
-      </svg>
-      <span class="tracking-wide whitespace-nowrap drop-shadow-sm font-bold">
-        Điều chỉnh nhạc ở đây nè &lt;3
-      </span>
-      <span class="text-rose-400 text-xs animate-pulse">✨</span>
-    </div>
-  </div>
 
   <!-- Left Drawer Aside Panel -->
   <aside id="music-drawer" class="fixed top-0 bottom-0 left-0 z-50 w-[360px] sm:w-[420px] max-w-[92vw] h-full bg-[#18181b]/98 backdrop-blur-2xl border-r border-zinc-700/60 shadow-2xl flex flex-col -translate-x-full transition-transform duration-400 ease-out overflow-hidden text-zinc-100">
@@ -1926,16 +1898,11 @@
       window.toggleMusicDrawer = function(forceState) {
         const drawer = document.getElementById('music-drawer');
         const backdrop = document.getElementById('music-drawer-backdrop');
-        const hintTooltip = document.getElementById('music-hint-tooltip');
         if (!drawer) return;
         const willOpen = typeof forceState === 'boolean' ? forceState : !drawer.classList.contains('drawer-open');
         if (willOpen) {
           drawer.classList.add('drawer-open');
           if (backdrop) backdrop.classList.add('backdrop-open');
-          if (hintTooltip) {
-            hintTooltip.style.opacity = '0';
-            hintTooltip.style.pointerEvents = 'none';
-          }
         } else {
           drawer.classList.remove('drawer-open');
           if (backdrop) backdrop.classList.remove('backdrop-open');
