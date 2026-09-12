@@ -427,51 +427,6 @@
           <!-- PAPER SHEET CONTAINER -->
           <div class="bg-white/95 rounded-3xl border border-rose-200/80 shadow-2xl p-5 sm:p-8 relative overflow-hidden backdrop-blur-sm">
             
-            <!-- Controls Toolbar (Status, Speed, Language, Actions) -->
-            <div class="border-b border-rose-100 pb-3 mb-4">
-              <div class="flex flex-wrap items-center justify-between gap-2.5 text-xs font-cute">
-                
-                <!-- Status & Count -->
-                <div class="flex items-center gap-2">
-                  <span id="reveal-pulse-dot" class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
-                  <span class="text-zinc-600 text-[11px] sm:text-xs">Đang mở: <strong id="reveal-count-display" class="text-rose-600 text-sm font-extrabold">0</strong>/100 lý do 💕</span>
-                </div>
-
-                <!-- Control Buttons -->
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  
-
-                  <!-- Pause / Resume -->
-                  <button id="btn-toggle-reveal" onclick="togglePauseResumeReveal()" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Tạm dừng / Tiếp tục">
-                    <span id="btn-toggle-reveal-icon">⏸️</span>
-                    <span id="btn-toggle-reveal-text">Tạm dừng</span>
-                  </button>
-
-                  <!-- Speed Cycle -->
-                  <button onclick="cycleRevealSpeed()" class="px-2.5 py-1 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Thay đổi tốc độ">
-                    <span>⚡</span>
-                    <span id="speed-label">Nhanh (1x)</span>
-                  </button>
-
-                  <!-- Show All -->
-                  <button onclick="revealAllReasonsInstantly()" class="px-2.5 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 border border-zinc-200 font-bold transition active:scale-95 shadow-sm cursor-pointer" title="Xem trọn vẹn 100 lý do ngay lập tức">
-                    Hiện hết
-                  </button>
-
-                  <!-- Replay -->
-                  <button onclick="restartSequentialReveal()" class="px-2 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 border border-zinc-200 font-bold transition active:scale-95 cursor-pointer" title="Phát lại từ đầu">
-                    🔄
-                  </button>
-                </div>
-
-              </div>
-
-              <!-- Progress bar track -->
-              <div class="w-full bg-rose-100/70 h-1.5 rounded-full overflow-hidden mt-2.5">
-                <div id="reveal-progress-bar" class="bg-gradient-to-r from-rose-400 via-pink-500 to-rose-600 h-full rounded-full transition-all duration-200" style="width: 0%;"></div>
-              </div>
-            </div>
-
             <!-- Flow Container (100 Reasons stream directly down the main page without inner scroll box) -->
             <div id="reasons-paper-flow" class="space-y-3 pt-2">
               <!-- Dynamically populated line-by-line via JS -->
@@ -959,13 +914,7 @@
     let currentRevealIdx = 0; // 0 to 100
     let isRevealPlaying = false;
     let revealTimer = null;
-    let revealSpeedMs = 120; // default fast interval ms
-    const speedOptions = [
-      { label: 'Nhanh (1x)', ms: 120 },
-      { label: 'Cực nhanh (2x)', ms: 60 },
-      { label: 'Vừa phải (0.5x)', ms: 280 }
-    ];
-    let currentSpeedIdx = 0;
+    let revealSpeedMs = 80; // 1.5x speed (80ms interval)
     let heartedReasonsSet = new Set();
 
     try {
