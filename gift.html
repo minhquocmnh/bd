@@ -151,13 +151,13 @@
     @keyframes reasonSlideIn {
       0% {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(12px);
         background-color: rgba(254, 205, 211, 0.75);
       }
       40% {
         opacity: 1;
-        transform: translateY(-2px);
-        background-color: rgba(254, 226, 226, 0.5);
+        transform: translateY(-1px);
+        background-color: rgba(254, 226, 226, 0.4);
       }
       100% {
         opacity: 1;
@@ -166,7 +166,7 @@
       }
     }
     .reason-entering {
-      animation: reasonSlideIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: reasonSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     /* Disk spin for music */
@@ -465,7 +465,7 @@
                   </button>
                   <button onclick="cycleRevealSpeed()" class="px-3 py-1 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-bold flex items-center gap-1 transition active:scale-95 shadow-sm cursor-pointer" title="Thay đổi tốc độ">
                     <span>⚡</span>
-                    <span id="speed-label">1x</span>
+                    <span id="speed-label">Nhanh (1x)</span>
                   </button>
                   <button onclick="revealAllReasonsInstantly()" class="px-3 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 border border-zinc-200 font-bold transition active:scale-95 shadow-sm cursor-pointer" title="Xem trọn vẹn 100 lý do ngay lập tức">
                     Hiện tất cả
@@ -1023,11 +1023,11 @@ const reasonsLove = [
     let currentRevealIdx = 0; // 0 to 100
     let isRevealPlaying = false;
     let revealTimer = null;
-    let revealSpeedMs = 550; // default interval ms
+    let revealSpeedMs = 120; // default interval ms (xuất hiện nhanh, mượt mà)
     const speedOptions = [
-      { label: '1x', ms: 550 },
-      { label: '1.5x', ms: 350 },
-      { label: '2.5x', ms: 180 }
+      { label: 'Nhanh (1x)', ms: 120 },
+      { label: 'Cực nhanh (2x)', ms: 60 },
+      { label: 'Vừa phải (0.5x)', ms: 280 }
     ];
     let currentSpeedIdx = 0;
     let heartedReasonsSet = new Set();
@@ -1104,10 +1104,12 @@ const reasonsLove = [
       container.appendChild(row);
 
       if (animate) {
-        playMelodicChime(r.id);
-        const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 180;
+        if (r.id % 3 === 0 || r.id === 1 || r.id === 100) {
+          playMelodicChime(r.id);
+        }
+        const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 300;
         if (isNearBottom || container.children.length <= 4) {
-          row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          container.scrollTop = container.scrollHeight;
         }
       }
     }
